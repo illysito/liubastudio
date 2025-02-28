@@ -1,4 +1,4 @@
-const frag = `
+const frag_large = `
 #ifdef GL_ES
 precision highp float;
 #endif
@@ -84,4 +84,4 @@ void main()
   gl_FragColor = color;
 }
 `
-export default frag
+export default frag_large

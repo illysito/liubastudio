@@ -1,9 +1,16 @@
 import GlslCanvas from 'glslCanvas'
 
-import frag from './glsl/liubaFrag'
+import frag_large from './glsl/liubaFrag_large'
+import frag_mob from './glsl/liubaFrag_mob'
 
 //prettier-ignore
 function liuba(mouseXRef, mouseYRef) {
+  function isMobile() {
+    return window.matchMedia("(max-width: 768px)").matches
+  }
+
+  console.log(isMobile())
+
   const canvas = document.querySelector('#liuba-canvas')
 
   const gl = canvas.getContext('webgl')
@@ -32,7 +39,13 @@ function liuba(mouseXRef, mouseYRef) {
 
   const sandbox = new GlslCanvas(canvas)
 
-  const fragment_shader = frag
+  let fragment_shader
+  if (isMobile()) {
+    fragment_shader = frag_mob
+  } else {
+    fragment_shader = frag_large
+  }
+
   sandbox.load(fragment_shader)
   sandbox.setUniform('u_resolution', [canvas.width, canvas.height])
   sandbox.setUniform('u_mouseX', mouseXRef.current)

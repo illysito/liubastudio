@@ -1,3 +1,4 @@
+// import universe from './features/3d/world/universe'
 import audio from './features/scripts/audio'
 import handleLiuba from './features/shaders/handleLiuba'
 
@@ -5,7 +6,8 @@ import './styles/style.css'
 
 console.log('Welcome to Liuba Studio!')
 
-// https://cdn.jsdelivr.net/gh/illysito/liubastudio/liuba_bg.mp3
+// const container = document.querySelector('.moving-bg')
 
+// universe(container)
 handleLiuba()
 audio()
