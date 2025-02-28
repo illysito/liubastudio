@@ -3,8 +3,8 @@ import gsap from 'gsap'
 import liuba from '../shaders/liuba'
 
 function handleLiuba() {
-  let mouseX = 0.0
-  let mouseY = 0.0
+  let mouseX = 0.5
+  let mouseY = 0.5
   const mouseXRef = { current: mouseX }
   const mouseYRef = { current: mouseY }
 
