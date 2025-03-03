@@ -28,4 +28,6 @@
 
 .liuba-canvas-wrapper {
   border-width: 0px;
+  scale: 60%;
+  opacity: 0%;
 }

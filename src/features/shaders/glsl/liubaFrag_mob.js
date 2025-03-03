@@ -52,8 +52,8 @@ void main()
   // // DISTORTION
 
   vec2 distortion = vec2(
-    0.91 * sin(u_time),
-    0.61 * cos(0.5 * u_time)
+    0.61 * sin(u_time),
+    0.41 * cos(0.5 * u_time)
   );
 
   distortion *= strength;
@@ -65,7 +65,7 @@ void main()
     img.g *= 0.2;
   }
 
-  vec4 blueImg = texture2D(image, coords - 0.8 * distortion);
+  vec4 blueImg = texture2D(image, coords - 0.4 * distortion);
   blueImg.g = 0.0;
   blueImg.r = 0.0;
 
