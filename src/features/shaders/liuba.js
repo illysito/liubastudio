@@ -1,7 +1,7 @@
 import GlslCanvas from 'glslCanvas'
 
 import frag_large from './glsl/liubaFrag_large'
-import frag_mob from './glsl/liubaFrag_mob'
+// import frag_mob from './glsl/liubaFrag_mob'
 
 //prettier-ignore
 function liuba(mouseXRef, mouseYRef) {
@@ -41,7 +41,7 @@ function liuba(mouseXRef, mouseYRef) {
 
   let fragment_shader
   if (isMobile()) {
-    fragment_shader = frag_mob
+    fragment_shader = frag_large
   } else {
     fragment_shader = frag_large
   }
@@ -56,12 +56,7 @@ function liuba(mouseXRef, mouseYRef) {
   const imageURL_3 = 'https://raw.githubusercontent.com/illysito/liubastudio/200245a591cc7bbed960e7b5839b2f1c7e6512aa/mascara_3.png'
   const urls = [imageURL_1, imageURL_2, imageURL_3]
   const index = Math.floor(Math.random() * 3)
-  if (!isMobile()) {
-    sandbox.setUniform('u_image', urls[index])
-  } else {
-    sandbox.setUniform('u_image', 'https://raw.githubusercontent.com/illysito/lukyanov-illya/1ec2b53d8fb633e194afcc01b60e6f61b5da113a/piesitos-edit.jpg')
-  }
-
+  sandbox.setUniform('u_image', urls[index])
 
   function updateUniforms() {
     sandbox.setUniform('u_resolution', [canvas.width, canvas.height])
