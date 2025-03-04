@@ -56,7 +56,12 @@ function liuba(mouseXRef, mouseYRef) {
   const imageURL_3 = 'https://raw.githubusercontent.com/illysito/liubastudio/200245a591cc7bbed960e7b5839b2f1c7e6512aa/mascara_3.png'
   const urls = [imageURL_1, imageURL_2, imageURL_3]
   const index = Math.floor(Math.random() * 3)
-  sandbox.setUniform('u_image', urls[index])
+  if (!isMobile()) {
+    sandbox.setUniform('u_image', urls[index])
+  } else {
+    sandbox.setUniform('u_image', imageURL_1)
+  }
+
 
   function updateUniforms() {
     sandbox.setUniform('u_resolution', [canvas.width, canvas.height])
