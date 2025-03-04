@@ -59,7 +59,7 @@ function liuba(mouseXRef, mouseYRef) {
   if (!isMobile()) {
     sandbox.setUniform('u_image', urls[index])
   } else {
-    sandbox.setUniform('u_image', imageURL_1)
+    sandbox.setUniform('u_image', 'https://raw.githubusercontent.com/illysito/lukyanov-illya/1ec2b53d8fb633e194afcc01b60e6f61b5da113a/piesitos-edit.jpg')
   }
 
 
