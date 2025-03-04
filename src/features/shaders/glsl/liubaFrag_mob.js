@@ -5,7 +5,7 @@ precision lowp float;
 
 uniform float u_time;
 uniform vec2 u_resolution;
-uniform sampler2D image;
+uniform sampler2D u_image;
 
 varying vec2 v_texcoord;
 
@@ -58,14 +58,14 @@ void main()
 
   // distortion *= strength;
 
-  vec4 img = texture2D(image, uv);
+  vec4 img = texture2D(u_image, uv);
   if(img.a == 0.0){
     img.r *= 0.2;
     img.b *= 0.2;
     img.g *= 0.2;
   }
 
-  vec4 blueImg = texture2D(image, coords);
+  vec4 blueImg = texture2D(u_image, coords);
   blueImg.g = 0.0;
   blueImg.r = 0.0;
 
