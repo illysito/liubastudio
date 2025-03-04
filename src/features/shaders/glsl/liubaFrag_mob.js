@@ -42,38 +42,38 @@ void main()
 
   vec2 coords = aspect(uv, image_ratio, canvas_ratio);
 
-  // // DISTANCE
+  // // // DISTANCE
 
-  float dist = distance(vec2(0.5, 0.5), coords);
-  float radius = 16.0 * (0.15 * (0.1 * sin(0.3 * u_time) + 0.015 * abs(sin(0.2 * u_time))));
-  float strength = 0.0;
-  strength = smoothstep(0.4, radius, dist);
+  // float dist = distance(vec2(0.5, 0.5), coords);
+  // float radius = 16.0 * (0.15 * (0.1 * sin(0.3 * u_time) + 0.015 * abs(sin(0.2 * u_time))));
+  // float strength = 0.0;
+  // strength = smoothstep(0.4, radius, dist);
 
-  // // DISTORTION
+  // // // DISTORTION
 
-  vec2 distortion = vec2(
-    0.61 * sin(u_time),
-    0.41 * cos(0.5 * u_time)
-  );
+  // vec2 distortion = vec2(
+  //   0.61 * sin(u_time),
+  //   0.41 * cos(0.5 * u_time)
+  // );
 
-  distortion *= strength;
+  // distortion *= strength;
 
-  vec4 img = texture2D(image, coords + 0.1 * distortion);
+  vec4 img = texture2D(image, coords);
   if(img.a == 0.0){
     img.r *= 0.2;
     img.b *= 0.2;
     img.g *= 0.2;
   }
 
-  vec4 blueImg = texture2D(image, coords - 0.4 * distortion);
+  vec4 blueImg = texture2D(image, coords);
   blueImg.g = 0.0;
   blueImg.r = 0.0;
 
   vec4 color = img + blueImg;
 
-  float noiseMixer = random(uv);
-  noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
-  color += 0.25 * noiseMixer;
+  // float noiseMixer = random(uv);
+  // noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
+  // color += 0.25 * noiseMixer;
 
   gl_FragColor = color;
 }
