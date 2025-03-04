@@ -65,11 +65,11 @@ void main()
     img.g *= 0.2;
   }
 
-  vec4 blueImg = texture2D(u_image, coords);
-  blueImg.g = 0.0;
-  blueImg.r = 0.0;
+  // vec4 blueImg = texture2D(u_image, coords);
+  // blueImg.g = 0.0;
+  // blueImg.r = 0.0;
 
-  vec4 color = img + blueImg;
+  // vec4 color = img + blueImg;
 
   // float noiseMixer = random(uv);
   // noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
