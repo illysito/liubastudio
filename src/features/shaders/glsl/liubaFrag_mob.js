@@ -58,7 +58,7 @@ void main()
 
   // distortion *= strength;
 
-  vec4 img = texture2D(image, coords);
+  vec4 img = texture2D(image, uv);
   if(img.a == 0.0){
     img.r *= 0.2;
     img.b *= 0.2;
@@ -75,7 +75,7 @@ void main()
   // noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
   // color += 0.25 * noiseMixer;
 
-  gl_FragColor = color;
+  gl_FragColor = img;
 }
 `
 export default frag_mob
