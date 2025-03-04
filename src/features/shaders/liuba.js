@@ -6,10 +6,10 @@ import frag_mob from './glsl/liubaFrag_mob'
 //prettier-ignore
 function liuba(mouseXRef, mouseYRef) {
   function isMobile() {
-    return window.matchMedia("(max-width: 768px)").matches
+    return window.matchMedia('(max-width: 768px)').matches
   }
 
-  console.log(isMobile())
+  console.log('Liuba Shader: is it mobile?: ' + isMobile())
 
   const canvas = document.querySelector('#liuba-canvas')
 

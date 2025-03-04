@@ -80,7 +80,7 @@ void main()
   float opacity = 0.75;
 
   float timer = timeLoop(u_time, 6.0 + 0.5 * sin(0.5 * u_time));
-  timer = smoothstep(0.3, 0.5, timer) - smoothstep(0.5, 0.7, timer);
+  timer = smoothstep(0.4, 0.5, timer) - smoothstep(0.5, 0.6, timer);
 
   img.a *= opacity * timer;
 
