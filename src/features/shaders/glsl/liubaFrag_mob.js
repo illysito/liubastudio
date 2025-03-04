@@ -78,6 +78,7 @@ void main()
   // img = vec4(0.2,0.2,1.0,1.0);
 
   gl_FragColor = img;
+  gl_FragColor = vec4(v_texcoord, 0.0, 1.0);
 }
 `
 export default frag_mob
