@@ -1,6 +1,6 @@
 const frag_mob = `
 #ifdef GL_ES
-precision mediump float;
+precision lowp float;
 #endif
 
 uniform float u_time;
