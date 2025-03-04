@@ -14,7 +14,7 @@ function hero() {
     ease: ease,
   })
   gsap.to(canvas, {
-    y: 50,
+    yPercent: 8,
     // scale: 0.8,
     scrollTrigger: {
       trigger: canvas,

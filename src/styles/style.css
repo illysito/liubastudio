@@ -26,6 +26,11 @@
   height: 100%;
 }
 
+#stripe-canvas {
+  width: 100svw;
+  height: 100svh;
+}
+
 .liuba-canvas-wrapper {
   border-width: 0px;
   scale: 60%;

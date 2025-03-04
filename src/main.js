@@ -4,6 +4,7 @@ import footer from './features/scripts/footer'
 import hero from './features/scripts/hero'
 import mainCollection from './features/scripts/main_collection'
 import handleLiuba from './features/shaders/handleLiuba'
+import stripes from './features/shaders/stripes'
 
 import './styles/style.css'
 
@@ -14,6 +15,7 @@ console.log('Welcome to Liuba Studio!')
 // universe(container)
 hero()
 handleLiuba()
+stripes()
 audio()
 mainCollection()
 footer()
