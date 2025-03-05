@@ -5,6 +5,7 @@ function nav() {
   const logo_link = document.querySelector('.logo-link')
   const menu_screen = document.querySelector('.menu__screen')
   const menu_header = document.querySelectorAll('.menu-h')
+  const menu_link = document.querySelectorAll('.menu-link')
   const burger = document.querySelector('.burger-link')
   const back_wrapper = document.querySelector('.back-wrapper')
 
@@ -76,6 +77,28 @@ function nav() {
         },
       })
     })
+
+    menu_link.forEach((link) => {
+      link.addEventListener('click', () => {
+        burger.style.pointerEvents = 'none'
+        menu_screen.style.pointerEvents = 'none'
+        gsap.to(menu_header, {
+          yPercent: 100,
+          duration: 1.2,
+          ease: 'power1.inOut',
+          onComplete: () => {
+            burger.style.pointerEvents = 'auto'
+            menu_screen.style.pointerEvents = 'auto'
+          },
+        })
+        gsap.to(menu_screen, {
+          yPercent: 0,
+          duration: 1.4,
+          ease: 'power2.inOut',
+        })
+      })
+    })
+
     back_wrapper.addEventListener('click', () => {
       burger.style.pointerEvents = 'none'
       menu_screen.style.pointerEvents = 'none'
