@@ -79,7 +79,7 @@ void main()
 
   float noiseMixer = random(uv);
   noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
-  color += 0.25 * noiseMixer;
+  color += 0.15 * noiseMixer;
 
   gl_FragColor = color;
 }
