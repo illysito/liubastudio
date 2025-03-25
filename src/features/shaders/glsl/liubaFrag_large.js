@@ -81,6 +81,10 @@ void main()
   noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
   color += 0.15 * noiseMixer;
 
+  if (color.a == 0.0) {
+    color = vec4(0.0, 0.0, 0.0, 1.0);
+  }
+
   gl_FragColor = color;
 }
 `
