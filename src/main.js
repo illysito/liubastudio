@@ -1,7 +1,10 @@
 import audio from './features/scripts/audio'
 import footer from './features/scripts/footer'
 import hero from './features/scripts/hero'
+// import heroOpacity from './features/scripts/hero_opacity'
 import mainCollection from './features/scripts/main_collection'
+import map from './features/scripts/map'
+import motto from './features/scripts/motto'
 import nav from './features/scripts/nav'
 import handleLiuba from './features/shaders/handleLiuba'
 // import stripes from './features/shaders/stripes'
@@ -14,7 +17,7 @@ function runHomeFunctions() {
   console.log('Welcome to Liuba Nosova')
   hero()
   handleLiuba()
-  // stripes()
+  motto()
   mainCollection()
 }
 
@@ -28,6 +31,7 @@ function runCoursesFunctions() {
 
 function runSpacesFunctions() {
   console.log('Welcome to Spaces')
+  map()
 }
 
 function runContactFunctions() {
