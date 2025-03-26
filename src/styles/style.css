@@ -15,6 +15,11 @@ body {
   height: 100%;
 }
 
+#about-canvas {
+  width: 100%;
+  height: 100%;
+}
+
 #stripe-canvas {
   width: 100svw;
   height: 100svh;

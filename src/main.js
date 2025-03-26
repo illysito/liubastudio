@@ -7,6 +7,7 @@ import map from './features/scripts/map'
 import motto from './features/scripts/motto'
 import nav from './features/scripts/nav'
 import handleLiuba from './features/shaders/handleLiuba'
+import handleLiubaAbout from './features/shaders/handleLiubaAbout'
 // import stripes from './features/shaders/stripes'
 
 import './styles/style.css'
@@ -16,9 +17,11 @@ const body = document.body
 function runHomeFunctions() {
   console.log('Welcome to Liuba Nosova')
   hero()
-  handleLiuba()
   motto()
   mainCollection()
+  // shaders
+  handleLiuba()
+  handleLiubaAbout()
 }
 
 function runCollectionFunctions() {

@@ -5,8 +5,11 @@ precision highp float;
 
 uniform float u_time;
 uniform vec2 u_resolution;
+uniform vec2 u_imageResolution;
 uniform float u_mouseX;
 uniform float u_mouseY;
+uniform float u_distortionFactor;
+uniform float u_blueDistortionFactor;
 uniform bool u_textureLoaded;
 uniform sampler2D image;
 
@@ -42,7 +45,8 @@ void main()
   vec2 uv = v_texcoord;
 
   // // RATIOS
-  float image_ratio = 1200.0 / 1600.0;
+  // float image_ratio = 1200.0 / 1600.0;
+  float image_ratio = u_imageResolution.x / u_imageResolution.y;
   float canvas_ratio = u_resolution.x / u_resolution.y;
 
   vec2 coords = aspect(uv, image_ratio, canvas_ratio);
@@ -55,6 +59,7 @@ void main()
 
   float radius = 16.0 * (0.15 * (0.1 * sin(0.3 * u_time) + 0.015 * abs(sin(0.2 * u_time))));
   // radius = 0.035;
+  radius *= u_distortionFactor;
   float strength = 0.0;
   strength = smoothstep(0.4, radius, dist);
 
@@ -74,7 +79,7 @@ void main()
     img.g *= 0.2;
   }
 
-  vec4 blueImg = texture2D(image, coords + 1.2 * distortion);
+  vec4 blueImg = texture2D(image, coords + 1.2 * distortion * u_blueDistortionFactor);
   blueImg.g = 0.0;
   blueImg.r = 0.0;
 

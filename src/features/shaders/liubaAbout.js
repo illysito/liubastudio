@@ -4,20 +4,20 @@ import frag_large from './glsl/liubaFrag_large'
 // import frag_mob from './glsl/liubaFrag_mob'
 
 //prettier-ignore
-function liuba(mouseXRef, mouseYRef) {
+function liubaAbout(mouseXRef, mouseYRef) {
   function isMobile() {
     return window.matchMedia('(max-width: 768px)').matches
   }
 
   console.log('Liuba Shader: is it mobile?: ' + isMobile())
 
-  const canvas = document.querySelector('#liuba-canvas')
+  const canvas = document.querySelector('#about-canvas')
 
   const gl = canvas.getContext('webgl')
   if (!gl) {
-    console.error('WebGL not supported!')
+    console.error('ABOUT - WebGL not supported!')
   } else {
-    console.log('WebGL is working!')
+    console.log('ABOUT - WebGL is working!')
   }
   if (!canvas) {
     console.error('Canvas element not found!')
@@ -51,15 +51,11 @@ function liuba(mouseXRef, mouseYRef) {
   sandbox.setUniform('u_mouseX', mouseXRef.current)
   sandbox.setUniform('u_mouseY', mouseYRef.current)
   //prettier-ignore
-  const imageURL_1 = 'https://raw.githubusercontent.com/illysito/liubastudio/727ab65723b9766528481251367d1e2e3f290f7a/mascara.png'
-  const imageURL_2 = 'https://raw.githubusercontent.com/illysito/liubastudio/200245a591cc7bbed960e7b5839b2f1c7e6512aa/mascara_2.png'
-  const imageURL_3 = 'https://raw.githubusercontent.com/illysito/liubastudio/200245a591cc7bbed960e7b5839b2f1c7e6512aa/mascara_3.png'
-  const urls = [imageURL_1, imageURL_2, imageURL_3]
-  const index = Math.floor(Math.random() * 3)
-  sandbox.setUniform('u_image', urls[index])
-  sandbox.setUniform('u_imageResolution', [1200.0, 1600.0])
-  sandbox.setUniform('u_distortionFactor', 1.0)
-  sandbox.setUniform('u_blueDistortionFactor', 1.0)
+  const url = 'https://raw.githubusercontent.com/illysito/liubastudio/75838adfa270e8cfcca5eba05f5bd8e49a1e6938/liuba_raw.png'
+  sandbox.setUniform('u_image', url)
+  sandbox.setUniform('u_imageResolution', [1200.0, 1200.0])
+  sandbox.setUniform('u_distortionFactor', 0.85)
+  sandbox.setUniform('u_blueDistortionFactor', 0.15)
 
   function updateUniforms() {
     sandbox.setUniform('u_resolution', [canvas.width, canvas.height])
@@ -75,4 +71,4 @@ function liuba(mouseXRef, mouseYRef) {
   return updateUniforms
 }
 
-export default liuba
+export default liubaAbout
