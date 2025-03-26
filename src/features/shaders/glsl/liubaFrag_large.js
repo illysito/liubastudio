@@ -7,6 +7,7 @@ uniform float u_time;
 uniform vec2 u_resolution;
 uniform float u_mouseX;
 uniform float u_mouseY;
+uniform bool u_textureLoaded;
 uniform sampler2D image;
 
 varying vec2 v_texcoord;
@@ -34,6 +35,8 @@ vec2 aspect(vec2 uv, float image_ratio, float canvas_ratio){
 
 void main()
 {
+  
+  vec4 color = vec4(1.0, 1.0, 1.0, 1.0);
 
   // UV
   vec2 uv = v_texcoord;
@@ -75,15 +78,11 @@ void main()
   blueImg.g = 0.0;
   blueImg.r = 0.0;
 
-  vec4 color = img + blueImg;
+  color = img + blueImg;
 
   float noiseMixer = random(uv);
   noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
   color += 0.15 * noiseMixer;
-
-  if (color.a == 0.0) {
-    color = vec4(0.0, 0.0, 0.0, 1.0);
-  }
 
   gl_FragColor = color;
 }
