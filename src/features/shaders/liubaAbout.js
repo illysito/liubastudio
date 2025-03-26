@@ -9,18 +9,18 @@ function liubaAbout(mouseXRef, mouseYRef) {
     return window.matchMedia('(max-width: 768px)').matches
   }
 
-  console.log('Liuba Shader: is it mobile?: ' + isMobile())
+  console.log('Liuba About Shader: is it mobile?: ' + isMobile())
 
   const canvas = document.querySelector('#about-canvas')
 
   const gl = canvas.getContext('webgl')
   if (!gl) {
-    console.error('ABOUT - WebGL not supported!')
+    console.error('Liuba About Shader: WebGL not supported!')
   } else {
-    console.log('ABOUT - WebGL is working!')
+    console.log('Liuba About Shader: WebGL is working!')
   }
   if (!canvas) {
-    console.error('Canvas element not found!')
+    console.error('Liuba About Shader: Canvas element not found!')
     return
   }
 
@@ -35,7 +35,7 @@ function liubaAbout(mouseXRef, mouseYRef) {
 
   calcSize()
 
-  console.log('width: ' + canvas.width + ' height: ' + canvas.height)
+  // console.log('Liuba About Shader: width: ' + canvas.width + ' height: ' + canvas.height)
 
   const sandbox = new GlslCanvas(canvas)
 

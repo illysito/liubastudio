@@ -9,18 +9,18 @@ function liuba(mouseXRef, mouseYRef) {
     return window.matchMedia('(max-width: 768px)').matches
   }
 
-  console.log('Liuba Shader: is it mobile?: ' + isMobile())
+  console.log('Liuba Hero Shader: is it mobile?: ' + isMobile())
 
   const canvas = document.querySelector('#liuba-canvas')
 
   const gl = canvas.getContext('webgl')
   if (!gl) {
-    console.error('WebGL not supported!')
+    console.error('Liuba Hero Shader: WebGL not supported!')
   } else {
-    console.log('WebGL is working!')
+    console.log('Liuba Hero Shader: WebGL is working!')
   }
   if (!canvas) {
-    console.error('Canvas element not found!')
+    console.error('Liuba Hero Shader: Canvas element not found!')
     return
   }
 
@@ -35,7 +35,7 @@ function liuba(mouseXRef, mouseYRef) {
 
   calcSize()
 
-  console.log('width: ' + canvas.width + ' height: ' + canvas.height)
+  // console.log('Liuba About Shader: width: ' + canvas.width + ' height: ' + canvas.height)
 
   const sandbox = new GlslCanvas(canvas)
 

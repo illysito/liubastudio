@@ -7,13 +7,14 @@ function motto() {
   // const motto_h = document.querySelector('.motto-h')
   const splitHeading = new SplitType(motto_line, { types: 'chars' })
   const splitHeading2 = new SplitType(motto_line_2, { types: 'chars' })
-  console.log(splitHeading2)
+  console.log('Motto · I need this log: ' + splitHeading2)
 
   gsap.set(splitHeading.chars, {
     opacity: 0,
     xPercent: -120,
     scale: 0.9,
   })
+
   gsap.set([motto_line, motto_line_2], {
     opacity: 0.05,
     yPercent: 100,

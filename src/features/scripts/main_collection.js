@@ -1,22 +1,37 @@
 import gsap from 'gsap'
 
 function mainCollection() {
-  const cards = document.querySelectorAll('.collection-card')
+  const cards = document.querySelectorAll('.collection-card-2')
   const ease = 'power1.out'
 
   function hoverIn(event) {
     const c = event.currentTarget
+    // entro en los textos
     const header_w = c.firstElementChild
     const header = header_w.firstElementChild
     const hidden_header = header.nextElementSibling
+    // entro en las imagenes
+    const img_w = header_w.nextElementSibling
+    const img = img_w.firstElementChild
     gsap.to(c, {
-      backgroundColor: '#3111d5',
+      // backgroundColor: '#3111d5',
       duration: 0.4,
       ease: ease,
     })
-    gsap.to([header, hidden_header], {
+    gsap.to(header, {
+      yPercent: -200,
+      // color: '#fffffe',
+      duration: 0.6,
+      ease: ease,
+    })
+    gsap.to(hidden_header, {
       yPercent: -100,
-      color: '#fffffe',
+      // color: '#fffffe',
+      duration: 0.6,
+      ease: ease,
+    })
+    gsap.to(img, {
+      scale: 1.25,
       duration: 0.6,
       ease: ease,
     })
@@ -24,17 +39,32 @@ function mainCollection() {
 
   function hoverOut(event) {
     const c = event.currentTarget
+    // entro en los textos
     const header_w = c.firstElementChild
     const header = header_w.firstElementChild
     const hidden_header = header.nextElementSibling
+    // entro en las imagenes
+    const img_w = header_w.nextElementSibling
+    const img = img_w.firstElementChild
     gsap.to(c, {
-      backgroundColor: '#fffffe',
+      // backgroundColor: '#fffffe',
       duration: 0.4,
       ease: ease,
     })
-    gsap.to([header, hidden_header], {
+    gsap.to(header, {
+      yPercent: -100,
+      // color: '#3111d5',
+      duration: 0.6,
+      ease: ease,
+    })
+    gsap.to(hidden_header, {
       yPercent: 0,
-      color: '#3111d5',
+      // color: '#3111d5',
+      duration: 0.6,
+      ease: ease,
+    })
+    gsap.to(img, {
+      scale: 1.2,
       duration: 0.6,
       ease: ease,
     })

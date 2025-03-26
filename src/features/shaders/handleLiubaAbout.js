@@ -3,7 +3,6 @@ import gsap from 'gsap'
 import liubaAbout from '../shaders/liubaAbout'
 
 function handleLiubaAbout() {
-  console.log('about is running!')
   let mouseX = 0.5
   let mouseY = 0.5
   const mouseXRef = { current: mouseX }

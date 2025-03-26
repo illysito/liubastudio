@@ -1,6 +1,7 @@
 import audio from './features/scripts/audio'
 import footer from './features/scripts/footer'
 import hero from './features/scripts/hero'
+import landingMisc from './features/scripts/landing_misc'
 // import heroOpacity from './features/scripts/hero_opacity'
 import mainCollection from './features/scripts/main_collection'
 import map from './features/scripts/map'
@@ -22,6 +23,7 @@ function runHomeFunctions() {
   // shaders
   handleLiuba()
   handleLiubaAbout()
+  landingMisc()
 }
 
 function runCollectionFunctions() {
