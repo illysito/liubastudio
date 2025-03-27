@@ -1,11 +1,14 @@
 import { gsap } from 'gsap'
-// import SplitType from 'split-type'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 function landingMisc() {
   const title_headings = document.querySelectorAll('.title-heading')
   const title_lines = document.querySelectorAll('.title-line')
   const collection_titles = document.querySelectorAll('.collection-title-2')
-  const collection_imgs = document.querySelectorAll('.collection-img-2')
+  // const collection_imgs = document.querySelectorAll('.collection-img-2')
+  const collection_canvas = document.querySelectorAll('.collection-canvas')
   // sections
   const collection_section = document.querySelector('.collection__section__2')
   const about_section = document.querySelector('.about__section')
@@ -75,10 +78,10 @@ function landingMisc() {
 
   // ------------- PARALLAX ------------ //
   // parallax on collection images
-  gsap.to(collection_imgs, {
+  gsap.to(collection_canvas, {
     y: -32,
     scrollTrigger: {
-      trigger: collection_imgs,
+      trigger: collection_canvas,
       start: 'top bottom',
       end: 'top top',
       scrub: true,

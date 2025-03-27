@@ -7,6 +7,7 @@ import mainCollection from './features/scripts/main_collection'
 import map from './features/scripts/map'
 import motto from './features/scripts/motto'
 import nav from './features/scripts/nav'
+import collectionShaders from './features/shaders/collectionShaders'
 import handleLiuba from './features/shaders/handleLiuba'
 import handleLiubaAbout from './features/shaders/handleLiubaAbout'
 // import stripes from './features/shaders/stripes'
@@ -23,6 +24,8 @@ function runHomeFunctions() {
   // shaders
   handleLiuba()
   handleLiubaAbout()
+  collectionShaders()
+  // general
   landingMisc()
 }
 

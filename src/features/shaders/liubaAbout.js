@@ -51,7 +51,8 @@ function liubaAbout(mouseXRef, mouseYRef) {
   sandbox.setUniform('u_mouseX', mouseXRef.current)
   sandbox.setUniform('u_mouseY', mouseYRef.current)
   //prettier-ignore
-  const url = 'https://raw.githubusercontent.com/illysito/liubastudio/75838adfa270e8cfcca5eba05f5bd8e49a1e6938/liuba_raw.png'
+  // const url = 'https://raw.githubusercontent.com/illysito/liubastudio/75838adfa270e8cfcca5eba05f5bd8e49a1e6938/liuba_raw.png'
+  const url = 'https://raw.githubusercontent.com/illysito/liubastudio/e972bb9c7a5926a8ad8ca0a91fc3d79939d6ecdc/liuba_raw_BN.png'
   sandbox.setUniform('u_image', url)
   sandbox.setUniform('u_imageResolution', [1200.0, 1200.0])
   sandbox.setUniform('u_distortionFactor', 0.85)

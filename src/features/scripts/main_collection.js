@@ -31,7 +31,7 @@ function mainCollection() {
       ease: ease,
     })
     gsap.to(img, {
-      scale: 1.25,
+      scale: 1.15,
       duration: 0.6,
       ease: ease,
     })
@@ -64,7 +64,7 @@ function mainCollection() {
       ease: ease,
     })
     gsap.to(img, {
-      scale: 1.2,
+      scale: 1.1,
       duration: 0.6,
       ease: ease,
     })
