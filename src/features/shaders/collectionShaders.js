@@ -110,15 +110,15 @@ function collectionShaders() {
     // console.log('u_mouse SET')
   }
 
-  window.addEventListener('resize', function () {
+  window.addEventListener('resize', () => {
     calcSize(ceramicsCanvas)
     calcSize(jewelryCanvas)
     calcSize(engravingCanvas)
     calcSize(paintingCanvas)
-    updateUniforms(ceramicsCanvas, ceramicsCanvas)
-    updateUniforms(jewelryCanvas, jewelryCanvas)
-    updateUniforms(engravingCanvas, engravingCanvas)
-    updateUniforms(paintingCanvas, paintingCanvas)
+    updateUniforms(ceramicsSandbox, ceramicsCanvas)
+    updateUniforms(jewelrySandbox, jewelryCanvas)
+    updateUniforms(engravingSandbox, engravingCanvas)
+    updateUniforms(paintingSandbox, paintingCanvas)
   })
 
   //prettier-ignore
