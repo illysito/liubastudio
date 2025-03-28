@@ -1,7 +1,7 @@
 import GlslCanvas from 'glslCanvas'
 import gsap from 'gsap'
 
-import frag_large from './glsl/liubaFrag_large'
+import collection_frag from './glsl/collectionFrag'
 // import frag_mob from './glsl/liubaFrag_mob'
 
 //prettier-ignore
@@ -10,12 +10,15 @@ function collectionShaders() {
   let mouseY = 0.5
   const mouseXRef = { current: mouseX }
   const mouseYRef = { current: mouseY }
+  const trigger = document.querySelector('.collection-canvas')
+  let isObserved = { current: true }
+  let lastScrollY = window.scrollY
 
   function isMobile() {
     return window.matchMedia('(max-width: 768px)').matches
   }
 
-  console.log('Collection Shader: is it mobile?: ' + isMobile())
+  // console.log('Collection Shader: is it mobile?: ' + isMobile())
 
   const ceramicsCanvas = document.querySelector('#ceramics-canvas')
   const jewelryCanvas = document.querySelector('#jewelry-canvas')
@@ -56,9 +59,9 @@ function collectionShaders() {
 
   let fragment_shader
   if (isMobile()) {
-    fragment_shader = frag_large
+    fragment_shader = collection_frag
   } else {
-    fragment_shader = frag_large
+    fragment_shader = collection_frag
   }
 
   //prettier-ignore
@@ -75,14 +78,20 @@ function collectionShaders() {
   const sandboxArray = [ceramicsSandbox, jewelrySandbox, engravingSandbox, paintingSandbox]
 
   function loadSandbox(sandbox, canvas, index) {
-    sandbox.load(fragment_shader)
-    sandbox.setUniform('u_resolution', [canvas.width, canvas.height])
-    sandbox.setUniform('u_mouseX', mouseXRef.current)
-    sandbox.setUniform('u_mouseY', mouseYRef.current)
-    sandbox.setUniform('u_image', urls[index])
-    sandbox.setUniform('u_imageResolution', [1200.0, 1600.0])
-    sandbox.setUniform('u_distortionFactor', 0.6)
-    sandbox.setUniform('u_blueDistortionFactor', 0.2)
+    if (sandbox) {
+      sandbox.load(fragment_shader)
+      sandbox.setUniform('u_resolution', [canvas.width, canvas.height])
+      sandbox.setUniform('u_mouseX', mouseXRef.current)
+      sandbox.setUniform('u_mouseY', mouseYRef.current)
+      sandbox.setUniform('u_image', urls[index])
+      sandbox.setUniform('u_imageResolution', [1200.0, 1600.0])
+      sandbox.setUniform('u_distortionFactor', 0.6)
+      sandbox.setUniform('u_blueDistortionFactor', 0.2)
+      sandbox.setUniform('u_naturalDistortionFactor', 0.0)
+      sandbox.setUniform('u_isObserved', isObserved.current)
+    } else {
+      console.log('sandbox not yet loaded')
+    }
   }
   loadSandbox(ceramicsSandbox, ceramicsCanvas, 0)
   loadSandbox(jewelrySandbox, jewelryCanvas, 1)
@@ -90,10 +99,15 @@ function collectionShaders() {
   loadSandbox(paintingSandbox, paintingCanvas, 3)
 
   function updateUniforms(sandbox, canvas) {
-    sandbox.setUniform('u_resolution', [canvas.width, canvas.height])
-    sandbox.setUniform('u_mouseX', mouseXRef.current)
-    sandbox.setUniform('u_mouseY', mouseYRef.current)
-    console.log('u_mouse SET')
+    if (sandbox) {
+      sandbox.setUniform('u_resolution', [canvas.width, canvas.height])
+      sandbox.setUniform('u_mouseX', mouseXRef.current)
+      sandbox.setUniform('u_mouseY', mouseYRef.current)
+      sandbox.setUniform('u_isObserved', isObserved.current)
+    } else {
+      console.log('sandbox not yet loaded')
+    }
+    // console.log('u_mouse SET')
   }
 
   window.addEventListener('resize', function () {
@@ -116,9 +130,50 @@ function collectionShaders() {
       mouseXRef.current = gsap.utils.mapRange(0, canvasArray[index].offsetWidth, 0.45, 0.65, event.offsetX)
       //prettier-ignore
       mouseYRef.current = gsap.utils.mapRange(0, canvasArray[index].offsetHeight, 0.45, 0.65, event.offsetY)
-      console.log(mouseXRef.current, mouseYRef.current)
+      // console.log(mouseXRef.current, mouseYRef.current)
       updateUniforms(sandboxArray[index], canvasArray[index])
     })
+  })
+
+  // update isObserved on observation
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!isObserved.current) {
+            isObserved.current = 1.0
+            console.log('COLLECTION - isObserved: ' + isObserved.current)
+            updateUniforms(sandboxArray[0], canvasArray[0], isObserved.current)
+            updateUniforms(sandboxArray[1], canvasArray[1], isObserved.current)
+            updateUniforms(sandboxArray[2], canvasArray[2], isObserved.current)
+            updateUniforms(sandboxArray[3], canvasArray[3], isObserved.current)
+          }
+        } else {
+          if (window.scrollY < lastScrollY) {
+            isObserved.current = 0.0
+            console.log('COLLECTION - isObserved: ' + isObserved.current)
+            updateUniforms(sandboxArray[0], canvasArray[0], isObserved.current)
+            updateUniforms(sandboxArray[1], canvasArray[1], isObserved.current)
+            updateUniforms(sandboxArray[2], canvasArray[2], isObserved.current)
+            updateUniforms(sandboxArray[3], canvasArray[3], isObserved.current)
+          } else {
+            isObserved.current = 0.0
+            console.log('COLLECTION - isObserved: ' + isObserved.current)
+            updateUniforms(sandboxArray[0], canvasArray[0], isObserved.current)
+            updateUniforms(sandboxArray[1], canvasArray[1], isObserved.current)
+            updateUniforms(sandboxArray[2], canvasArray[2], isObserved.current)
+            updateUniforms(sandboxArray[3], canvasArray[3], isObserved.current)
+          }
+        }
+      })
+    },
+    { threshold: 0.0 }
+  )
+
+  observer.observe(trigger)
+
+  window.addEventListener('scroll', () => {
+    lastScrollY = window.scrollY
   })
 
   return updateUniforms

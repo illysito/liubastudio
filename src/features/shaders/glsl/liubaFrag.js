@@ -1,4 +1,4 @@
-const frag_large = `
+const liuba_frag = `
 #ifdef GL_ES
 precision highp float;
 #endif
@@ -10,7 +10,9 @@ uniform float u_mouseX;
 uniform float u_mouseY;
 uniform float u_distortionFactor;
 uniform float u_blueDistortionFactor;
+uniform float u_naturalDistortionFactor;
 uniform bool u_textureLoaded;
+uniform float u_isObserved;
 uniform sampler2D image;
 
 varying vec2 v_texcoord;
@@ -38,6 +40,10 @@ vec2 aspect(vec2 uv, float image_ratio, float canvas_ratio){
 
 void main()
 {
+  if(u_isObserved == 0.0){
+    gl_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
+    return;
+  }
   
   vec4 color = vec4(1.0, 1.0, 1.0, 1.0);
 
@@ -57,11 +63,10 @@ void main()
   // mouse = smoothstep(0.0, 0.8, mouse);
   float dist = distance(mouse, coords);
 
-  float radius = 16.0 * (0.15 * (0.1 * sin(0.3 * u_time) + 0.015 * abs(sin(0.2 * u_time))));
+  float radius = 16.0 * u_naturalDistortionFactor * (0.15 * (0.1 * sin(0.3 * u_time) + 0.015 * abs(sin(0.2 * u_time))));
   // radius = 0.035;
   radius *= u_distortionFactor;
-  float strength = 0.0;
-  strength = smoothstep(0.4, radius, dist);
+  float strength = smoothstep(0.4, radius, dist);
 
   // // DISTORTION
 
@@ -89,7 +94,7 @@ void main()
   noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
   color += 0.15 * noiseMixer;
 
-  gl_FragColor = color;
+    gl_FragColor = color;
 }
 `
-export default frag_large
+export default liuba_frag

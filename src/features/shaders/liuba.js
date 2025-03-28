@@ -1,10 +1,10 @@
 import GlslCanvas from 'glslCanvas'
 
-import frag_large from './glsl/liubaFrag_large'
+import liuba_frag from './glsl/liubaFrag'
 // import frag_mob from './glsl/liubaFrag_mob'
 
 //prettier-ignore
-function liuba(mouseXRef, mouseYRef) {
+function liuba(mouseXRef, mouseYRef, isObserved) {
   function isMobile() {
     return window.matchMedia('(max-width: 768px)').matches
   }
@@ -41,9 +41,9 @@ function liuba(mouseXRef, mouseYRef) {
 
   let fragment_shader
   if (isMobile()) {
-    fragment_shader = frag_large
+    fragment_shader = liuba_frag
   } else {
-    fragment_shader = frag_large
+    fragment_shader = liuba_frag
   }
 
   sandbox.load(fragment_shader)
@@ -60,11 +60,14 @@ function liuba(mouseXRef, mouseYRef) {
   sandbox.setUniform('u_imageResolution', [1200.0, 1600.0])
   sandbox.setUniform('u_distortionFactor', 1.0)
   sandbox.setUniform('u_blueDistortionFactor', 1.0)
+  sandbox.setUniform('u_naturalDistortionFactor', 1.0)
+  sandbox.setUniform('u_isObserved', isObserved.current)
 
   function updateUniforms() {
     sandbox.setUniform('u_resolution', [canvas.width, canvas.height])
     sandbox.setUniform('u_mouseX', mouseXRef.current)
     sandbox.setUniform('u_mouseY', mouseYRef.current)
+    sandbox.setUniform('u_isObserved', isObserved.current)
   }
 
   window.addEventListener('resize', function () {
