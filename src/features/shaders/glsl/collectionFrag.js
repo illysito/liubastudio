@@ -11,6 +11,7 @@ uniform float u_mouseY;
 uniform float u_distortionFactor;
 uniform float u_blueDistortionFactor;
 uniform float u_naturalDistortionFactor;
+uniform float u_grainFactor;
 uniform bool u_textureLoaded;
 uniform float u_isObserved;
 uniform sampler2D image;
@@ -85,14 +86,16 @@ void main()
   }
 
   vec4 blueImg = texture2D(image, coords + 1.2 * distortion * u_blueDistortionFactor);
-  blueImg.g = 0.0;
-  blueImg.r = 0.0;
+  if(u_mouseX != 0.0 || u_mouseY != 0.0){
+    blueImg.g = 0.0;
+    blueImg.r = 0.0;
+  }
 
   color = img + blueImg;
 
   float noiseMixer = random(uv);
   noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
-  color += 0.15 * noiseMixer;
+  color += 0.15 * noiseMixer * u_grainFactor;
 
     gl_FragColor = color;
 }

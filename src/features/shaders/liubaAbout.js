@@ -64,7 +64,7 @@ function liubaAbout(mouseXRef, mouseYRef, isObserved) {
     sandbox.setUniform('u_resolution', [canvas.width, canvas.height])
     sandbox.setUniform('u_mouseX', mouseXRef.current)
     sandbox.setUniform('u_mouseY', mouseYRef.current)
-    console.log(isObserved.current)
+    // console.log(isObserved.current)
     sandbox.setUniform('u_isObserved', isObserved.current)
   }
 

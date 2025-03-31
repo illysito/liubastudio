@@ -1,5 +1,9 @@
+import gsap from 'gsap'
+
 function audio() {
   const body = document.body
+  const soundOn = document.querySelector('.sound-on')
+  const soundOff = document.querySelector('.sound-off')
 
   function isMobile() {
     return window.matchMedia('(max-width: 768px)').matches
@@ -25,23 +29,77 @@ function audio() {
       console.log('no audio found')
     }
     const button = document.querySelector('.sound-button')
-
     const audioAccepted = localStorage.getItem('audioAccepted')
 
+    // fade in
+    gsap.to(button, {
+      opacity: 1,
+      duration: 0.8,
+      delay: 0.4,
+    })
+
+    // movement
+    gsap.to(button, {
+      rotation: 12,
+      duration: 4,
+      repeat: -1,
+      yoyo: true,
+      ease: 'linear',
+    })
+
+    // initial state
     if (audioAccepted === 'true') {
       // Play the appropriate audio for this page
       audio.play()
+      soundOn.style.opacity = 1
+      soundOff.style.opacity = 0
+    } else {
+      soundOn.style.opacity = 0
+      soundOff.style.opacity = 1
     }
 
+    // event listeners
     button.addEventListener('click', () => {
       if (audio.paused) {
         localStorage.setItem('audioAccepted', 'true')
         audio.play()
         console.log('button pressed')
+        gsap.to(soundOn, {
+          opacity: 1,
+          duration: 0.4,
+          ease: 'power1.inOut',
+        })
+        gsap.to(soundOff, {
+          opacity: 0,
+          duration: 0.4,
+          ease: 'power1.inOut',
+        })
       } else {
         localStorage.setItem('audioAccepted', 'false')
         audio.pause()
+        gsap.to(soundOn, {
+          opacity: 0,
+          duration: 0.4,
+          ease: 'power1.inOut',
+        })
+        gsap.to(soundOff, {
+          opacity: 1,
+          duration: 0.4,
+          ease: 'power1.inOut',
+        })
       }
+    })
+    button.addEventListener('mouseover', () => {
+      gsap.to(button, {
+        scale: 0.9,
+        duration: 0.4,
+      })
+    })
+    button.addEventListener('mouseleave', () => {
+      gsap.to(button, {
+        scale: 1,
+        duration: 0.4,
+      })
     })
   }
 }

@@ -66,7 +66,7 @@ function collectionShaders() {
 
   //prettier-ignore
   const imageURL_1 = 'https://raw.githubusercontent.com/illysito/liubastudio/e20b9bd87f8954c94acc98cf0d1b5dbd8dff16e2/minotaur_EDIT.jpg'
-  const imageURL_2 = 'https://raw.githubusercontent.com/illysito/liubastudio/09464e1e2a7a21c7221bd16e503902285b754439/pendant_2_EDIT_BLU.jpg'
+  const imageURL_2 = 'https://raw.githubusercontent.com/illysito/liubastudio/256223afa2789c2c2e8e844ef2c4bb6622dfcfd3/JEWELRY.jpg'
   const imageURL_3 = 'https://raw.githubusercontent.com/illysito/liubastudio/fcada2a2df3d9edc26dd32ac2fe2a2dc9e46e90e/engraving_EDIT.jpg'
   const imageURL_4 = 'https://raw.githubusercontent.com/illysito/liubastudio/224ac9d5a4ce80245a93965631fd8a292e7a673b/theisland_EDIT.jpg'
   const urls = [imageURL_1, imageURL_2, imageURL_3, imageURL_4]
@@ -89,6 +89,7 @@ function collectionShaders() {
       sandbox.setUniform('u_blueDistortionFactor', 0.2)
       sandbox.setUniform('u_naturalDistortionFactor', 0.0)
       sandbox.setUniform('u_isObserved', isObserved.current)
+      sandbox.setUniform('u_grainFactor', 0.0)
     } else {
       console.log('sandbox not yet loaded')
     }
