@@ -12,6 +12,9 @@ function landingMisc() {
   // sections
   const collection_section = document.querySelector('.collection__section__2')
   const about_section = document.querySelector('.about__section')
+  const motto_section = document.querySelector('.motto__section')
+  // stars
+  const stars = document.querySelectorAll('.stars')
 
   // heading and lines of separators
   title_headings.forEach((title) => {
@@ -109,6 +112,19 @@ function landingMisc() {
       scrub: true,
       markers: false,
     },
+  })
+  // parallax on stars
+  stars.forEach((star, index) => {
+    gsap.to(star, {
+      y: 28 + 28 * 2 * index,
+      scrollTrigger: {
+        trigger: motto_section,
+        start: 'top bottom',
+        end: 'top top',
+        scrub: true,
+        markers: false,
+      },
+    })
   })
 }
 
