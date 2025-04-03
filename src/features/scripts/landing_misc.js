@@ -116,7 +116,7 @@ function landingMisc() {
   // parallax on stars
   stars.forEach((star, index) => {
     gsap.to(star, {
-      y: 28 + 28 * 2 * index,
+      y: 40 + 40 * 2 * index,
       scrollTrigger: {
         trigger: motto_section,
         start: 'top bottom',
