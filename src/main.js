@@ -6,6 +6,7 @@ import landingMisc from './features/scripts/landing_misc'
 import mainCollection from './features/scripts/main_collection'
 import map from './features/scripts/map'
 import motto from './features/scripts/motto'
+import mousetrail from './features/scripts/mousetrail'
 import nav from './features/scripts/nav'
 import collectionShaders from './features/shaders/collectionShaders'
 import handleLiuba from './features/shaders/handleLiuba'
@@ -27,6 +28,7 @@ function runHomeFunctions() {
   collectionShaders()
   // general
   landingMisc()
+  mousetrail()
 }
 
 function runCollectionFunctions() {

@@ -85,13 +85,14 @@ void main()
     img.g *= 0.2;
   }
 
-  vec4 blueImg = texture2D(image, coords + 1.2 * distortion * u_blueDistortionFactor);
-  if(u_mouseX != 0.0 || u_mouseY != 0.0){
-    blueImg.g = 0.0;
-    blueImg.r = 0.0;
-  }
+  // vec4 blueImg = texture2D(image, coords + 1.2 * distortion * u_blueDistortionFactor);
+  // if(u_mouseX != 0.0 || u_mouseY != 0.0){
+  //   blueImg.g = 0.0;
+  //   blueImg.r = 0.0;
+  // }
 
-  color = img + blueImg;
+  // color = img + blueImg;
+  color = img;
 
   float noiseMixer = random(uv);
   noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
