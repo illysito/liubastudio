@@ -18,12 +18,6 @@ function hero() {
     duration: 3,
     ease: ease,
   })
-  gsap.to([heading, subheading], {
-    opacity: 1,
-    yPercent: 100,
-    duration: 2.4,
-    ease: ease,
-  })
 
   // scroll trigger
   gsap.to(canvas, {
@@ -38,23 +32,22 @@ function hero() {
     },
   })
   gsap.to(heading, {
-    y: 50,
-    // scale: 0.8,
+    opacity: 0,
     scrollTrigger: {
-      trigger: canvas,
-      start: 'top 20%',
-      end: 'bottom top',
-      scrub: 2,
+      trigger: heading,
+      start: 'top 30%',
+      end: 'top top',
+      scrub: true,
       markers: false,
     },
   })
   gsap.to(subheading, {
-    scale: 0.85,
-    y: 20,
+    scale: 0.99,
+    opacity: 0,
     scrollTrigger: {
-      trigger: canvas,
-      start: 'top 25%',
-      // end: 'top top',
+      trigger: heading,
+      start: 'top 26%',
+      end: 'top top',
       scrub: true,
       markers: false,
     },

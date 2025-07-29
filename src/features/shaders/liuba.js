@@ -9,20 +9,20 @@ function liuba(mouseXRef, mouseYRef, isObserved) {
     return window.matchMedia('(max-width: 768px)').matches
   }
 
-  console.log('Liuba Hero Shader: is it mobile?: ' + isMobile())
+  // console.log('Liuba Hero Shader: is it mobile?: ' + isMobile())
 
   const canvas = document.querySelector('#liuba-canvas')
 
-  const gl = canvas.getContext('webgl')
-  if (!gl) {
-    console.error('Liuba Hero Shader: WebGL not supported!')
-  } else {
-    console.log('Liuba Hero Shader: WebGL is working!')
-  }
-  if (!canvas) {
-    console.error('Liuba Hero Shader: Canvas element not found!')
-    return
-  }
+  // const gl = canvas.getContext('webgl')
+  // if (!gl) {
+  //   console.error('Liuba Hero Shader: WebGL not supported!')
+  // } else {
+  //   console.log('Liuba Hero Shader: WebGL is working!')
+  // }
+  // if (!canvas) {
+  //   console.error('Liuba Hero Shader: Canvas element not found!')
+  //   return
+  // }
 
   const calcSize = function () {
     let w = canvas.offsetWidth

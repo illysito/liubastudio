@@ -1,38 +1,39 @@
-import audio from './features/scripts/audio'
-import footer from './features/scripts/footer'
-import hero from './features/scripts/hero'
-import landingMisc from './features/scripts/landing_misc'
-// import heroOpacity from './features/scripts/hero_opacity'
-import mainCollection from './features/scripts/main_collection'
-import map from './features/scripts/map'
-import motto from './features/scripts/motto'
-import mousetrail from './features/scripts/mousetrail'
-import nav from './features/scripts/nav'
+// collection
+import filterStore from './features/scripts/collection/filterStore'
+// general
+import audio from './features/scripts/general/audio'
+import footer from './features/scripts/general/footer'
+// import mousetrail from './features/scripts/general/mousetrail'
+import nav from './features/scripts/general/nav'
+// home
+import hero from './features/scripts/home/hero'
+import landingMisc from './features/scripts/home/landing_misc'
+import mainCollection from './features/scripts/home/main_collection'
+import motto from './features/scripts/home/motto'
+// shaders
 import collectionShaders from './features/shaders/collectionShaders'
 import handleLiuba from './features/shaders/handleLiuba'
-import handleLiubaAbout from './features/shaders/handleLiubaAbout'
-// import stripes from './features/shaders/stripes'
+// import handleLiubaAbout from './features/shaders/handleLiubaAbout'
 
 import './styles/style.css'
 
 const body = document.body
 
 function runHomeFunctions() {
-  console.log('Welcome to Liuba Nosova')
+  console.log('MAKE ME DYNAMIC IMPORT!')
   hero()
   motto()
   mainCollection()
+  landingMisc()
   // shaders
   handleLiuba()
-  handleLiubaAbout()
+  // handleLiubaAbout()
   collectionShaders()
-  // general
-  landingMisc()
-  mousetrail()
 }
 
 function runCollectionFunctions() {
   console.log('Welcome to Collection')
+  filterStore()
 }
 
 function runCoursesFunctions() {
@@ -41,7 +42,6 @@ function runCoursesFunctions() {
 
 function runSpacesFunctions() {
   console.log('Welcome to Spaces')
-  map()
 }
 
 function runContactFunctions() {
@@ -56,6 +56,7 @@ function runGeneralFunctions() {
   nav()
   footer()
   audio()
+  // mousetrail()
 }
 
 runGeneralFunctions()

@@ -27,22 +27,22 @@ function collectionShaders() {
   const canvas = document.querySelectorAll('.collection-canvas')
   const canvasArray = [ceramicsCanvas, jewelryCanvas, engravingCanvas, paintingCanvas]
 
-  function checkCanvas(canvas) {
-    const gl = canvas.getContext('webgl')
-    if (!gl) {
-      console.error('Collection Shader: WebGL not supported!')
-    } else {
-      console.log('Collection Shader: WebGL is working!')
-    }
-    if (!canvas) {
-      console.error('Collection Shader: Canvas element not found!')
-      return
-    }
-  }
-  checkCanvas(ceramicsCanvas)
-  checkCanvas(jewelryCanvas)
-  checkCanvas(engravingCanvas)
-  checkCanvas(paintingCanvas)
+  // function checkCanvas(canvas) {
+  //   const gl = canvas.getContext('webgl')
+  //   if (!gl) {
+  //     console.error('Collection Shader: WebGL not supported!')
+  //   } else {
+  //     console.log('Collection Shader: WebGL is working!')
+  //   }
+  //   if (!canvas) {
+  //     console.error('Collection Shader: Canvas element not found!')
+  //     return
+  //   }
+  // }
+  // checkCanvas(ceramicsCanvas)
+  // checkCanvas(jewelryCanvas)
+  // checkCanvas(engravingCanvas)
+  // checkCanvas(paintingCanvas)
 
   function calcSize(canvas) {
     let w = canvas.offsetWidth
@@ -143,7 +143,7 @@ function collectionShaders() {
         if (entry.isIntersecting) {
           if (!isObserved.current) {
             isObserved.current = 1.0
-            console.log('COLLECTION - isObserved: ' + isObserved.current)
+            // console.log('COLLECTION - isObserved: ' + isObserved.current)
             updateUniforms(sandboxArray[0], canvasArray[0], isObserved.current)
             updateUniforms(sandboxArray[1], canvasArray[1], isObserved.current)
             updateUniforms(sandboxArray[2], canvasArray[2], isObserved.current)
@@ -152,14 +152,14 @@ function collectionShaders() {
         } else {
           if (window.scrollY < lastScrollY) {
             isObserved.current = 0.0
-            console.log('COLLECTION - isObserved: ' + isObserved.current)
+            // console.log('COLLECTION - isObserved: ' + isObserved.current)
             updateUniforms(sandboxArray[0], canvasArray[0], isObserved.current)
             updateUniforms(sandboxArray[1], canvasArray[1], isObserved.current)
             updateUniforms(sandboxArray[2], canvasArray[2], isObserved.current)
             updateUniforms(sandboxArray[3], canvasArray[3], isObserved.current)
           } else {
             isObserved.current = 0.0
-            console.log('COLLECTION - isObserved: ' + isObserved.current)
+            // console.log('COLLECTION - isObserved: ' + isObserved.current)
             updateUniforms(sandboxArray[0], canvasArray[0], isObserved.current)
             updateUniforms(sandboxArray[1], canvasArray[1], isObserved.current)
             updateUniforms(sandboxArray[2], canvasArray[2], isObserved.current)

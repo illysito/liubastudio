@@ -30,17 +30,17 @@ function handleLiuba() {
         if (entry.isIntersecting) {
           if (!isObserved.current) {
             isObserved.current = 1.0
-            console.log('MAIN LIUBA - isObserved: ' + isObserved.current)
+            // console.log('MAIN LIUBA - isObserved: ' + isObserved.current)
             updateUniforms(mouseXRef, mouseYRef, isObserved)
           }
         } else {
           if (window.scrollY < lastScrollY) {
             isObserved.current = 0.0
-            console.log('MAIN LIUBA - isObserved: ' + isObserved.current)
+            // console.log('MAIN LIUBA - isObserved: ' + isObserved.current)
             updateUniforms(mouseXRef, mouseYRef, isObserved)
           } else {
             isObserved.current = 0.0
-            console.log('MAIN LIUBA - isObserved: ' + isObserved.current)
+            // console.log('MAIN LIUBA - isObserved: ' + isObserved.current)
             updateUniforms(mouseXRef, mouseYRef, isObserved)
           }
         }
