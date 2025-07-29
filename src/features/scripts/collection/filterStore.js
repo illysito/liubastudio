@@ -1,4 +1,4 @@
-// import gsap from 'gsap'
+import gsap from 'gsap'
 
 function filterStore() {
   function queryDomElements() {
@@ -54,6 +54,28 @@ function filterStore() {
   // event listeners
   domElements.filterButtons.forEach((b, index) => {
     b.addEventListener('click', () => updateFilterArray(index))
+  })
+  domElements.filterButtons.forEach((b) => {
+    b.addEventListener('mouseenter', (e) => {
+      const button = e.currentTarget
+      const tear = button.firstElementChild
+      const buttonTxt = tear.nextElementSibling
+      gsap.to(buttonTxt, {
+        opacity: 0.4,
+        duration: 0.2,
+      })
+    })
+  })
+  domElements.filterButtons.forEach((b) => {
+    b.addEventListener('mouseleave', (e) => {
+      const button = e.currentTarget
+      const tear = button.firstElementChild
+      const buttonTxt = tear.nextElementSibling
+      gsap.to(buttonTxt, {
+        opacity: 1,
+        duration: 0.2,
+      })
+    })
   })
 }
 

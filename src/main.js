@@ -1,4 +1,6 @@
 // collection
+import displayStoreProducts from './features/scripts/collection/displayStoreProducts'
+import fetchStoreData from './features/scripts/collection/fetchStoreData'
 import filterStore from './features/scripts/collection/filterStore'
 // general
 import audio from './features/scripts/general/audio'
@@ -19,6 +21,8 @@ import './styles/style.css'
 
 const body = document.body
 
+let products
+
 function runHomeFunctions() {
   console.log('MAKE ME DYNAMIC IMPORT!')
   hero()
@@ -31,8 +35,10 @@ function runHomeFunctions() {
   collectionShaders()
 }
 
-function runCollectionFunctions() {
+async function runCollectionFunctions() {
   console.log('Welcome to Collection')
+  products = await fetchStoreData()
+  displayStoreProducts(products)
   filterStore()
 }
 
