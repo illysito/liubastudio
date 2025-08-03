@@ -2,6 +2,7 @@
 import displayStoreProducts from './features/scripts/collection/displayStoreProducts'
 import fetchStoreData from './features/scripts/collection/fetchStoreData'
 import filterStore from './features/scripts/collection/filterStore'
+import hoverStoreProducts from './features/scripts/collection/hoverStoreProducts'
 // general
 import audio from './features/scripts/general/audio'
 import footer from './features/scripts/general/footer'
@@ -40,6 +41,7 @@ async function runCollectionFunctions() {
   products = await fetchStoreData()
   displayStoreProducts(products)
   filterStore()
+  hoverStoreProducts()
 }
 
 function runCoursesFunctions() {

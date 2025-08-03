@@ -16,8 +16,10 @@ function displayStoreProducts(products) {
     productEl.classList.add(`${category}`)
 
     // Create image
+    const imgWrapper = document.createElement('div')
     const img = document.createElement('img')
     img.classList.add('product-img')
+    imgWrapper.classList.add('product-img-wrapper')
     img.src = p.image
     img.alt = p.name
 
@@ -41,7 +43,8 @@ function displayStoreProducts(products) {
     addButton.appendChild(addButtonTxt)
 
     // Append all to product card
-    productEl.appendChild(img)
+    productEl.appendChild(imgWrapper)
+    imgWrapper.appendChild(img)
     productEl.appendChild(title)
     productEl.appendChild(price)
     productEl.appendChild(addButton)
