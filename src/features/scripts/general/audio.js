@@ -17,6 +17,8 @@ function audio() {
       audio = document.getElementById('bg-audio-home')
     } else if (body.classList.contains('body__collection')) {
       audio = document.getElementById('bg-audio-collection')
+    } else if (body.classList.contains('body__product')) {
+      audio = document.getElementById('bg-audio-collection')
     } else if (body.classList.contains('body__courses')) {
       audio = document.getElementById('bg-audio-courses')
     } else if (body.classList.contains('body__spaces')) {

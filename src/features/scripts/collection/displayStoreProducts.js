@@ -6,12 +6,15 @@ function displayStoreProducts(products) {
   }
   const domElements = domElementsQuery()
 
+  const product_IDs = []
+
   products.forEach((p) => {
     const category = p.metadata.Category
     // Create container
     const productEl = document.createElement('div')
     productEl.classList.add('product-card') // Style this in your CSS
     productEl.classList.add(`${category}`)
+    productEl.dataset.product_ID = p.id // add ID to the container
 
     // Create image
     const imgWrapper = document.createElement('div')
@@ -35,10 +38,18 @@ function displayStoreProducts(products) {
     // Create button
     const addButton = document.createElement('div')
     addButton.classList.add('add-button')
+    const addButtonWrapper = document.createElement('div')
+    addButtonWrapper.classList.add('add-button-wrapper')
     const addButtonTxt = document.createElement('p')
     addButtonTxt.classList.add('add-button-txt')
+    const addButtonHiddenTxt = document.createElement('p')
+    addButtonHiddenTxt.classList.add('add-button-txt')
+    addButtonHiddenTxt.classList.add('is--hidden')
     addButtonTxt.textContent = 'Bring home'
-    addButton.appendChild(addButtonTxt)
+    addButtonHiddenTxt.textContent = 'Bring home'
+    addButton.appendChild(addButtonWrapper)
+    addButtonWrapper.appendChild(addButtonTxt)
+    addButtonWrapper.appendChild(addButtonHiddenTxt)
 
     // Append all to product card
     productEl.appendChild(imgWrapper)
@@ -50,6 +61,8 @@ function displayStoreProducts(products) {
     // Append product card to wrapper
     domElements.storeWrapper.appendChild(productEl)
   })
+
+  console.log(product_IDs)
 }
 
 export default displayStoreProducts

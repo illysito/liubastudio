@@ -1,8 +1,3 @@
-// collection
-import displayStoreProducts from './features/scripts/collection/displayStoreProducts'
-import fetchStoreData from './features/scripts/collection/fetchStoreData'
-import filterStore from './features/scripts/collection/filterStore'
-import hoverStoreProducts from './features/scripts/collection/hoverStoreProducts'
 // general
 import audio from './features/scripts/general/audio'
 import footer from './features/scripts/general/footer'
@@ -14,6 +9,7 @@ import './styles/style.css'
 const body = document.body
 
 let products
+let detailProduct
 
 async function runHomeFunctions() {
   const { default: hero } = await import('./features/scripts/home/hero')
@@ -43,11 +39,43 @@ async function runHomeFunctions() {
 }
 
 async function runCollectionFunctions() {
-  console.log('Welcome to Collection')
+  const { default: fetchStoreData } = await import(
+    './features/scripts/collection/fetchStoreData'
+  )
+  const { default: displayStoreProducts } = await import(
+    './features/scripts/collection/displayStoreProducts'
+  )
+  const { default: filterStore } = await import(
+    './features/scripts/collection/filterStore'
+  )
+  const { default: hoverStoreProducts } = await import(
+    './features/scripts/collection/hoverStoreProducts'
+  )
+  const { default: clickStoreProducts } = await import(
+    './features/scripts/collection/clickStoreProducts'
+  )
+
   products = await fetchStoreData()
   displayStoreProducts(products)
   filterStore()
   hoverStoreProducts()
+  clickStoreProducts()
+}
+
+async function runProductFunctions() {
+  const { default: fetchDetailProduct } = await import(
+    './features/scripts/product/fetchDetailProduct'
+  )
+  const { default: displayDetailProduct } = await import(
+    './features/scripts/product/displayDetailProduct'
+  )
+  const { default: clickDetailProduct } = await import(
+    './features/scripts/product/clickDetailProduct'
+  )
+
+  detailProduct = await fetchDetailProduct()
+  displayDetailProduct(detailProduct)
+  clickDetailProduct()
 }
 
 function runCoursesFunctions() {
@@ -76,6 +104,7 @@ function runGeneralFunctions() {
 runGeneralFunctions()
 if (body.classList.contains('body__home')) runHomeFunctions()
 if (body.classList.contains('body__collection')) runCollectionFunctions()
+if (body.classList.contains('body__product')) runProductFunctions()
 if (body.classList.contains('body__courses')) runCoursesFunctions()
 if (body.classList.contains('body__spaces')) runSpacesFunctions()
 if (body.classList.contains('body__contact')) runContactFunctions()

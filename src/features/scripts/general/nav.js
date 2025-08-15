@@ -10,14 +10,14 @@ function nav() {
   const burger = document.querySelector('.burger-link')
   const back_wrapper = document.querySelector('.back-wrapper')
 
-  const ease = 'power1.out'
+  const ease = 'power2.out'
 
   function hoverIn(header, hidden_header) {
     // const l = event.currentTarget
     // const header = l.firstElementChild
     // const hidden_header = header.nextElementSibling
     gsap.to([header.chars, hidden_header.chars], {
-      yPercent: -110,
+      yPercent: -100,
       duration: 0.4,
       ease: ease,
       stagger: 0.01,

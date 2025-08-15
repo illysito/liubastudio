@@ -18,7 +18,7 @@ function hoverStoreProducts() {
     p.addEventListener('mouseenter', () => {
       gsap.to(img, {
         scale: 2,
-        duration: 0.4,
+        duration: 0.6,
       })
     })
     p.addEventListener('mouseleave', () => {
@@ -26,7 +26,7 @@ function hoverStoreProducts() {
         x: 0,
         y: 0,
         scale: 1,
-        duration: 0.4,
+        duration: 0.6,
       })
     })
     p.addEventListener('mousemove', (e) => {
