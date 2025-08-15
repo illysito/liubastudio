@@ -1,4 +1,7 @@
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 function footer() {
   const footer = document.querySelector('.footer__section')
@@ -25,6 +28,7 @@ function footer() {
     const header = l.firstElementChild
     const hidden_header = header.nextElementSibling
     gsap.to([header, hidden_header], {
+      x: 4,
       opacity: 0.5,
       duration: 0.25,
       ease: ease,
@@ -36,6 +40,7 @@ function footer() {
     const header = l.firstElementChild
     const hidden_header = header.nextElementSibling
     gsap.to([header, hidden_header], {
+      x: 0,
       opacity: 1,
       duration: 0.25,
       ease: ease,

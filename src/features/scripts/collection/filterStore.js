@@ -10,55 +10,48 @@ function filterStore() {
   }
   const domElements = queryDomElements()
 
+  // set first tears SHOWN
+  gsap.set([domElements.tears[0], domElements.tears[1]], {
+    opacity: 1,
+  })
+  domElements.tears[0].classList.add('is--shown')
+  domElements.tears[1].classList.add('is--shown')
+
   // array with filter flags, in order: ceramics, jewelry, engraving, painting
-  const filterStates = [true, false, false, false, false]
-  const allFilters = [
-    'tag-all',
-    'tag-ceramics',
-    'tag-jewelry',
-    'tag-engraving',
-    'tag-painting',
-  ]
+  const filterStates = {
+    types: [],
+  }
 
   // update filter array based on user choice
-  function updateFilterArray(index) {
-    // if ALL is clicked
-    if (index == 0) {
-      filterStates[0] = true
-      for (let i = 1; i < filterStates.length; i++) {
-        filterStates[i] = false
-      }
-      // if ANYTHING ELSE is clicked
+  function updateFilterState(buttonText) {
+    const selectedType = buttonText.textContent.toLowerCase()
+    const selectedTag = 'tag-' + selectedType
+
+    if (selectedType === 'all') {
+      filterStates.types = [] // "all" clears the filters
     } else {
-      filterStates[0] = false
-      filterStates[index] = !filterStates[index]
+      const index = filterStates.types.indexOf(selectedTag)
+      if (index > -1) {
+        filterStates.types.splice(index, 1) // remove if already active
+      } else {
+        filterStates.types.push(selectedTag) // add if not active
+      }
     }
-    console.log(filterStates)
     filterProductsByType()
   }
 
   // filter by type
   function filterProductsByType() {
-    if (filterStates.every((value) => !value)) {
-      for (let i = 0; i < filterStates.length; i++) {
-        filterStates[i] = true
+    domElements.productCards.forEach((card) => {
+      if (
+        filterStates.types.length === 0 || // no filters → show all
+        filterStates.types.some((type) => card.classList.contains(type))
+      ) {
+        card.style.display = 'flex'
+      } else {
+        card.style.display = 'none'
       }
-    }
-    if (filterStates.every((value) => value) || filterStates[0]) {
-      domElements.productCards.forEach((p) => {
-        p.style.display = 'flex'
-      })
-      for (let i = 0; i < filterStates.length; i++) {
-        filterStates[i] = true
-      }
-    } else {
-      // based on my filterStates, i create a new array called activeTags
-      const activeTags = allFilters.filter((_, i) => filterStates[i])
-      domElements.productCards.forEach((p) => {
-        const matches = activeTags.some((tag) => p.classList.contains(tag))
-        p.style.display = matches ? 'flex' : 'none'
-      })
-    }
+    })
   }
 
   // display filtered options
@@ -75,6 +68,9 @@ function filterStore() {
       gsap.to([domElements.tears[0], domElements.tears[1]], {
         opacity: 1,
         duration: 0.2,
+      })
+      domElements.tears.forEach((t) => {
+        t.classList.remove('is--shown')
       })
     } else {
       gsap.to([domElements.tears[0], domElements.tears[1]], {
@@ -105,8 +101,11 @@ function filterStore() {
 
   // event listeners
   domElements.filterButtons.forEach((b, index) => {
+    const tear1 = b.firstElementChild
+    // const tear2 = b.lastElementChild
+    const buttonText = tear1.nextElementSibling
     b.addEventListener('click', () => {
-      updateFilterArray(index)
+      updateFilterState(buttonText)
       displayFilteredTitles(index)
     })
   })

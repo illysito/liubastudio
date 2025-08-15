@@ -1,6 +1,4 @@
 function displayStoreProducts(products) {
-  console.log(products)
-
   function domElementsQuery() {
     return {
       storeWrapper: document.querySelector('.store-wrapper'),
@@ -39,7 +37,7 @@ function displayStoreProducts(products) {
     addButton.classList.add('add-button')
     const addButtonTxt = document.createElement('p')
     addButtonTxt.classList.add('add-button-txt')
-    addButtonTxt.textContent = 'Add to cart'
+    addButtonTxt.textContent = 'Bring home'
     addButton.appendChild(addButtonTxt)
 
     // Append all to product card

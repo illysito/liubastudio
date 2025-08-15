@@ -65,10 +65,10 @@ function collectionShaders() {
   }
 
   //prettier-ignore
-  const imageURL_1 = 'https://raw.githubusercontent.com/illysito/liubastudio/e20b9bd87f8954c94acc98cf0d1b5dbd8dff16e2/minotaur_EDIT.jpg'
-  const imageURL_2 = 'https://raw.githubusercontent.com/illysito/liubastudio/256223afa2789c2c2e8e844ef2c4bb6622dfcfd3/JEWELRY.jpg'
-  const imageURL_3 = 'https://raw.githubusercontent.com/illysito/liubastudio/fcada2a2df3d9edc26dd32ac2fe2a2dc9e46e90e/engraving_EDIT.jpg'
-  const imageURL_4 = 'https://raw.githubusercontent.com/illysito/liubastudio/224ac9d5a4ce80245a93965631fd8a292e7a673b/theisland_EDIT.jpg'
+  const imageURL_1 = 'https://raw.githubusercontent.com/illysito/liubastudio/b92953e23b4353deb017443a601b9fbb7832cf1e/MANO_.png'
+  const imageURL_2 = 'https://raw.githubusercontent.com/illysito/liubastudio/b92953e23b4353deb017443a601b9fbb7832cf1e/CUENCOS_.png'
+  const imageURL_3 = 'https://raw.githubusercontent.com/illysito/liubastudio/b92953e23b4353deb017443a601b9fbb7832cf1e/FLORERO_.png'
+  const imageURL_4 = 'https://raw.githubusercontent.com/illysito/liubastudio/b92953e23b4353deb017443a601b9fbb7832cf1e/TAZAS_.png'
   const urls = [imageURL_1, imageURL_2, imageURL_3, imageURL_4]
   // console.log('Liuba About Shader: width: ' + canvas.width + ' height: ' + canvas.height)
   const ceramicsSandbox = new GlslCanvas(ceramicsCanvas)

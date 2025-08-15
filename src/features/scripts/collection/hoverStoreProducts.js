@@ -11,17 +11,17 @@ function hoverStoreProducts() {
 
   // event listeners
   domElements.imageWrappers.forEach((p) => {
-    p.addEventListener('mouseenter', (e) => {
-      const card = e.currentTarget
-      const img = card.firstElementChild
+    const img = p.firstElementChild
+
+    gsap.set(img, { transformOrigin: 'center center' })
+
+    p.addEventListener('mouseenter', () => {
       gsap.to(img, {
         scale: 2,
         duration: 0.4,
       })
     })
-    p.addEventListener('mouseleave', (e) => {
-      const card = e.currentTarget
-      const img = card.firstElementChild
+    p.addEventListener('mouseleave', () => {
       gsap.to(img, {
         x: 0,
         y: 0,
@@ -30,24 +30,20 @@ function hoverStoreProducts() {
       })
     })
     p.addEventListener('mousemove', (e) => {
-      const card = e.currentTarget
-      const img = card.firstElementChild
+      const rect = p.getBoundingClientRect()
 
-      const rect = card.getBoundingClientRect()
-      const imgLeft = rect.left
-      const imgRight = rect.right
-      const imgTop = rect.top
-      const imgBottom = rect.bottom
+      const centerX = rect.left + rect.width / 2
+      const centerY = rect.top + rect.height / 2
 
-      console.log(imgLeft, imgRight)
-      const x = e.clientX
-      const y = e.clientY
-      console.log('x: ' + x)
-      gsap.utils.mapRange(imgLeft, imgRight, -1, 1, x)
-      gsap.utils.mapRange(imgTop, imgBottom, -1, 1, y)
+      // Map to range -1..1 from the center
+      const mappedX = (e.clientX - centerX) / (rect.width / 2)
+      const mappedY = (e.clientY - centerY) / (rect.height / 2)
+
       gsap.to(img, {
-        x: -0.1 * x,
-        y: -0.1 * y,
+        x: -60 * mappedX,
+        y: -60 * mappedY,
+        duration: 0.2,
+        ease: 'power2.out',
       })
     })
   })

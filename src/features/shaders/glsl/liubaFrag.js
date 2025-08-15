@@ -88,11 +88,12 @@ void main()
   blueImg.g = 0.0;
   blueImg.r = 0.0;
 
-  color = img + blueImg;
+  color = img;
+  // color.a = img.a;
 
   float noiseMixer = random(uv);
   noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
-  color += 0.15 * noiseMixer;
+  color += 0.0 * noiseMixer;
 
     gl_FragColor = color;
 }

@@ -1,4 +1,5 @@
 import gsap from 'gsap'
+import SplitType from 'split-type'
 
 function nav() {
   const nav_link = document.querySelectorAll('.nav-link')
@@ -11,31 +12,47 @@ function nav() {
 
   const ease = 'power1.out'
 
-  function hoverIn(event) {
-    const l = event.currentTarget
-    const header = l.firstElementChild
-    const hidden_header = header.nextElementSibling
-    gsap.to([header, hidden_header], {
-      yPercent: -100,
-      duration: 0.5,
+  function hoverIn(header, hidden_header) {
+    // const l = event.currentTarget
+    // const header = l.firstElementChild
+    // const hidden_header = header.nextElementSibling
+    gsap.to([header.chars, hidden_header.chars], {
+      yPercent: -110,
+      duration: 0.4,
       ease: ease,
+      stagger: 0.01,
     })
   }
 
-  function hoverOut(event) {
-    const l = event.currentTarget
-    const header = l.firstElementChild
-    const hidden_header = header.nextElementSibling
-    gsap.to([header, hidden_header], {
+  function hoverOut(header, hidden_header) {
+    // const l = event.currentTarget
+    // const header = l.firstElementChild
+    // const hidden_header = header.nextElementSibling
+    gsap.to([header.chars, hidden_header.chars], {
       yPercent: 0,
-      duration: 0.5,
+      duration: 0.4,
       ease: ease,
+      stagger: 0.01,
     })
   }
 
   nav_link.forEach((l) => {
-    l.addEventListener('mouseover', hoverIn)
-    l.addEventListener('mouseleave', hoverOut)
+    const header = l.firstElementChild
+    const hidden_header = header.nextElementSibling
+    const splitHeader = new SplitType(header, {
+      types: 'chars',
+      tagName: 'span',
+    })
+    const splitHiddenHeader = new SplitType(hidden_header, {
+      types: 'chars',
+      tagName: 'span',
+    })
+    l.addEventListener('mouseover', () => {
+      hoverIn(splitHeader, splitHiddenHeader)
+    })
+    l.addEventListener('mouseleave', () => {
+      hoverOut(splitHeader, splitHiddenHeader)
+    })
   })
 
   logo_link.addEventListener('mouseover', () => {

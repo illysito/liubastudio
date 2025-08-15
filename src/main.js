@@ -8,15 +8,6 @@ import audio from './features/scripts/general/audio'
 import footer from './features/scripts/general/footer'
 // import mousetrail from './features/scripts/general/mousetrail'
 import nav from './features/scripts/general/nav'
-// home
-import hero from './features/scripts/home/hero'
-import landingMisc from './features/scripts/home/landing_misc'
-import mainCollection from './features/scripts/home/main_collection'
-import motto from './features/scripts/home/motto'
-// shaders
-import collectionShaders from './features/shaders/collectionShaders'
-import handleLiuba from './features/shaders/handleLiuba'
-// import handleLiubaAbout from './features/shaders/handleLiubaAbout'
 
 import './styles/style.css'
 
@@ -24,12 +15,27 @@ const body = document.body
 
 let products
 
-function runHomeFunctions() {
-  console.log('MAKE ME DYNAMIC IMPORT!')
+async function runHomeFunctions() {
+  const { default: hero } = await import('./features/scripts/home/hero')
+  const { default: motto } = await import('./features/scripts/home/motto')
+  const { default: landingMisc } = await import(
+    './features/scripts/home/landing_misc'
+  )
+  const { default: mainCollection } = await import(
+    './features/scripts/home/main_collection'
+  )
+  const { default: collectionShaders } = await import(
+    './features/shaders/collectionShaders'
+  )
+  const { default: handleLiuba } = await import(
+    './features/shaders/handleLiuba'
+  )
+
   hero()
   motto()
   mainCollection()
   landingMisc()
+
   // shaders
   handleLiuba()
   // handleLiubaAbout()
