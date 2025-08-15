@@ -5,7 +5,7 @@ async function fetchDetailProduct() {
 
   try {
     const res = await fetch(
-      `https://liuba-stripe-backend.vercel.app/api/products/${productId}`
+      `https://liuba-stripe-backend.vercel.app/api/products?id=${productId}`
     )
     if (!res.ok) throw new Error('Network response was not ok')
 
