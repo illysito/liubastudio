@@ -1,6 +1,8 @@
 import gsap from 'gsap'
 import SplitType from 'split-type'
 
+import addToCart from '../general/addToCart'
+
 function clickStoreProducts() {
   function queryDomElements() {
     return {
@@ -54,12 +56,12 @@ function clickStoreProducts() {
 
   function click(b) {
     gsap.to(b, {
-      scale: 0.95,
+      scale: 1,
       duration: 0.1,
       onComplete: () => {
         gsap.to(b, {
-          scale: 1,
-          duration: 0.1,
+          scale: 1.1,
+          duration: 0.2,
         })
       },
     })
@@ -77,7 +79,7 @@ function clickStoreProducts() {
     button.addEventListener('click', (e) => {
       const b = e.currentTarget
       click(b)
-      window.location.href = `/product?id=${productId}`
+      addToCart(productId)
     })
   })
 

@@ -1,15 +1,17 @@
 import gsap from 'gsap'
 import SplitType from 'split-type'
 
-function handleCheckOutModal(product) {
+function handleCheckOutModal(cart) {
   function queryDomElements() {
     return {
+      slidingModal: document.querySelector('.sliding__modal'),
       checkBoxes: document.querySelectorAll('.shipping-checkbox'),
       displayedItemTitle: document.querySelector('.modal-product-title'),
       displayedItemPrice: document.getElementById('modal-item-price'),
       displayedShippingPrice: document.getElementById('modal-shipping-price'),
       displayedTotalPrice: document.getElementById('modal-total-price'),
       form: document.querySelector('.modal-form-container'),
+      closeButton: document.querySelector('.close-button'),
       checkOutButton: document.querySelector('.complete-checkout-button'),
     }
   }
@@ -27,15 +29,18 @@ function handleCheckOutModal(product) {
     tagName: 'span',
   })
 
-  let itemPrice = product.price
+  let subtotalPrice = 0
+  cart.forEach((item) => {
+    subtotalPrice += item.price
+  })
+  console.log(subtotalPrice)
   // let itemPrice = (product.price / 100).toFixed(2)
   // price.textContent = `${itemPrice} €`
-  console.log(itemPrice)
   let shippingPrice = {
     id: '',
     price: 0,
   }
-  let totalPrice = itemPrice + shippingPrice.price
+  let totalPrice = subtotalPrice + shippingPrice.price
 
   function handleCheckBox(currentCheckBox) {
     domElements.checkBoxes.forEach((checkbox) => {
@@ -52,19 +57,20 @@ function handleCheckOutModal(product) {
     calculatePrice()
   }
 
-  function displayText() {
-    domElements.displayedItemTitle.textContent = product.name
-  }
+  // function displayText() {
+  //   // domElements.displayedItemTitle.textContent = product.name
+  //   domElements.displayedItemTitle.textContent = 'Just testinf'
+  // }
 
   function calculatePrice() {
-    totalPrice = itemPrice + shippingPrice.price
+    totalPrice = subtotalPrice + shippingPrice.price
     displayPrices()
   }
 
   function displayPrices() {
-    domElements.displayedItemPrice.textContent = `${(itemPrice / 100).toFixed(
-      2
-    )} €`
+    domElements.displayedItemPrice.textContent = `${(
+      subtotalPrice / 100
+    ).toFixed(2)} €`
     domElements.displayedShippingPrice.textContent = `${(
       shippingPrice.price / 100
     ).toFixed(2)} €`
@@ -74,7 +80,7 @@ function handleCheckOutModal(product) {
   }
 
   function handleForm() {
-    console.log('m handling the form')
+    console.log('Im handling the form')
   }
 
   function hoverIn() {
@@ -136,7 +142,7 @@ function handleCheckOutModal(product) {
 
   // init
   function init() {
-    displayText()
+    // displayText()
     calculatePrice()
     displayPrices()
     handleForm()
@@ -152,21 +158,29 @@ function handleCheckOutModal(product) {
   })
 
   // form prevent default
-  domElements.form.addEventListener(
-    'submit',
-    (e) => {
-      e.preventDefault() // stops page reload & Webflow handling
-      e.stopImmediatePropagation() // stops Webflow listeners from firing
-    },
-    true
-  ) // use capture phase to block Webflow's listener
-
+  if (domElements.form) {
+    domElements.form.addEventListener(
+      'submit',
+      (e) => {
+        e.preventDefault() // stops page reload & Webflow handling
+        e.stopImmediatePropagation() // stops Webflow listeners from firing
+      },
+      true
+    ) // use capture phase to block Webflow's listener
+  }
   // checkOutButton
   domElements.checkOutButton.addEventListener('mouseover', hoverIn)
   domElements.checkOutButton.addEventListener('mouseleave', hoverOut)
   domElements.checkOutButton.addEventListener('click', () => {
     click()
   })
+  // domElements.closeButton.addEventListener('click', () => {
+  //   gsap.to(domElements.slidingModal, {
+  //     xPercent: 0,
+  //     duration: 0.8,
+  //     ease: 'power4.inOut',
+  //   })
+  // })
 }
 
 export default handleCheckOutModal

@@ -75,15 +75,22 @@ async function runProductFunctions() {
   const { default: finishLoading } = await import(
     './features/scripts/product/finishLoading'
   )
-  const { default: handleCheckOutModal } = await import(
-    './features/scripts/product/handleCheckoutModal'
-  )
 
   detailProduct = await fetchDetailProduct()
   finishLoading()
   displayDetailProduct(detailProduct)
-  clickDetailProduct()
-  handleCheckOutModal(detailProduct)
+  clickDetailProduct(detailProduct)
+}
+
+async function runCheckoutFunctions() {
+  const { default: displayCart } = await import(
+    './features/scripts/checkout/displayCart'
+  )
+  const { default: handleCheckOutModal } = await import(
+    './features/scripts/checkout/handleCheckoutModal'
+  )
+  const cart = displayCart()
+  handleCheckOutModal(cart)
 }
 
 function runCoursesFunctions() {
@@ -113,6 +120,7 @@ runGeneralFunctions()
 if (body.classList.contains('body__home')) runHomeFunctions()
 if (body.classList.contains('body__collection')) runCollectionFunctions()
 if (body.classList.contains('body__product')) runProductFunctions()
+if (body.classList.contains('body__checkout')) runCheckoutFunctions()
 if (body.classList.contains('body__courses')) runCoursesFunctions()
 if (body.classList.contains('body__spaces')) runSpacesFunctions()
 if (body.classList.contains('body__contact')) runContactFunctions()

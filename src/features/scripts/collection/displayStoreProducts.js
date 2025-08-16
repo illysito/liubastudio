@@ -45,8 +45,8 @@ function displayStoreProducts(products) {
     const addButtonHiddenTxt = document.createElement('p')
     addButtonHiddenTxt.classList.add('add-button-txt')
     addButtonHiddenTxt.classList.add('is--hidden')
-    addButtonTxt.textContent = 'Take a look'
-    addButtonHiddenTxt.textContent = 'Take a look'
+    addButtonTxt.textContent = 'Add to cart'
+    addButtonHiddenTxt.textContent = 'Add to cart'
     addButton.appendChild(addButtonWrapper)
     addButtonWrapper.appendChild(addButtonTxt)
     addButtonWrapper.appendChild(addButtonHiddenTxt)

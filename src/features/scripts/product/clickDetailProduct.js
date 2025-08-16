@@ -1,11 +1,13 @@
 import gsap from 'gsap'
 import SplitType from 'split-type'
 
-function clickDeatilProduct() {
+import addToCart from '../general/addToCart'
+
+function clickDeatilProduct(product) {
   function queryDomElements() {
     return {
       buttons: document.querySelectorAll('.add-button-detail'),
-      slidingModal: document.querySelector('.sliding__modal'),
+      // slidingModal: document.querySelector('.sliding__modal'),
     }
   }
   const domElements = queryDomElements()
@@ -51,11 +53,11 @@ function clickDeatilProduct() {
   }
 
   function click(b) {
-    gsap.to(domElements.slidingModal, {
-      xPercent: -100,
-      duration: 0.8,
-      ease: 'power4.inOut',
-    })
+    // gsap.to(domElements.slidingModal, {
+    //   xPercent: -100,
+    //   duration: 0.8,
+    //   ease: 'power4.inOut',
+    // })
     gsap.to(b, {
       scale: 0.95,
       duration: 0.1,
@@ -71,7 +73,7 @@ function clickDeatilProduct() {
   // write a function to FETCH ID
 
   // event listeners
-  domElements.buttons.forEach((b) => {
+  domElements.buttons.forEach((b, index) => {
     const wrapper = b.firstElementChild
     const text = wrapper.firstElementChild
     const hiddenText = wrapper.lastElementChild
@@ -93,6 +95,7 @@ function clickDeatilProduct() {
     })
     b.addEventListener('click', () => {
       click(b)
+      index == 0 ? addToCart(product.id) : (window.location.href = `/checkout`)
     })
   })
 }
