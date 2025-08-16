@@ -76,7 +76,7 @@ async function runProductFunctions() {
     './features/scripts/product/finishLoading'
   )
   const { default: handleCheckOutModal } = await import(
-    './features/scripts/product/handleCheckOutModal'
+    './features/scripts/product/handleCheckoutModal'
   )
 
   detailProduct = await fetchDetailProduct()
