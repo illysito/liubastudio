@@ -5,6 +5,7 @@ function displayDetailProduct(product) {
   function queryDomElements() {
     return {
       backButton: document.querySelector('.back-text-wrapper'),
+      detailImageWrapper: document.querySelector('.detail-img-wrapper'),
     }
   }
   const domElements = queryDomElements()
@@ -64,6 +65,38 @@ function displayDetailProduct(product) {
 
   // Display detail product data
   console.log(product)
+
+  // create image
+  const productImage = document.createElement('img')
+  productImage.classList.add('detail-img')
+  productImage.src = product.image
+  productImage.alt = product.name
+  domElements.detailImageWrapper.appendChild(productImage)
+
+  // create text
+  const productName = document.querySelector('.detail-product-title')
+  productName.textContent = product.name
+
+  const productPrice = document.querySelector('.detail-product-price')
+  const euros = (product.price / 100).toFixed(2)
+  productPrice.textContent = `${euros} €`
+
+  const productTexts = document.querySelectorAll('.detail-product-text')
+  productTexts[0].textContent = product.description // description is first
+
+  if (product.metadata.Dimensions) {
+    productTexts[1].textContent = product.metadata.Dimensions // dimnesions are second
+  }
+
+  if (product.metadata.Materials) {
+    productTexts[2].textContent = product.metadata.Materials // metarials are third
+  }
+
+  if (product.metadata.Inspiration) {
+    productTexts[3].textContent = product.metadata.Inspiration // inspiration is last
+  }
+
+  // attach stuff
 }
 
 export default displayDetailProduct

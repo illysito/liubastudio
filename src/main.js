@@ -72,10 +72,18 @@ async function runProductFunctions() {
   const { default: clickDetailProduct } = await import(
     './features/scripts/product/clickDetailProduct'
   )
+  const { default: finishLoading } = await import(
+    './features/scripts/product/finishLoading'
+  )
+  const { default: handleCheckOutModal } = await import(
+    './features/scripts/product/handleCheckOutModal'
+  )
 
   detailProduct = await fetchDetailProduct()
+  finishLoading()
   displayDetailProduct(detailProduct)
   clickDetailProduct()
+  handleCheckOutModal(detailProduct)
 }
 
 function runCoursesFunctions() {

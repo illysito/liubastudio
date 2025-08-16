@@ -52,6 +52,19 @@ function clickStoreProducts() {
     })
   }
 
+  function click(b) {
+    gsap.to(b, {
+      scale: 0.95,
+      duration: 0.1,
+      onComplete: () => {
+        gsap.to(b, {
+          scale: 1,
+          duration: 0.1,
+        })
+      },
+    })
+  }
+
   // event listeners
   domElements.products.forEach((p) => {
     const productId = p.dataset.product_ID
@@ -61,7 +74,9 @@ function clickStoreProducts() {
     image.addEventListener('click', () => {
       window.location.href = `/product?id=${productId}`
     })
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+      const b = e.currentTarget
+      click(b)
       window.location.href = `/product?id=${productId}`
     })
   })
