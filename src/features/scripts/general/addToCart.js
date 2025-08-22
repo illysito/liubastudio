@@ -20,9 +20,6 @@ async function addToCart(id) {
     } else {
       console.log('Already in cart!')
     }
-
-    // turn the array into a strin and store
-    localStorage.setItem('cart', JSON.stringify(cart))
   } catch (error) {
     console.error('Failed to load products:', error)
   }

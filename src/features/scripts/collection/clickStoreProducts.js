@@ -14,7 +14,7 @@ function clickStoreProducts() {
 
   function hoverIn(b, splitText, splitHiddenText) {
     gsap.to(b, {
-      scale: 1.1,
+      scale: 0.98,
       backgroundColor: '#3e50d6',
       duration: 0.4,
       ease: 'power2.out',

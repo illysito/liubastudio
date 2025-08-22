@@ -85,7 +85,7 @@ function handleCheckOutModal(cart) {
 
   function hoverIn() {
     gsap.to(domElements.checkOutButton, {
-      scale: 0.95,
+      scale: 0.98,
       borderRadius: 32,
       // backgroundColor: '#3e50d6',
       duration: 0.4,
@@ -152,8 +152,21 @@ function handleCheckOutModal(cart) {
   // event listeners
   // checkbox
   domElements.checkBoxes.forEach((c) => {
+    const option = c.nextElementSibling
     c.addEventListener('click', () => {
       handleCheckBox(c)
+    })
+    c.addEventListener('mouseover', () => {
+      gsap.to(option, {
+        x: 4,
+        duration: 0.2,
+      })
+    })
+    c.addEventListener('mouseleave', () => {
+      gsap.to(option, {
+        x: 0,
+        duration: 0.2,
+      })
     })
   })
 

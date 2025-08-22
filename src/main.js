@@ -75,11 +75,15 @@ async function runProductFunctions() {
   const { default: finishLoading } = await import(
     './features/scripts/product/finishLoading'
   )
+  const { default: hoverDetailProducts } = await import(
+    './features/scripts/product/hoverDetailProduct'
+  )
 
   detailProduct = await fetchDetailProduct()
   finishLoading()
   displayDetailProduct(detailProduct)
   clickDetailProduct(detailProduct)
+  hoverDetailProducts()
 }
 
 async function runCheckoutFunctions() {

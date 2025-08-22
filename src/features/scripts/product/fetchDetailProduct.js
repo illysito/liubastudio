@@ -10,6 +10,11 @@ async function fetchDetailProduct() {
     if (!res.ok) throw new Error('Network response was not ok')
 
     const product = await res.json()
+
+    // // change URL
+    // const productNameSlug = product.name.toLowerCase().replace(/\s+/g, '-') // e.g., "Red Vase" -> "red-vase"
+    // window.history.replaceState(null, '', `/product/${productNameSlug}`)
+
     return product
   } catch (error) {
     console.error('Failed to load products:', error)
