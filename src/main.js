@@ -1,4 +1,5 @@
 // general
+import initCartCount from './features/scripts/cart/initCartCount'
 import audio from './features/scripts/general/audio'
 import footer from './features/scripts/general/footer'
 // import mousetrail from './features/scripts/general/mousetrail'
@@ -54,8 +55,16 @@ async function runCollectionFunctions() {
   const { default: clickStoreProducts } = await import(
     './features/scripts/collection/clickStoreProducts'
   )
+  const { default: loadingStore } = await import(
+    './features/scripts/collection/loadingStore'
+  )
+  const { default: finishLoading } = await import(
+    './features/scripts/general/finishLoading'
+  )
 
+  loadingStore()
   products = await fetchStoreData()
+  finishLoading()
   displayStoreProducts(products)
   filterStore()
   hoverStoreProducts()
@@ -72,13 +81,17 @@ async function runProductFunctions() {
   const { default: clickDetailProduct } = await import(
     './features/scripts/product/clickDetailProduct'
   )
+  const { default: loadingProduct } = await import(
+    './features/scripts/product/loadingProduct'
+  )
   const { default: finishLoading } = await import(
-    './features/scripts/product/finishLoading'
+    './features/scripts/general/finishLoading'
   )
   const { default: hoverDetailProducts } = await import(
     './features/scripts/product/hoverDetailProduct'
   )
 
+  loadingProduct()
   detailProduct = await fetchDetailProduct()
   finishLoading()
   displayDetailProduct(detailProduct)
@@ -87,13 +100,13 @@ async function runProductFunctions() {
 }
 
 async function runCheckoutFunctions() {
-  const { default: displayCart } = await import(
-    './features/scripts/checkout/displayCart'
+  const { default: displayCheckoutItems } = await import(
+    './features/scripts/checkout/displayCheckoutItems'
   )
   const { default: handleCheckOutModal } = await import(
     './features/scripts/checkout/handleCheckoutModal'
   )
-  const cart = displayCart()
+  const cart = displayCheckoutItems()
   handleCheckOutModal(cart)
 }
 
@@ -114,6 +127,7 @@ function runMiscFunctions() {
 }
 
 function runGeneralFunctions() {
+  initCartCount()
   nav()
   footer()
   audio()

@@ -4,7 +4,6 @@ import SplitType from 'split-type'
 function handleCheckOutModal(cart) {
   function queryDomElements() {
     return {
-      slidingModal: document.querySelector('.sliding__modal'),
       checkBoxes: document.querySelectorAll('.shipping-checkbox'),
       displayedItemTitle: document.querySelector('.modal-product-title'),
       displayedItemPrice: document.getElementById('modal-item-price'),
@@ -129,12 +128,12 @@ function handleCheckOutModal(cart) {
 
   function click() {
     gsap.to(domElements.checkOutButton, {
-      scale: 0.9,
+      scale: 0.96,
       duration: 0.1,
       onComplete: () => {
         gsap.to(domElements.checkOutButton, {
-          scale: 0.95,
-          duration: 0.1,
+          scale: 0.98,
+          duration: 0.2,
         })
       },
     })
@@ -187,13 +186,6 @@ function handleCheckOutModal(cart) {
   domElements.checkOutButton.addEventListener('click', () => {
     click()
   })
-  // domElements.closeButton.addEventListener('click', () => {
-  //   gsap.to(domElements.slidingModal, {
-  //     xPercent: 0,
-  //     duration: 0.8,
-  //     ease: 'power4.inOut',
-  //   })
-  // })
 }
 
 export default handleCheckOutModal

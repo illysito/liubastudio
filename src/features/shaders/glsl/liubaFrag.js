@@ -63,7 +63,7 @@ void main()
   // mouse = smoothstep(0.0, 0.8, mouse);
   float dist = distance(mouse, coords);
 
-  float radius = 16.0 * u_naturalDistortionFactor * (0.15 * (0.1 * sin(0.3 * u_time) + 0.015 * abs(sin(0.2 * u_time))));
+  float radius = 18.0 * u_naturalDistortionFactor * (0.15 * (0.1 * sin(0.3 * u_time) + 0.015 * abs(sin(0.2 * u_time))));
   // radius = 0.035;
   radius *= u_distortionFactor;
   float strength = smoothstep(0.4, radius, dist);
@@ -71,8 +71,8 @@ void main()
   // // DISTORTION
 
   vec2 distortion = vec2(
-    0.91 * dist,
-    0.91 * dist
+    1.1 * dist,
+    1.1 * dist
   );
 
   distortion *= strength;

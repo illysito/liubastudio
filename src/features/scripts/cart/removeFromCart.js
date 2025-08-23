@@ -1,4 +1,7 @@
-async function addToCart(id) {
+import showCartFeedback from './cartFeedback'
+import updateCartCount from './updateCartCount.js'
+
+async function removeFromCart(id) {
   // fetch products
   try {
     const res = await fetch(
@@ -12,17 +15,19 @@ async function addToCart(id) {
     let cart = JSON.parse(localStorage.getItem('cart')) || []
 
     // check if product is already in cart
-    const alreadyInCart = cart.some((item) => item.id === product.id)
+    const isInCart = cart.some((item) => item.id === product.id)
 
-    if (!alreadyInCart) {
-      cart.push(product)
+    if (isInCart) {
+      cart = cart.filter((item) => item.id !== product.id)
+      showCartFeedback('Item removed from cart')
       localStorage.setItem('cart', JSON.stringify(cart))
+      updateCartCount(cart.length)
     } else {
-      console.log('Already in cart!')
+      showCartFeedback('Item not in cart')
     }
   } catch (error) {
     console.error('Failed to load products:', error)
   }
 }
 
-export default addToCart
+export default removeFromCart

@@ -14,7 +14,7 @@ function displayStoreProducts(products) {
     const productEl = document.createElement('div')
     productEl.classList.add('product-card') // Style this in your CSS
     productEl.classList.add(`${category}`)
-    productEl.dataset.product_ID = p.id // add ID to the container
+    productEl.dataset.product_ID = p.id // ATTACH heavily ID to the container
 
     // Create image
     const imgWrapper = document.createElement('div')

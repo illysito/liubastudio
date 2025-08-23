@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 import SplitType from 'split-type'
 
-import addToCart from '../general/addToCart'
+import addToCart from '../cart/addToCart'
 
 function clickStoreProducts() {
   function queryDomElements() {
@@ -56,11 +56,11 @@ function clickStoreProducts() {
 
   function click(b) {
     gsap.to(b, {
-      scale: 1,
+      scale: 0.96,
       duration: 0.1,
       onComplete: () => {
         gsap.to(b, {
-          scale: 1.1,
+          scale: 0.98,
           duration: 0.2,
         })
       },
