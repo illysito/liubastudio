@@ -1,10 +1,12 @@
 import gsap from 'gsap'
 
+import { $, $$ } from '../../utils/getElement.js'
+
 function mousetrail() {
   function domElementsQuery() {
     return {
-      canvas: document.querySelector('.mouse__trail'),
-      blocks: document.querySelectorAll('.mousetrail-block'),
+      canvas: $('.mouse__trail'),
+      blocks: $$('.mousetrail-block'),
     }
   }
 

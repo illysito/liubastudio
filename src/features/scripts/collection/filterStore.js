@@ -1,11 +1,13 @@
 import gsap from 'gsap'
 
+import { $$ } from '../../utils/getElement.js'
+
 function filterStore() {
   function queryDomElements() {
     return {
-      filterButtons: document.querySelectorAll('.filter-button'),
-      productCards: document.querySelectorAll('.product-card'),
-      tears: document.querySelectorAll('.filter-active-img'),
+      filterButtons: $$('.filter-button'),
+      productCards: $$('.product-card'),
+      tears: $$('.filter-active-img'),
     }
   }
   const domElements = queryDomElements()

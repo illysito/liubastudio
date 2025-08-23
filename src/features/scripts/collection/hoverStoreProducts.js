@@ -1,10 +1,12 @@
 import gsap from 'gsap'
 
+import { $$ } from '../../utils/getElement.js'
+
 function hoverStoreProducts() {
   function queryDomElements() {
     return {
-      products: document.querySelectorAll('.product-card'),
-      imageWrappers: document.querySelectorAll('.product-img-wrapper'),
+      products: $$('.product-card'),
+      imageWrappers: $$('.product-img-wrapper'),
     }
   }
   const domElements = queryDomElements()

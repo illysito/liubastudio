@@ -1,17 +1,15 @@
 import gsap from 'gsap'
 import SplitType from 'split-type'
 
+import { $, $$ } from '../../utils/getElement.js'
+import calculatePrices from './calculatePrices.js'
+
 function handleCheckOutModal(cart) {
   function queryDomElements() {
     return {
-      checkBoxes: document.querySelectorAll('.shipping-checkbox'),
-      displayedItemTitle: document.querySelector('.modal-product-title'),
-      displayedItemPrice: document.getElementById('modal-item-price'),
-      displayedShippingPrice: document.getElementById('modal-shipping-price'),
-      displayedTotalPrice: document.getElementById('modal-total-price'),
-      form: document.querySelector('.modal-form-container'),
-      closeButton: document.querySelector('.close-button'),
-      checkOutButton: document.querySelector('.complete-checkout-button'),
+      checkBoxes: $$('.shipping-checkbox'),
+      form: $('.modal-form-container'),
+      checkOutButton: $('.complete-checkout-button'),
     }
   }
   const domElements = queryDomElements()
@@ -28,54 +26,14 @@ function handleCheckOutModal(cart) {
     tagName: 'span',
   })
 
-  let subtotalPrice = 0
-  cart.forEach((item) => {
-    subtotalPrice += item.price
-  })
-  console.log(subtotalPrice)
-  // let itemPrice = (product.price / 100).toFixed(2)
-  // price.textContent = `${itemPrice} €`
-  let shippingPrice = {
-    id: '',
-    price: 0,
-  }
-  let totalPrice = subtotalPrice + shippingPrice.price
-
   function handleCheckBox(currentCheckBox) {
     domElements.checkBoxes.forEach((checkbox) => {
       checkbox.classList.remove('is--checked')
     })
     currentCheckBox.classList.add('is--checked')
-    shippingPrice.id = currentCheckBox.id
-    if (shippingPrice.id === 'standard-shipping') {
-      shippingPrice.price = 3000
-    } else {
-      shippingPrice.price = 0
-    }
-    console.log(shippingPrice)
-    calculatePrice()
-  }
+    localStorage.setItem('shipping-id', currentCheckBox.id)
 
-  // function displayText() {
-  //   // domElements.displayedItemTitle.textContent = product.name
-  //   domElements.displayedItemTitle.textContent = 'Just testinf'
-  // }
-
-  function calculatePrice() {
-    totalPrice = subtotalPrice + shippingPrice.price
-    displayPrices()
-  }
-
-  function displayPrices() {
-    domElements.displayedItemPrice.textContent = `${(
-      subtotalPrice / 100
-    ).toFixed(2)} €`
-    domElements.displayedShippingPrice.textContent = `${(
-      shippingPrice.price / 100
-    ).toFixed(2)} €`
-    domElements.displayedTotalPrice.textContent = `${(totalPrice / 100).toFixed(
-      2
-    )} €`
+    calculatePrices(cart)
   }
 
   function handleForm() {
@@ -142,8 +100,7 @@ function handleCheckOutModal(cart) {
   // init
   function init() {
     // displayText()
-    calculatePrice()
-    displayPrices()
+    calculatePrices(cart)
     handleForm()
   }
   init()

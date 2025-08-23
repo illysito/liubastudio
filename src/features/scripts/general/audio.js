@@ -1,5 +1,7 @@
 import gsap from 'gsap'
 
+import { $ } from '../../utils/getElement.js'
+
 function audio() {
   const body = document.body
   const soundOn = document.querySelector('.sound-on')
@@ -14,26 +16,26 @@ function audio() {
   if (!isMobile()) {
     let audio
     if (body.classList.contains('body__home')) {
-      audio = document.getElementById('bg-audio-home')
+      audio = $('#bg-audio-home')
     } else if (body.classList.contains('body__collection')) {
-      audio = document.getElementById('bg-audio-collection')
+      audio = $('#bg-audio-collection')
     } else if (body.classList.contains('body__product')) {
-      audio = document.getElementById('bg-audio-collection')
+      audio = $('#bg-audio-collection')
     } else if (body.classList.contains('body__checkout')) {
-      audio = document.getElementById('bg-audio-collection')
+      audio = $('#bg-audio-collection')
     } else if (body.classList.contains('body__courses')) {
-      audio = document.getElementById('bg-audio-courses')
+      audio = $('#bg-audio-courses')
     } else if (body.classList.contains('body__spaces')) {
-      audio = document.getElementById('bg-audio-spaces')
+      audio = $('#bg-audio-spaces')
     } else if (body.classList.contains('body__contact')) {
-      audio = document.getElementById('bg-audio-contact')
+      audio = $('#bg-audio-contact')
     } else if (body.classList.contains('body__misc')) {
       // audio = document.getElementById('bg-audio-misc')
       console.log('no audio found')
     } else {
       console.log('no audio found')
     }
-    const button = document.querySelector('.sound-button')
+    const button = $('.sound-button')
     const audioAccepted = localStorage.getItem('audioAccepted')
 
     if (audio) {

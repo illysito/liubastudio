@@ -1,13 +1,14 @@
 import gsap from 'gsap'
 import SplitType from 'split-type'
 
+import { $$ } from '../../utils/getElement.js'
 import addToCart from '../cart/addToCart'
 
 function clickStoreProducts() {
   function queryDomElements() {
     return {
-      products: document.querySelectorAll('.product-card'),
-      buttons: document.querySelectorAll('.add-button'),
+      products: $$('.product-card'),
+      buttons: $$('.add-button'),
     }
   }
   const domElements = queryDomElements()

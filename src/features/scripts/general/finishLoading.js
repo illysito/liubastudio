@@ -1,8 +1,10 @@
 import gsap from 'gsap'
 
+import { $ } from '../../utils/getElement.js'
+
 function finishLoading() {
-  const loader = document.querySelector('.loading__section')
-  const loading_wrapper = document.querySelector('.loading-wrapper')
+  const loader = $('.loading__section')
+  const loading_wrapper = $('.loading-wrapper')
   gsap.to(loading_wrapper, {
     opacity: 0,
     duration: 0.8,

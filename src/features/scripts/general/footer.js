@@ -1,15 +1,17 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+import { $, $$ } from '../../utils/getElement.js'
+
 gsap.registerPlugin(ScrollTrigger)
 
 function footer() {
-  const footer = document.querySelector('.footer__section')
-  const heading = document.querySelector('.footer-h')
-  const footer_nav = document.querySelectorAll('.footer-nav')
-  const footer_link = document.querySelectorAll('.footer-link')
-  const made_by_link = document.querySelector('.made-by-link')
-  const made_by = document.querySelector('.made-by')
+  const footer = $('.footer__section')
+  const heading = $('.footer-h')
+  const footer_nav = $$('.footer-nav')
+  const footer_link = $$('.footer-link')
+  const made_by_link = $('.made-by-link')
+  const made_by = $('.made-by')
 
   const ease = 'power1.out'
 

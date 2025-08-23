@@ -1,12 +1,14 @@
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
+import { $, $$ } from '../../utils/getElement.js'
+
 gsap.registerPlugin(ScrollTrigger)
 
 function hero() {
-  const canvas = document.querySelector('.liuba-canvas-wrapper')
-  const heading = document.querySelectorAll('.hero-h')
-  const subheading = document.querySelectorAll('.hero-subh')
+  const canvas = $('.liuba-canvas-wrapper')
+  const heading = $$('.hero-h')
+  const subheading = $$('.hero-subh')
   // const heading = document.querySelector('.hero-h')
   const ease = 'power2.out'
 

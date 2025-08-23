@@ -1,14 +1,16 @@
 import gsap from 'gsap'
 import SplitType from 'split-type'
 
+import { $, $$ } from '../../utils/getElement.js'
+
 function nav() {
-  const nav_link = document.querySelectorAll('.nav-link')
-  const logo_link = document.querySelector('.logo-link')
-  const menu_screen = document.querySelector('.menu__screen')
-  const menu_header = document.querySelectorAll('.menu-h')
-  const menu_link = document.querySelectorAll('.menu-link')
-  const burger = document.querySelector('.burger-link')
-  const back_wrapper = document.querySelector('.back-wrapper')
+  const nav_link = $$('.nav-link')
+  const logo_link = $('.logo-link')
+  const menu_screen = $('.menu__screen')
+  const menu_header = $$('.menu-h')
+  const menu_link = $$('.menu-link')
+  const burger = $('.burger-link')
+  const back_wrapper = $('.back-wrapper')
 
   const ease = 'power2.out'
 

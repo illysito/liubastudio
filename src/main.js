@@ -106,8 +106,12 @@ async function runCheckoutFunctions() {
   const { default: handleCheckOutModal } = await import(
     './features/scripts/checkout/handleCheckoutModal'
   )
+  const { default: closeButtons } = await import(
+    './features/scripts/checkout/closeButtons'
+  )
   const cart = displayCheckoutItems()
   handleCheckOutModal(cart)
+  closeButtons()
 }
 
 function runCoursesFunctions() {

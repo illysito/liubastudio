@@ -1,32 +1,35 @@
+import gsap from 'gsap'
+
+import calculatePrices from '../checkout/calculatePrices'
+import removeCheckOutItem from '../checkout/removeCheckOutItem'
 import showCartFeedback from './cartFeedback'
-import updateCartCount from './updateCartCount.js'
+import initCartCount from './initCartCount'
 
 async function removeFromCart(id) {
-  // fetch products
-  try {
-    const res = await fetch(
-      `https://liuba-stripe-backend.vercel.app/api/products?id=${id}`
-    )
-    if (!res.ok) throw new Error('Network response was not ok')
+  // i fetch the cart array from local storage or start with an empty one and then push
+  const EMPTY_CART_SECTION = document.querySelector('.empty-cart-section')
+  let cart = JSON.parse(localStorage.getItem('cart')) || []
 
-    const product = await res.json()
+  // check if product is already in cart
+  const isInCart = cart.some((item) => item.id === id)
 
-    // i fetch the cart array from local storage or start with an empty one and then push
-    let cart = JSON.parse(localStorage.getItem('cart')) || []
+  if (isInCart) {
+    cart = cart.filter((item) => item.id !== id)
 
-    // check if product is already in cart
-    const isInCart = cart.some((item) => item.id === product.id)
-
-    if (isInCart) {
-      cart = cart.filter((item) => item.id !== product.id)
-      showCartFeedback('Item removed from cart')
-      localStorage.setItem('cart', JSON.stringify(cart))
-      updateCartCount(cart.length)
-    } else {
-      showCartFeedback('Item not in cart')
+    if (cart.length == 0) {
+      gsap.to(EMPTY_CART_SECTION, {
+        opacity: 1,
+        duration: 0.6,
+      })
     }
-  } catch (error) {
-    console.error('Failed to load products:', error)
+
+    showCartFeedback('Item removed from cart')
+    localStorage.setItem('cart', JSON.stringify(cart))
+    initCartCount()
+    calculatePrices(cart)
+    removeCheckOutItem(id)
+  } else {
+    showCartFeedback('Item not in cart')
   }
 }
 
