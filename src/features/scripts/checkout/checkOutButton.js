@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 import SplitType from 'split-type'
 
-import { $ } from '../../utils/getElement.js'
+import { $, $$ } from '../../utils/getElement.js'
 
 function checkOutButton() {
   function queryDomElements() {
@@ -102,22 +102,22 @@ function checkOutButton() {
         finalCart: cart,
         shippingId: shippingPriceId,
       }
+
+      fetch('https://liuba-stripe-backend.vercel.app/api/checkout', {
+        // your server endpoint
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(finalData), // send your cart + shipping ID
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // Server returns something: maybe Stripe session ID
+          console.log('Server response:', data)
+        })
+        .catch((err) => console.error('Error sending cart:', err))
     }
     animate()
     sendDataToServer()
-
-    fetch('/api/checkout', {
-      // your server endpoint
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(finalData), // send your cart + shipping ID
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // Server returns something: maybe Stripe session ID
-        console.log('Server response:', data)
-      })
-      .catch((err) => console.error('Error sending cart:', err))
   }
 
   // checkOutButton
