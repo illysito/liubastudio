@@ -121,6 +121,7 @@ function checkOutButton() {
         .then((data) => {
           // Server returns something: maybe Stripe session ID
           console.log('Server response:', data)
+          window.location.href = data.url
         })
         .catch((err) => console.error('Error sending cart:', err))
     }
