@@ -1,15 +1,13 @@
 import gsap from 'gsap'
 import SplitType from 'split-type'
 
-import { $, $$ } from '../../utils/getElement.js'
-import calculatePrices from './calculatePrices.js'
+import { $ } from '../../utils/getElement.js'
 
-function handleCheckOutModal(cart) {
+function checkOutButton() {
   function queryDomElements() {
     return {
-      checkBoxes: $$('.shipping-checkbox'),
-      form: $('.modal-form-container'),
       checkOutButton: $('.complete-checkout-button'),
+      checkBoxes: $$('.shipping-checkbox'),
     }
   }
   const domElements = queryDomElements()
@@ -25,20 +23,6 @@ function handleCheckOutModal(cart) {
     types: 'chars',
     tagName: 'span',
   })
-
-  function handleCheckBox(currentCheckBox) {
-    domElements.checkBoxes.forEach((checkbox) => {
-      checkbox.classList.remove('is--checked')
-    })
-    currentCheckBox.classList.add('is--checked')
-    localStorage.setItem('shipping-id', currentCheckBox.id)
-
-    calculatePrices(cart)
-  }
-
-  function handleForm() {
-    console.log('Im handling the form')
-  }
 
   function hoverIn() {
     gsap.to(domElements.checkOutButton, {
@@ -85,58 +69,57 @@ function handleCheckOutModal(cart) {
   }
 
   function click() {
-    gsap.to(domElements.checkOutButton, {
-      scale: 0.96,
-      duration: 0.1,
-      onComplete: () => {
-        gsap.to(domElements.checkOutButton, {
-          scale: 0.98,
-          duration: 0.2,
-        })
-      },
-    })
-  }
-
-  // init
-  function init() {
-    // displayText()
-    calculatePrices(cart)
-    handleForm()
-  }
-  init()
-
-  // event listeners
-  // checkbox
-  domElements.checkBoxes.forEach((c) => {
-    const option = c.nextElementSibling
-    c.addEventListener('click', () => {
-      handleCheckBox(c)
-    })
-    c.addEventListener('mouseover', () => {
-      gsap.to(option, {
-        x: 4,
-        duration: 0.2,
+    function animate() {
+      gsap.to(domElements.checkOutButton, {
+        scale: 0.96,
+        duration: 0.1,
+        onComplete: () => {
+          gsap.to(domElements.checkOutButton, {
+            scale: 0.98,
+            duration: 0.2,
+          })
+        },
       })
-    })
-    c.addEventListener('mouseleave', () => {
-      gsap.to(option, {
-        x: 0,
-        duration: 0.2,
-      })
-    })
-  })
+    }
+    function sendDataToServer() {
+      let cart = []
+      let storedCart = JSON.parse(localStorage.getItem('cart')) || []
 
-  // form prevent default
-  if (domElements.form) {
-    domElements.form.addEventListener(
-      'submit',
-      (e) => {
-        e.preventDefault() // stops page reload & Webflow handling
-        e.stopImmediatePropagation() // stops Webflow listeners from firing
-      },
-      true
-    ) // use capture phase to block Webflow's listener
+      let shippingPriceId = ''
+
+      for (let i = 0; i < storedCart.length; i++) {
+        const item = { itemId: storedCart[i].id }
+        cart.push(item)
+      }
+
+      domElements.checkBoxes.forEach((c) => {
+        if (c.classList.contains('is--checked')) {
+          shippingPriceId = c.id
+        }
+      })
+
+      let finalData = {
+        finalCart: cart,
+        shippingId: shippingPriceId,
+      }
+    }
+    animate()
+    sendDataToServer()
+
+    fetch('/api/checkout', {
+      // your server endpoint
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(finalData), // send your cart + shipping ID
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Server returns something: maybe Stripe session ID
+        console.log('Server response:', data)
+      })
+      .catch((err) => console.error('Error sending cart:', err))
   }
+
   // checkOutButton
   domElements.checkOutButton.addEventListener('mouseover', hoverIn)
   domElements.checkOutButton.addEventListener('mouseleave', hoverOut)
@@ -145,4 +128,4 @@ function handleCheckOutModal(cart) {
   })
 }
 
-export default handleCheckOutModal
+export default checkOutButton

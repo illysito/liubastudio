@@ -2,7 +2,6 @@ import gsap from 'gsap'
 
 import calculatePrices from '../checkout/calculatePrices'
 import removeCheckOutItem from '../checkout/removeCheckOutItem'
-import showCartFeedback from './cartFeedback'
 import initCartCount from './initCartCount'
 
 async function removeFromCart(id) {
@@ -22,14 +21,12 @@ async function removeFromCart(id) {
         duration: 0.6,
       })
     }
-
-    showCartFeedback('Item removed from cart')
     localStorage.setItem('cart', JSON.stringify(cart))
     initCartCount()
     calculatePrices(cart)
     removeCheckOutItem(id)
   } else {
-    showCartFeedback('Item not in cart')
+    console.log('Item not in cart')
   }
 }
 

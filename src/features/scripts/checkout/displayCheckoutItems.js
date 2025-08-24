@@ -90,6 +90,33 @@ function displayCheckoutItems() {
       }
 
       CART_SECTION.appendChild(separatorWrapper)
+
+      // event listeners
+      img.addEventListener('mouseover', () => {
+        gsap.to(img, {
+          opacity: 0.7,
+          duration: 0.2,
+        })
+      })
+      img.addEventListener('mouseleave', () => {
+        gsap.to(img, {
+          opacity: 1,
+          duration: 0.2,
+        })
+      })
+      img.addEventListener('click', () => {
+        gsap.to(img, {
+          scale: 0.98,
+          duration: 0.1,
+          onComplete: () => {
+            gsap.to(img, {
+              scale: 1,
+              duration: 0.2,
+            })
+          },
+        })
+        window.location.href = `/product?id=${p.id}`
+      })
     })
   }
 
