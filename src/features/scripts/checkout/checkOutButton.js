@@ -77,9 +77,17 @@ function checkOutButton() {
           gsap.to(domElements.checkOutButton, {
             scale: 0.98,
             duration: 0.2,
+            opacity: 0.5,
           })
         },
       })
+      domElements.checkOutButton.style.pointerEvents = 'none'
+      setTimeout(() => {
+        gsap.to(domElements.checkOutButton, {
+          opacity: 1,
+        })
+        domElements.checkOutButton.style.pointerEvents = 'auto'
+      }, 5000)
     }
     function sendDataToServer() {
       let cart = []
