@@ -124,8 +124,17 @@ function checkOutButton() {
         })
         .catch((err) => console.error('Error sending cart:', err))
     }
-    animate()
     sendDataToServer()
+    animate()
+  }
+
+  let storedCart = JSON.parse(localStorage.getItem('cart')) || []
+  if (storedCart.length == 0) {
+    domElements.checkOutButton.style.pointerEvents = 'none'
+    domElements.checkOutButton.style.opacity = 0.5
+  } else {
+    domElements.checkOutButton.style.pointerEvents = 'auto'
+    domElements.checkOutButton.style.opacity = 1
   }
 
   // checkOutButton

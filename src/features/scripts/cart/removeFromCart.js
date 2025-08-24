@@ -7,6 +7,7 @@ import initCartCount from './initCartCount'
 async function removeFromCart(id) {
   // i fetch the cart array from local storage or start with an empty one and then push
   const EMPTY_CART_SECTION = document.querySelector('.empty-cart-section')
+  const CHECKOUT_BUTTON = document.querySelector('.complete-checkout-button')
   let cart = JSON.parse(localStorage.getItem('cart')) || []
 
   // check if product is already in cart
@@ -20,6 +21,8 @@ async function removeFromCart(id) {
         opacity: 1,
         duration: 0.6,
       })
+      CHECKOUT_BUTTON.style.pointerEvents = 'none'
+      CHECKOUT_BUTTON.style.opacity = 0.5
     }
     localStorage.setItem('cart', JSON.stringify(cart))
     initCartCount()
