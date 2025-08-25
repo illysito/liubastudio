@@ -103,7 +103,7 @@ function checkOutButton() {
           opacity: 1,
         })
         domElements.checkOutButton.style.pointerEvents = 'auto'
-      }, 5000)
+      }, 10000)
     }
     function sendDataToServer() {
       let cart = []
