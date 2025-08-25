@@ -140,7 +140,7 @@ async function runMiscFunctions() {
   const { default: afterpaymentButton } = await import(
     './features/scripts/misc/afterpaymentButton'
   )
-  cancelButton()
+  afterpaymentButton()
 }
 
 function runGeneralFunctions() {
