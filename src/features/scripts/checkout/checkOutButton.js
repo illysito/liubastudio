@@ -8,9 +8,17 @@ function checkOutButton() {
     return {
       checkOutButton: $('.complete-checkout-button'),
       checkBoxes: $$('.shipping-checkbox'),
+      loadingCircle: $('.loading-circle'),
     }
   }
   const domElements = queryDomElements()
+
+  // animate loading circle
+  gsap.to(domElements.loadingCircle, {
+    rotation: 360,
+    repeat: -1,
+    duration: 4,
+  })
 
   const checkOutButtonWrapper = domElements.checkOutButton.firstElementChild
   const checkOutButtonText = checkOutButtonWrapper.firstElementChild
@@ -70,14 +78,22 @@ function checkOutButton() {
 
   function click() {
     function animate() {
+      // gsap.to([checkOutButtonText, checkOutButtonHiddenText], {
+      //   opacity: 0,
+      //   duration: 0.2,
+      // })
+      gsap.to(domElements.loadingCircle, {
+        opacity: 1,
+        ease: 'none',
+      })
       gsap.to(domElements.checkOutButton, {
         scale: 0.96,
         duration: 0.1,
         onComplete: () => {
           gsap.to(domElements.checkOutButton, {
             scale: 0.98,
-            duration: 0.2,
-            opacity: 0.5,
+            duration: 0,
+            opacity: 0,
           })
         },
       })
@@ -121,6 +137,7 @@ function checkOutButton() {
         .then((data) => {
           // Server returns something: maybe Stripe session ID
           console.log('Server response:', data)
+          console.log(data.url)
           window.location.href = data.url
         })
         .catch((err) => console.error('Error sending cart:', err))

@@ -136,8 +136,11 @@ function runContactFunctions() {
   console.log('Welcome to Contact')
 }
 
-function runMiscFunctions() {
-  console.log('Welcome to Liuba Nosova General Info')
+async function runMiscFunctions() {
+  const { default: cancelButton } = await import(
+    './features/scripts/misc/cancelButton'
+  )
+  cancelButton()
 }
 
 function runGeneralFunctions() {
