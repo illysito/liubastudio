@@ -6,7 +6,7 @@ import { $ } from '../../utils/getElement.js'
 function afterpaymentButton() {
   function queryDomElements() {
     return {
-      button: $('.cancel-page-button'),
+      button: $('.afterpayment-button'),
     }
   }
   const DOM = queryDomElements()
