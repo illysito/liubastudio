@@ -3,7 +3,7 @@ import SplitType from 'split-type'
 
 import { $ } from '../../utils/getElement.js'
 
-function cancelButton() {
+function afterpaymentButton() {
   function queryDomElements() {
     return {
       button: $('.cancel-page-button'),
@@ -85,4 +85,4 @@ function cancelButton() {
   })
 }
 
-export default cancelButton
+export default afterpaymentButton

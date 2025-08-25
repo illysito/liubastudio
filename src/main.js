@@ -137,8 +137,8 @@ function runContactFunctions() {
 }
 
 async function runMiscFunctions() {
-  const { default: cancelButton } = await import(
-    './features/scripts/misc/cancelButton'
+  const { default: afterpaymentButton } = await import(
+    './features/scripts/misc/afterpaymentButton'
   )
   cancelButton()
 }
