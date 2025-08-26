@@ -49,8 +49,8 @@ function displayStoreProducts(products) {
     addButtonHiddenTxt.classList.add('is--hidden')
     if (inventory <= 0) {
       addButton.classList.add('out-of-stock')
-      addButtonTxt.textContent = 'Out of stock'
-      addButtonHiddenTxt.textContent = 'Out of stock'
+      addButtonTxt.textContent = 'Already acquired'
+      addButtonHiddenTxt.textContent = 'Already acquired'
     } else {
       addButtonTxt.textContent = 'Add to cart'
       addButtonHiddenTxt.textContent = 'Add to cart'
