@@ -135,12 +135,20 @@ function checkOutButton() {
       })
         .then((res) => res.json())
         .then((data) => {
-          // Server returns something: maybe Stripe session ID
-          console.log('Server response:', data)
-          console.log(data.url)
-          window.location.href = data.url
+          if (data.url) {
+            // Everything is fine, redirect to Stripe checkout
+            window.location.href = data.url
+          } else {
+            // Something went wrong: show user-friendly cancel page
+            window.location.href = 'https://liubastudio.webflow.io/cancel'
+            // optionally log error
+            console.error('Checkout failed:', data.error)
+          }
         })
-        .catch((err) => console.error('Error sending cart:', err))
+        .catch((err) => {
+          console.error('Error sending cart:', err)
+          window.location.href = 'https://liubastudio.webflow.io/cancel'
+        })
     }
     sendDataToServer()
     animate()
