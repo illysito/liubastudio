@@ -76,6 +76,7 @@ function clickDeatilProduct(product) {
 
   // event listeners
   domElements.buttons.forEach((b, index) => {
+    if (b.classList.contains('out-of-stock')) return
     const wrapper = b.firstElementChild
     const text = wrapper.firstElementChild
     const hiddenText = wrapper.lastElementChild

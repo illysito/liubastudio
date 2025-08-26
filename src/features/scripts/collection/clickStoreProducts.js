@@ -77,14 +77,18 @@ function clickStoreProducts() {
     image.addEventListener('click', () => {
       window.location.href = `/product?id=${productId}`
     })
-    button.addEventListener('click', (e) => {
-      const b = e.currentTarget
-      click(b)
-      addToCart(productId)
-    })
+    if (!button.classList.contains('out-of-stock')) {
+      // only add event listener if the button is NOT OUT OF STOCK
+      button.addEventListener('click', (e) => {
+        const b = e.currentTarget
+        click(b)
+        addToCart(productId)
+      })
+    }
   })
 
   domElements.buttons.forEach((b) => {
+    if (b.classList.contains('out-of-stock')) return
     const wrapper = b.firstElementChild
     const text = wrapper.firstElementChild
     const hiddenText = wrapper.lastElementChild

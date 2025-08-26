@@ -6,9 +6,13 @@ function displayDetailProduct(product) {
     return {
       backButton: document.querySelector('.back-text-wrapper'),
       detailImageWrapper: document.querySelector('.detail-img-wrapper'),
+      addButton: document.querySelector('.add-button-detail'),
     }
   }
   const domElements = queryDomElements()
+  const buttonWrapper = domElements.addButton.firstElementChild
+  const buttonText = buttonWrapper.firstElementChild
+  const buttonTextHidden = buttonWrapper.lastElementChild
 
   // Back to collection
   function backToCollection() {
@@ -65,6 +69,14 @@ function displayDetailProduct(product) {
 
   // Display detail product data
   console.log(product)
+
+  // Inventory check
+  const inventory = Number(product.metadata.Inventory)
+  if (inventory <= 0) {
+    domElements.addButton.classList.add('out-of-stock')
+    buttonText.textContent = 'Out of stock'
+    buttonTextHidden.textContent = 'Out of stock'
+  }
 
   // create image
   const productImage = document.createElement('img')

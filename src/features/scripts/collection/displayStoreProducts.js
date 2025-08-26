@@ -10,6 +10,8 @@ function displayStoreProducts(products) {
 
   products.forEach((p) => {
     const category = p.metadata.Category
+    const inventory = Number(p.metadata.Inventory)
+
     // Create container
     const productEl = document.createElement('div')
     productEl.classList.add('product-card') // Style this in your CSS
@@ -45,8 +47,14 @@ function displayStoreProducts(products) {
     const addButtonHiddenTxt = document.createElement('p')
     addButtonHiddenTxt.classList.add('add-button-txt')
     addButtonHiddenTxt.classList.add('is--hidden')
-    addButtonTxt.textContent = 'Add to cart'
-    addButtonHiddenTxt.textContent = 'Add to cart'
+    if (inventory <= 0) {
+      addButton.classList.add('out-of-stock')
+      addButtonTxt.textContent = 'Out of stock'
+      addButtonHiddenTxt.textContent = 'Out of stock'
+    } else {
+      addButtonTxt.textContent = 'Add to cart'
+      addButtonHiddenTxt.textContent = 'Add to cart'
+    }
     addButton.appendChild(addButtonWrapper)
     addButtonWrapper.appendChild(addButtonTxt)
     addButtonWrapper.appendChild(addButtonHiddenTxt)
