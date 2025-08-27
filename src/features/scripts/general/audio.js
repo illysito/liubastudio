@@ -7,13 +7,17 @@ function audio() {
   const soundOn = document.querySelector('.sound-on')
   const soundOff = document.querySelector('.sound-off')
 
-  function isMobile() {
-    return window.matchMedia('(max-width: 768px)').matches
+  // function isMobile() {
+  //   return window.matchMedia('(max-width: 768px)').matches
+  // }
+
+  function isDesktop() {
+    return window.innerWidth >= 992
   }
 
   // console.log('Audio: is it mobile?: ' + isMobile())
 
-  if (!isMobile()) {
+  if (isDesktop()) {
     let audio
     if (body.classList.contains('body__home')) {
       audio = $('#bg-audio-home')
