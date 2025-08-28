@@ -11,6 +11,7 @@ function nav() {
   const menu_link = $$('.menu-link')
   const burger = $('.burger-link')
   const back_wrapper = $('.back-wrapper')
+  const menu_img = $('.menu-img')
 
   const ease = 'power2.out'
 
@@ -96,6 +97,11 @@ function nav() {
           menu_screen.style.pointerEvents = 'auto'
         },
       })
+      gsap.to(menu_img, {
+        opacity: 1,
+        duration: 1.4,
+        ease: 'power2.inOut',
+      })
     })
 
     menu_link.forEach((link) => {
@@ -117,6 +123,11 @@ function nav() {
           duration: 1.4,
           ease: 'power2.inOut',
         })
+        gsap.to(menu_img, {
+          opacity: 0,
+          duration: 1.4,
+          ease: 'power2.inOut',
+        })
       })
     })
 
@@ -135,6 +146,11 @@ function nav() {
       })
       gsap.to(menu_screen, {
         yPercent: 0,
+        duration: 1.4,
+        ease: 'power2.inOut',
+      })
+      gsap.to(menu_img, {
+        opacity: 0,
         duration: 1.4,
         ease: 'power2.inOut',
       })
