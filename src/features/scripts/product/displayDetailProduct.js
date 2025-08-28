@@ -74,8 +74,8 @@ function displayDetailProduct(product) {
   const inventory = Number(product.metadata.Inventory)
   if (inventory <= 0) {
     domElements.addButton.classList.add('out-of-stock')
-    buttonText.textContent = 'Already acquired'
-    buttonTextHidden.textContent = 'Already acquired'
+    buttonText.textContent = 'Off the shelf'
+    buttonTextHidden.textContent = 'Off the shelf'
   }
 
   // create image

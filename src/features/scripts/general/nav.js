@@ -78,6 +78,7 @@ function nav() {
 
   if (burger) {
     burger.addEventListener('click', () => {
+      document.body.style.overflow = 'hidden'
       burger.style.pointerEvents = 'none'
       menu_screen.style.pointerEvents = 'none'
       gsap.to(menu_screen, {
@@ -99,6 +100,7 @@ function nav() {
 
     menu_link.forEach((link) => {
       link.addEventListener('click', () => {
+        document.body.style.overflow = 'visible'
         burger.style.pointerEvents = 'none'
         menu_screen.style.pointerEvents = 'none'
         gsap.to(menu_header, {
@@ -119,6 +121,7 @@ function nav() {
     })
 
     back_wrapper.addEventListener('click', () => {
+      document.body.style.overflow = 'visible'
       burger.style.pointerEvents = 'none'
       menu_screen.style.pointerEvents = 'none'
       gsap.to(menu_header, {
