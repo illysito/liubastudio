@@ -11,7 +11,7 @@ function landingMisc() {
   const collection_canvas = document.querySelectorAll('.collection-canvas')
   // sections
   const collection_section = document.querySelector('.collection__section__2')
-  const about_section = document.querySelector('.about__section')
+  // const about_section = document.querySelector('.about__section')
   const motto_section = document.querySelector('.motto__section')
   // stars
   const stars = document.querySelectorAll('.stars')
@@ -103,16 +103,16 @@ function landingMisc() {
       markers: false,
     },
   })
-  gsap.to(about_section, {
-    y: -28,
-    scrollTrigger: {
-      trigger: about_section,
-      start: 'top bottom',
-      end: 'top top',
-      scrub: true,
-      markers: false,
-    },
-  })
+  // gsap.to(about_section, {
+  //   y: -28,
+  //   scrollTrigger: {
+  //     trigger: about_section,
+  //     start: 'top bottom',
+  //     end: 'top top',
+  //     scrub: true,
+  //     markers: false,
+  //   },
+  // })
   // parallax on stars
   stars.forEach((star, index) => {
     gsap.to(star, {

@@ -13,6 +13,9 @@ let products
 let detailProduct
 
 async function runHomeFunctions() {
+  const { default: preloader } = await import(
+    './features/scripts/home/preloader'
+  )
   const { default: hero } = await import('./features/scripts/home/hero')
   const { default: motto } = await import('./features/scripts/home/motto')
   const { default: landingMisc } = await import(
@@ -28,6 +31,7 @@ async function runHomeFunctions() {
     './features/shaders/handleLiuba'
   )
 
+  preloader()
   hero()
   motto()
   mainCollection()
