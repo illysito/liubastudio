@@ -60,7 +60,7 @@ function mainCollection() {
     })
   }
 
-  cards.forEach((card) => {
+  cards.forEach((card, index) => {
     const header_w = card.firstElementChild
     const header = header_w.firstElementChild
     const hidden_header = header.nextElementSibling
@@ -82,6 +82,10 @@ function mainCollection() {
     })
     card.addEventListener('mouseleave', () => {
       hoverOut(card, splitHeader, splitHiddenHeader, img)
+    })
+    card.addEventListener('click', () => {
+      localStorage.setItem('initial-filter-type', header.textContent)
+      localStorage.setItem('initial-filter-index', index + 1)
     })
   })
 }

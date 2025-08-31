@@ -24,9 +24,22 @@ function filterStore() {
     types: [],
   }
 
+  // set initial filter when coming from HOME and clicking a given card
+  function initFilters() {
+    const initialFilterText = localStorage.getItem('initial-filter-type')
+    const initialFilterIndex = localStorage.getItem('initial-filter-index')
+    if (initialFilterText && initialFilterIndex) {
+      updateFilterState(initialFilterText)
+      displayFilteredTitles(initialFilterIndex)
+      localStorage.setItem('initial-filter-type', '')
+      localStorage.setItem('initial-filter-index', '')
+    }
+  }
+  initFilters()
+
   // update filter array based on user choice
   function updateFilterState(buttonText) {
-    const selectedType = buttonText.textContent.toLowerCase()
+    const selectedType = buttonText.toLowerCase()
     const selectedTag = 'tag-' + selectedType
 
     if (selectedType === 'all') {
@@ -106,8 +119,9 @@ function filterStore() {
     const tear1 = b.firstElementChild
     // const tear2 = b.lastElementChild
     const buttonText = tear1.nextElementSibling
+    const buttonTextContent = buttonText.textContent
     b.addEventListener('click', () => {
-      updateFilterState(buttonText)
+      updateFilterState(buttonTextContent)
       displayFilteredTitles(index)
     })
   })

@@ -9,7 +9,7 @@ function preloader() {
 
   let counter = 0
   const interval = setInterval(() => {
-    counter++
+    counter += 2
     TXT.textContent = `${counter} %`
     if (counter == 100) {
       const SPLIT_TXT = new SplitType(TXT, {
@@ -32,7 +32,7 @@ function preloader() {
       })
       clearInterval(interval)
     }
-  }, 30)
+  }, 40)
 }
 
 export default preloader
