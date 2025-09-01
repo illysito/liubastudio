@@ -4,6 +4,7 @@ import SplitType from 'split-type'
 import { $, $$ } from '../../utils/getElement.js'
 
 function nav() {
+  const nav_section = $('.nav__section')
   const nav_link = $$('.nav-link')
   const logo_link = $('.logo-link')
   const menu_screen = $('.menu__screen')
@@ -76,20 +77,27 @@ function nav() {
   })
 
   // MENU SCREEN
-
   if (burger) {
+    const afterNav = nav_section.nextElementSibling
+    console.log(afterNav)
+
     burger.addEventListener('click', () => {
       document.body.style.overflow = 'hidden'
       burger.style.pointerEvents = 'none'
       menu_screen.style.pointerEvents = 'none'
+      gsap.to(afterNav, {
+        yPercent: 12,
+        duration: 1.2,
+        ease: 'power2.inOut',
+      })
       gsap.to(menu_screen, {
         yPercent: 100,
-        duration: 1.4,
+        duration: 1.2,
         ease: 'power2.inOut',
       })
       gsap.to(menu_header, {
         yPercent: -100,
-        duration: 1.6,
+        duration: 1.4,
         ease: 'power1.inOut',
         stagger: 0.05,
         onComplete: () => {
@@ -99,7 +107,7 @@ function nav() {
       })
       gsap.to(menu_img, {
         opacity: 1,
-        duration: 1.4,
+        duration: 1.2,
         ease: 'power2.inOut',
       })
     })
@@ -135,6 +143,11 @@ function nav() {
       document.body.style.overflow = 'visible'
       burger.style.pointerEvents = 'none'
       menu_screen.style.pointerEvents = 'none'
+      gsap.to(afterNav, {
+        yPercent: 0,
+        duration: 1.2,
+        ease: 'power2.inOut',
+      })
       gsap.to(menu_header, {
         yPercent: 100,
         duration: 1.2,
