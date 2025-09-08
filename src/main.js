@@ -144,7 +144,10 @@ async function runMiscFunctions() {
   const { default: afterpaymentButton } = await import(
     './features/scripts/misc/afterpaymentButton'
   )
+  const { default: faq } = await import('./features/scripts/misc/faq')
+
   afterpaymentButton()
+  faq()
 }
 
 function runGeneralFunctions() {

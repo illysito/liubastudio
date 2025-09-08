@@ -11,6 +11,10 @@ function afterpaymentButton() {
   }
   const DOM = queryDomElements()
 
+  if (!DOM.button) {
+    return
+  }
+
   const button = DOM.button
   const wrapper = button.firstElementChild
   const text = wrapper.firstElementChild
