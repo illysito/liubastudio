@@ -11,8 +11,12 @@ function hoverStoreProducts() {
   }
   const domElements = queryDomElements()
 
+  const isTouchDevice = () =>
+    'ontouchstart' in window || navigator.maxTouchPoints > 0
+
   // event listeners
   domElements.imageWrappers.forEach((p) => {
+    if (isTouchDevice()) return
     const img = p.firstElementChild
 
     gsap.set(img, { transformOrigin: 'center center' })
