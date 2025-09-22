@@ -79,6 +79,7 @@ function clickStoreProducts() {
 
     gsap.to(text, {
       color: '#fff8ee',
+      duration: 0.1,
     })
     gsap.to(b, {
       backgroundColor: '#3e50d6',
@@ -92,6 +93,7 @@ function clickStoreProducts() {
         })
         gsap.to(text, {
           color: '#3e50d6',
+          duration: 0.1,
         })
       },
     })
