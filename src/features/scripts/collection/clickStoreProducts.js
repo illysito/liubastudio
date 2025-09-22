@@ -71,7 +71,7 @@ function clickStoreProducts() {
     })
   }
 
-  function tapAnimation(b) {
+  function tapAnimation(b, splitText, splitHiddenText) {
     gsap.to(splitText.chars, {
       color: '#fff8ee',
       yPercent: -100,
@@ -122,7 +122,7 @@ function clickStoreProducts() {
       button.addEventListener('click', (e) => {
         const b = e.currentTarget
         if (isTouchDevice) {
-          tapAnimation(b)
+          tapAnimation(b, splitText, splitHiddenText)
         } else {
           clickAnimation(b)
         }
