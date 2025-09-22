@@ -58,7 +58,7 @@ function clickStoreProducts() {
     })
   }
 
-  function click(b) {
+  function clickAnimation(b) {
     gsap.to(b, {
       scale: 0.96,
       duration: 0.1,
@@ -66,6 +66,43 @@ function clickStoreProducts() {
         gsap.to(b, {
           scale: 0.98,
           duration: 0.2,
+        })
+      },
+    })
+  }
+
+  function tapAnimation(b) {
+    gsap.to(splitText.chars, {
+      color: '#fff8ee',
+      yPercent: -100,
+      stagger: 0.02,
+      ease: 'power2.out',
+    })
+    gsap.to(splitHiddenText.chars, {
+      color: '#fff8ee',
+      yPercent: -100,
+      stagger: 0.02,
+      ease: 'power2.out',
+    })
+    gsap.to(b, {
+      scale: 0.92,
+      duration: 0.1,
+      onComplete: () => {
+        gsap.to(b, {
+          scale: 0.98,
+          duration: 0.2,
+        })
+        gsap.to(splitText.chars, {
+          color: '#3e50d6',
+          yPercent: 0,
+          stagger: 0.02,
+          ease: 'power2.out',
+        })
+        gsap.to(splitHiddenText.chars, {
+          color: '#3e50d6',
+          yPercent: 0,
+          stagger: 0.02,
+          ease: 'power2.out',
         })
       },
     })
@@ -84,7 +121,11 @@ function clickStoreProducts() {
       // only add event listener if the button is NOT OUT OF STOCK
       button.addEventListener('click', (e) => {
         const b = e.currentTarget
-        click(b)
+        if (isTouchDevice) {
+          tapAnimation(b)
+        } else {
+          clickAnimation(b)
+        }
         addToCart(productId)
       })
     }
