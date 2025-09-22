@@ -13,6 +13,9 @@ function clickStoreProducts() {
   }
   const domElements = queryDomElements()
 
+  const isTouchDevice = () =>
+    'ontouchstart' in window || navigator.maxTouchPoints > 0
+
   function hoverIn(b, splitText, splitHiddenText) {
     gsap.to(b, {
       scale: 0.98,
@@ -102,12 +105,14 @@ function clickStoreProducts() {
       tagName: 'span',
     })
 
-    b.addEventListener('mouseover', () => {
-      hoverIn(b, splitText, splitHiddenText)
-    })
-    b.addEventListener('mouseleave', () => {
-      hoverOut(b, splitText, splitHiddenText)
-    })
+    if (!isTouchDevice) {
+      b.addEventListener('mouseover', () => {
+        hoverIn(b, splitText, splitHiddenText)
+      })
+      b.addEventListener('mouseleave', () => {
+        hoverOut(b, splitText, splitHiddenText)
+      })
+    }
   })
 }
 
