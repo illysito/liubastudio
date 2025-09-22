@@ -99,20 +99,38 @@ function clickStoreProducts() {
     })
   }
 
+  function imageTapAnimation(image) {
+    gsap.to(image, {
+      scale: 0.92,
+      duration: 0.1,
+      onComplete: () => {
+        gsap.to(image, {
+          scale: 0.98,
+          duration: 0.2,
+        })
+      },
+    })
+  }
+
   // event listeners
   domElements.products.forEach((p) => {
     const productId = p.dataset.product_ID
 
     const image = p.firstElementChild
     const button = p.lastElementChild
+
     image.addEventListener('click', () => {
+      if (isTouchDevice()) {
+        imageTapAnimation(image)
+      }
       window.location.href = `/product?id=${productId}`
     })
+
     if (!button.classList.contains('out-of-stock')) {
       // only add event listener if the button is NOT OUT OF STOCK
       button.addEventListener('click', (e) => {
         const b = e.currentTarget
-        if (isTouchDevice) {
+        if (isTouchDevice()) {
           tapAnimation(b)
         } else {
           clickAnimation(b)
