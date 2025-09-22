@@ -12,6 +12,9 @@ function filterStore() {
   }
   const domElements = queryDomElements()
 
+  const isTouchDevice = () =>
+    'ontouchstart' in window || navigator.maxTouchPoints > 0
+
   // set first tears SHOWN
   gsap.set([domElements.tears[0], domElements.tears[1]], {
     opacity: 1,
@@ -126,6 +129,7 @@ function filterStore() {
     })
   })
   domElements.filterButtons.forEach((b) => {
+    if (isTouchDevice()) return
     b.addEventListener('mouseenter', (e) => {
       const button = e.currentTarget
       const tear = button.firstElementChild
@@ -137,6 +141,7 @@ function filterStore() {
     })
   })
   domElements.filterButtons.forEach((b) => {
+    if (isTouchDevice()) return
     b.addEventListener('mouseleave', (e) => {
       const button = e.currentTarget
       const tear = button.firstElementChild
