@@ -16,6 +16,8 @@ function clickStoreProducts() {
   const isTouchDevice = () =>
     'ontouchstart' in window || navigator.maxTouchPoints > 0
 
+  console.log(isTouchDevice())
+
   function hoverIn(b, splitText, splitHiddenText) {
     gsap.to(b, {
       scale: 0.98,
@@ -71,38 +73,25 @@ function clickStoreProducts() {
     })
   }
 
-  function tapAnimation(b, splitText, splitHiddenText) {
-    gsap.to(splitText.chars, {
+  function tapAnimation(b) {
+    const wrapper = b.firstElementChild
+    const text = wrapper.firstElementChild
+
+    gsap.to(text, {
       color: '#fff8ee',
-      yPercent: -100,
-      stagger: 0.02,
-      ease: 'power2.out',
-    })
-    gsap.to(splitHiddenText.chars, {
-      color: '#fff8ee',
-      yPercent: -100,
-      stagger: 0.02,
-      ease: 'power2.out',
     })
     gsap.to(b, {
+      backgroundColor: '#3e50d6',
       scale: 0.92,
       duration: 0.1,
       onComplete: () => {
         gsap.to(b, {
+          backgroundColor: '#fff8ee',
           scale: 0.98,
           duration: 0.2,
         })
-        gsap.to(splitText.chars, {
+        gsap.to(text, {
           color: '#3e50d6',
-          yPercent: 0,
-          stagger: 0.02,
-          ease: 'power2.out',
-        })
-        gsap.to(splitHiddenText.chars, {
-          color: '#3e50d6',
-          yPercent: 0,
-          stagger: 0.02,
-          ease: 'power2.out',
         })
       },
     })
@@ -122,7 +111,7 @@ function clickStoreProducts() {
       button.addEventListener('click', (e) => {
         const b = e.currentTarget
         if (isTouchDevice) {
-          tapAnimation(b, splitText, splitHiddenText)
+          tapAnimation(b)
         } else {
           clickAnimation(b)
         }
@@ -146,7 +135,7 @@ function clickStoreProducts() {
       tagName: 'span',
     })
 
-    if (!isTouchDevice) {
+    if (!isTouchDevice()) {
       b.addEventListener('mouseover', () => {
         hoverIn(b, splitText, splitHiddenText)
       })
