@@ -1,5 +1,7 @@
 import gsap from 'gsap'
 
+// LOADING ANIMATION
+
 function loadingStore() {
   function queryDomElements() {
     return {

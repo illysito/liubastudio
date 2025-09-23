@@ -2,6 +2,8 @@ import gsap from 'gsap'
 
 import { $$ } from '../../utils/getElement.js'
 
+// CONTROLS HOVERING OVER STORE PRODUCT IMAGES
+
 function hoverStoreProducts() {
   function queryDomElements() {
     return {

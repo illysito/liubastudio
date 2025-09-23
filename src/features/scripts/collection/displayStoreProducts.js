@@ -1,3 +1,5 @@
+// DISPLAYS PRODUCTS
+
 function displayStoreProducts(products) {
   function domElementsQuery() {
     return {

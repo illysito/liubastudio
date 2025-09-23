@@ -1,3 +1,5 @@
+// FETCHES PRODUCTS JSON FROM STRIPE
+
 async function fetchStoreData() {
   try {
     const res = await fetch(

@@ -4,6 +4,8 @@ import SplitType from 'split-type'
 import { $$ } from '../../utils/getElement.js'
 import addToCart from '../cart/addToCart'
 
+// CONTROLS CLICK ON PRODUCT IMAGE OR ADD TO CART BUTTON
+
 function clickStoreProducts() {
   function queryDomElements() {
     return {
@@ -88,7 +90,7 @@ function clickStoreProducts() {
       onComplete: () => {
         gsap.to(b, {
           backgroundColor: '#fff8ee',
-          scale: 0.98,
+          scale: 1,
           duration: 0.2,
         })
         gsap.to(text, {
@@ -105,7 +107,7 @@ function clickStoreProducts() {
       duration: 0.1,
       onComplete: () => {
         gsap.to(image, {
-          scale: 0.98,
+          scale: 1,
           duration: 0.2,
         })
       },

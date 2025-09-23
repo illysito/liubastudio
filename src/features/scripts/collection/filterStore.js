@@ -2,6 +2,8 @@ import gsap from 'gsap'
 
 import { $$ } from '../../utils/getElement.js'
 
+// LOGIC FOR FILTERING STORE
+
 function filterStore() {
   function queryDomElements() {
     return {
@@ -135,7 +137,7 @@ function filterStore() {
       const tear = button.firstElementChild
       const buttonTxt = tear.nextElementSibling
       gsap.to(buttonTxt, {
-        opacity: 0.4,
+        opacity: 0.6,
         duration: 0.2,
       })
     })
