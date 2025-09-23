@@ -3,6 +3,8 @@ import SplitType from 'split-type'
 
 import { $ } from '../../utils/getElement.js'
 
+// HANDLE CANCEL/SUCCESS BUTTON ANIMATION & ACTIONS
+
 function afterpaymentButton() {
   function queryDomElements() {
     return {
@@ -10,6 +12,9 @@ function afterpaymentButton() {
     }
   }
   const DOM = queryDomElements()
+
+  const isTouchDevice = () =>
+    'ontouchstart' in window || navigator.maxTouchPoints > 0
 
   if (!DOM.button) {
     return
@@ -78,12 +83,14 @@ function afterpaymentButton() {
     })
   }
 
-  button.addEventListener('mouseover', () => {
-    hoverIn()
-  })
-  button.addEventListener('mouseleave', () => {
-    hoverOut()
-  })
+  if (!isTouchDevice()) {
+    button.addEventListener('mouseover', () => {
+      hoverIn()
+    })
+    button.addEventListener('mouseleave', () => {
+      hoverOut()
+    })
+  }
   button.addEventListener('click', () => {
     click()
   })

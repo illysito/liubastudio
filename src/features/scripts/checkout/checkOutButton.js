@@ -3,6 +3,8 @@ import SplitType from 'split-type'
 
 import { $, $$ } from '../../utils/getElement.js'
 
+// HANDLE ANIMATIONS AND ACTIONS ON CHECKOUT BUTTON
+
 function checkOutButton() {
   function queryDomElements() {
     return {

@@ -1,5 +1,7 @@
 import { $, $$ } from '../../utils/getElement.js'
 
+// CALCULATE PRICES BASED ON ITEMS & SHIPPING
+
 function calculatePrices(cart) {
   function queryDomElements() {
     return {

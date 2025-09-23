@@ -2,7 +2,12 @@ import gsap from 'gsap'
 
 import { $ } from '../../utils/getElement.js'
 
+// DISPLAY ITEMS IN CHECKOUT
+
 function displayCheckoutItems() {
+  const isTouchDevice = () =>
+    'ontouchstart' in window || navigator.maxTouchPoints > 0
+
   let cart = JSON.parse(localStorage.getItem('cart')) || []
 
   const CART_SECTION = $('.cart-section')
@@ -92,18 +97,20 @@ function displayCheckoutItems() {
       CART_SECTION.appendChild(separatorWrapper)
 
       // event listeners
-      img.addEventListener('mouseover', () => {
-        gsap.to(img, {
-          opacity: 0.7,
-          duration: 0.2,
+      if (isTouchDevice()) {
+        img.addEventListener('mouseover', () => {
+          gsap.to(img, {
+            opacity: 0.7,
+            duration: 0.2,
+          })
         })
-      })
-      img.addEventListener('mouseleave', () => {
-        gsap.to(img, {
-          opacity: 1,
-          duration: 0.2,
+        img.addEventListener('mouseleave', () => {
+          gsap.to(img, {
+            opacity: 1,
+            duration: 0.2,
+          })
         })
-      })
+      }
       img.addEventListener('click', () => {
         gsap.to(img, {
           scale: 0.98,

@@ -15,6 +15,9 @@ function footer() {
 
   const ease = 'power1.out'
 
+  const isTouchDevice = () =>
+    'ontouchstart' in window || navigator.maxTouchPoints > 0
+
   gsap.to([heading, footer_nav, made_by], {
     yPercent: -100,
     duration: 1,
@@ -50,24 +53,27 @@ function footer() {
   }
 
   footer_link.forEach((l) => {
+    if (isTouchDevice()) return
     l.addEventListener('mouseover', hoverIn)
     l.addEventListener('mouseleave', hoverOut)
   })
 
-  made_by_link.addEventListener('mouseover', () => {
-    gsap.to(made_by_link, {
-      opacity: 0.5,
-      duration: 0.25,
-      ease: ease,
+  if (!isTouchDevice()) {
+    made_by_link.addEventListener('mouseover', () => {
+      gsap.to(made_by_link, {
+        opacity: 0.5,
+        duration: 0.25,
+        ease: ease,
+      })
     })
-  })
-  made_by_link.addEventListener('mouseleave', () => {
-    gsap.to(made_by_link, {
-      opacity: 1,
-      duration: 0.25,
-      ease: ease,
+    made_by_link.addEventListener('mouseleave', () => {
+      gsap.to(made_by_link, {
+        opacity: 1,
+        duration: 0.25,
+        ease: ease,
+      })
     })
-  })
+  }
 }
 
 export default footer

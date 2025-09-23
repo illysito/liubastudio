@@ -1,5 +1,7 @@
 import { $$ } from '../../utils/getElement.js'
 
+// REMOVE A SELECTED ITEM FROM CHECKOUT THROUGH ITS ID
+
 function removeCheckOutItem(id) {
   function queryDomElements() {
     return {

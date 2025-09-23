@@ -3,6 +3,8 @@ import gsap from 'gsap'
 import { $, $$ } from '../../utils/getElement.js'
 import removeFromCart from '../cart/removeFromCart'
 
+// ANIMATIONS & ACTIONS WHEN CLOSE BUTTONS (X) ARE CLICKED OR TAPPED
+
 function closeButtons() {
   function queryDomElements() {
     return {

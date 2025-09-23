@@ -3,6 +3,8 @@ import gsap from 'gsap'
 import { $$ } from '../../utils/getElement.js'
 import calculatePrices from './calculatePrices.js'
 
+// HANDLE SHIPPING OPTIONS
+
 function handleShippingUI() {
   function queryDomElements() {
     return {
@@ -10,6 +12,9 @@ function handleShippingUI() {
     }
   }
   const domElements = queryDomElements()
+
+  const isTouchDevice = () =>
+    'ontouchstart' in window || navigator.maxTouchPoints > 0
 
   function handleCheckBox(currentCheckBox) {
     let cart = JSON.parse(localStorage.getItem('cart')) || []
@@ -26,18 +31,20 @@ function handleShippingUI() {
     c.addEventListener('click', () => {
       handleCheckBox(c)
     })
-    c.addEventListener('mouseover', () => {
-      gsap.to(option, {
-        x: 4,
-        duration: 0.2,
+    if (!isTouchDevice()) {
+      c.addEventListener('mouseover', () => {
+        gsap.to(option, {
+          x: 4,
+          duration: 0.2,
+        })
       })
-    })
-    c.addEventListener('mouseleave', () => {
-      gsap.to(option, {
-        x: 0,
-        duration: 0.2,
+      c.addEventListener('mouseleave', () => {
+        gsap.to(option, {
+          x: 0,
+          duration: 0.2,
+        })
       })
-    })
+    }
   })
 }
 
