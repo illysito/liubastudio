@@ -16,14 +16,22 @@ function faq() {
   const isTouchDevice = () =>
     'ontouchstart' in window || navigator.maxTouchPoints > 0
 
+  const isMobile = () => {
+    window.innerWidth <= 568
+  }
+
+  let accMargin = 0
+  if (isMobile()) {
+    accMargin = 24
+  } else {
+    accMargin = 32
+  }
+
   if (!DOM.heading_wrappers) {
     return
   }
 
   function handleAccordion(w, index) {
-    console.log(
-      'isActive (before function): ' + states[index] + ' index: ' + index
-    )
     const arrow = w.lastElementChild
     const text = w.nextElementSibling
 
@@ -64,15 +72,12 @@ function faq() {
       // text.style.display = 'block'
       gsap.to(text, {
         height: 'auto',
-        marginTop: 32,
+        marginTop: accMargin,
         duration: 0.6,
       })
 
       states[index] = true
     }
-    console.log(
-      'isActive (after function): ' + states[index] + ' index: ' + index
-    )
   }
 
   DOM.heading_wrappers.forEach((w, index) => {
