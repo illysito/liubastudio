@@ -22,7 +22,7 @@ function faq() {
 
   let accMargin = 0
   if (isMobile()) {
-    accMargin = 24
+    accMargin = 100
   } else {
     accMargin = 32
   }
