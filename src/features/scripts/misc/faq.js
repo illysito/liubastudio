@@ -17,12 +17,12 @@ function faq() {
     'ontouchstart' in window || navigator.maxTouchPoints > 0
 
   const isMobile = () => {
-    window.innerWidth <= 568
+    return window.innerWidth <= 568
   }
 
   let accMargin = 0
   if (isMobile()) {
-    accMargin = 100
+    accMargin = 24
   } else {
     accMargin = 32
   }
@@ -58,10 +58,6 @@ function faq() {
       states[index] = false
     } else {
       // If state is actually INACTIVE
-      // DOM.heading_wrappers.forEach((w) => {
-      //   const text = w.nextElementSibling
-      //   text.style.display = 'none'
-      // })
       // set arrow pointing down
       gsap.to(arrow, {
         rotation: 225,
