@@ -1,5 +1,7 @@
 import gsap from 'gsap'
 
+// PAGE LOAD
+
 function loadingProduct() {
   function queryDomElements() {
     return {

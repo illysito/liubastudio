@@ -1,5 +1,6 @@
 async function fetchDetailProduct() {
-  // Product display
+  // FETCH PRODUCTS DATA FROM Stripe
+
   const urlParams = new URLSearchParams(window.location.search) // take parameters from URL
   const productId = urlParams.get('id') // From the parameters, take the one named ID
 

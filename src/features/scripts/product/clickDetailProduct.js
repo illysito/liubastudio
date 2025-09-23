@@ -3,6 +3,8 @@ import SplitType from 'split-type'
 
 import addToCart from '../cart/addToCart'
 
+// HANDLE HOVER & CLICK OF DETAIL BUTTONS (Add to cart & Checkout)
+
 function clickDeatilProduct(product) {
   function queryDomElements() {
     return {
@@ -11,6 +13,9 @@ function clickDeatilProduct(product) {
     }
   }
   const domElements = queryDomElements()
+
+  const isTouchDevice = () =>
+    'ontouchstart' in window || navigator.maxTouchPoints > 0
 
   function hoverIn(b, splitText, splitHiddenText) {
     gsap.to(b, {
@@ -54,7 +59,7 @@ function clickDeatilProduct(product) {
     })
   }
 
-  function click(b) {
+  function clickAnimation(b) {
     // gsap.to(domElements.slidingModal, {
     //   xPercent: -100,
     //   duration: 0.8,
@@ -67,6 +72,32 @@ function clickDeatilProduct(product) {
         gsap.to(b, {
           scale: 0.98,
           duration: 0.2,
+        })
+      },
+    })
+  }
+
+  function tapAnimation(b) {
+    const wrapper = b.firstElementChild
+    const text = wrapper.firstElementChild
+
+    gsap.to(text, {
+      color: '#fff8ee',
+      duration: 0.1,
+    })
+    gsap.to(b, {
+      backgroundColor: '#3e50d6',
+      scale: 0.92,
+      duration: 0.1,
+      onComplete: () => {
+        gsap.to(b, {
+          backgroundColor: '#fff8ee',
+          scale: 1,
+          duration: 0.2,
+        })
+        gsap.to(text, {
+          color: '#3e50d6',
+          duration: 0.1,
         })
       },
     })
@@ -90,14 +121,20 @@ function clickDeatilProduct(product) {
       tagName: 'span',
     })
 
-    b.addEventListener('mouseover', () => {
-      hoverIn(b, splitText, splitHiddenText)
-    })
-    b.addEventListener('mouseleave', () => {
-      hoverOut(b, splitText, splitHiddenText)
-    })
+    if (!isTouchDevice()) {
+      b.addEventListener('mouseover', () => {
+        hoverIn(b, splitText, splitHiddenText)
+      })
+      b.addEventListener('mouseleave', () => {
+        hoverOut(b, splitText, splitHiddenText)
+      })
+    }
     b.addEventListener('click', () => {
-      click(b)
+      if (isTouchDevice()) {
+        tapAnimation(b)
+      } else {
+        clickAnimation(b)
+      }
       index == 0 ? addToCart(product.id) : (window.location.href = `/checkout`)
     })
   })

@@ -14,7 +14,7 @@ function displayDetailProduct(product) {
   const buttonText = buttonWrapper.firstElementChild
   const buttonTextHidden = buttonWrapper.lastElementChild
 
-  // Back to collection
+  // Back to collection ONLY DESKTOP
   function backToCollection() {
     const ease = 'power1.out'
     const staggerTime = 0.02
