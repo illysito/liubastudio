@@ -1,10 +1,18 @@
 import gsap from 'gsap'
 import SplitType from 'split-type'
 
+import { $, $$ } from '../../utils/getElement'
+
+// COLLECTION SECTION
+
 function mainCollection() {
-  const cards = document.querySelectorAll('.collection-card-2')
+  const cards = $$('.collection-card-2')
+  const button = $('.collection-button')
   const ease = 'power1.out'
   const staggerTime = 0.02
+
+  const isTouchDevice = () =>
+    'ontouchstart' in window || navigator.maxTouchPoints > 0
 
   function hoverIn(c, header, hidden_header, img) {
     gsap.to(c, {
@@ -77,17 +85,130 @@ function mainCollection() {
       tagName: 'span',
     })
 
-    card.addEventListener('mouseover', () => {
-      hoverIn(card, splitHeader, splitHiddenHeader, img)
-    })
-    card.addEventListener('mouseleave', () => {
-      hoverOut(card, splitHeader, splitHiddenHeader, img)
-    })
+    if (!isTouchDevice()) {
+      card.addEventListener('mouseover', () => {
+        hoverIn(card, splitHeader, splitHiddenHeader, img)
+      })
+      card.addEventListener('mouseleave', () => {
+        hoverOut(card, splitHeader, splitHiddenHeader, img)
+      })
+    }
     card.addEventListener('click', () => {
       localStorage.setItem('initial-filter-type', header.textContent)
       localStorage.setItem('initial-filter-index', index + 1)
     })
   })
+
+  function hoverInButton(b, splitText, splitHiddenText) {
+    gsap.to(b, {
+      scale: 0.98,
+      backgroundColor: '#3e50d6',
+      duration: 0.4,
+      ease: 'power2.out',
+    })
+    gsap.to(splitText.chars, {
+      color: '#fff8ee',
+      yPercent: -100,
+      stagger: 0.02,
+      ease: 'power2.out',
+    })
+    gsap.to(splitHiddenText.chars, {
+      color: '#fff8ee',
+      yPercent: -100,
+      stagger: 0.02,
+      ease: 'power2.out',
+    })
+  }
+
+  function hoverOutButton(b, splitText, splitHiddenText) {
+    gsap.to(b, {
+      scale: 1,
+      backgroundColor: '#3e50d600',
+      duration: 0.4,
+      ease: 'power2.out',
+    })
+    gsap.to(splitText.chars, {
+      color: '#3e50d6',
+      yPercent: 0,
+      stagger: 0.02,
+      ease: 'power2.out',
+    })
+    gsap.to(splitHiddenText.chars, {
+      color: '#3e50d6',
+      yPercent: 0,
+      stagger: 0.02,
+      ease: 'power2.out',
+    })
+  }
+
+  function clickAnimationButton(b) {
+    gsap.to(b, {
+      scale: 0.96,
+      duration: 0.1,
+      onComplete: () => {
+        gsap.to(b, {
+          scale: 0.98,
+          duration: 0.2,
+        })
+      },
+    })
+  }
+
+  function tapAnimationButton(b) {
+    const wrapper = b.firstElementChild
+    const text = wrapper.firstElementChild
+
+    gsap.to(text, {
+      color: '#fff8ee',
+      duration: 0.1,
+    })
+    gsap.to(b, {
+      backgroundColor: '#3e50d6',
+      scale: 0.92,
+      duration: 0.1,
+      onComplete: () => {
+        gsap.to(b, {
+          backgroundColor: '#fff8ee',
+          scale: 1,
+          duration: 0.2,
+        })
+        gsap.to(text, {
+          color: '#3e50d6',
+          duration: 0.1,
+        })
+      },
+    })
+  }
+
+  // event listeners
+  const wrapper = button.firstElementChild
+  const text = wrapper.firstElementChild
+  const hiddenText = wrapper.lastElementChild
+
+  const splitText = new SplitType(text, {
+    types: 'chars',
+    tagName: 'span',
+  })
+  const splitHiddenText = new SplitType(hiddenText, {
+    types: 'chars',
+    tagName: 'span',
+  })
+
+  if (!isTouchDevice()) {
+    button.addEventListener('mouseover', () => {
+      hoverInButton(button, splitText, splitHiddenText)
+    })
+    button.addEventListener('mouseleave', () => {
+      hoverOutButton(button, splitText, splitHiddenText)
+    })
+    button.addEventListener('click', () => {
+      clickAnimationButton(button)
+    })
+  } else {
+    button.addEventListener('click', () => {
+      tapAnimationButton(button)
+    })
+  }
 }
 
 export default mainCollection

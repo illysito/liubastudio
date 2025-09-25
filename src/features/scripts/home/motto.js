@@ -1,6 +1,8 @@
 import { gsap } from 'gsap'
 import SplitType from 'split-type'
 
+// MOTTO ON SCROLL
+
 function motto() {
   const motto_line = document.querySelectorAll('.motto-h-line')
   const motto_line_2 = document.querySelectorAll('.motto-h-line-transp')

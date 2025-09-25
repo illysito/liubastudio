@@ -30,6 +30,7 @@ async function runHomeFunctions() {
   const { default: handleLiuba } = await import(
     './features/shaders/handleLiuba'
   )
+  const { default: courses } = await import('./features/scripts/home/courses')
 
   preloader()
   hero()
@@ -41,6 +42,7 @@ async function runHomeFunctions() {
   handleLiuba()
   // handleLiubaAbout()
   collectionShaders()
+  courses()
 }
 
 async function runCollectionFunctions() {

@@ -3,6 +3,8 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// ALL KIND OF ANIMATIONS DURING THE HOME EXPERIENCE
+
 function landingMisc() {
   const title_headings = document.querySelectorAll('.title-heading')
   const title_lines = document.querySelectorAll('.title-line')

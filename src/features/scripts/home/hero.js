@@ -3,6 +3,8 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 
 import { $, $$ } from '../../utils/getElement.js'
 
+// ENTRY FADE IN ANIMATION FOR HERO
+
 gsap.registerPlugin(ScrollTrigger)
 
 function hero() {
