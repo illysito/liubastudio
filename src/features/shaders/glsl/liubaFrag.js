@@ -17,12 +17,6 @@ uniform sampler2D image;
 
 varying vec2 v_texcoord;
 
-float random(vec2 uv) {
-  return fract(sin(dot(uv.xy,
-      vec2(12.9898,78.233))) *
-          43758.5453123);
-}
-
 vec2 aspect(vec2 uv, float image_ratio, float canvas_ratio){
   // if canvas is taller than image, stretch downwards
   // if canvas is landscape to the image, stretch across
@@ -78,22 +72,18 @@ void main()
   distortion *= strength;
 
   vec4 img = texture2D(image, coords + 0.1 * distortion);
-  if(img.a == 0.0){
-    img.r *= 0.2;
-    img.b *= 0.2;
-    img.g *= 0.2;
-  }
+  // if(img.a == 0.0){
+  //   img.r *= 0.2;
+  //   img.b *= 0.2;
+  //   img.g *= 0.2;
+  // }
 
-  vec4 blueImg = texture2D(image, coords + 1.2 * distortion * u_blueDistortionFactor);
-  blueImg.g = 0.0;
-  blueImg.r = 0.0;
+  // vec4 blueImg = texture2D(image, coords + 1.2 * distortion * u_blueDistortionFactor);
+  // blueImg.g = 0.0;
+  // blueImg.r = 0.0;
 
   color = img;
   // color.a = img.a;
-
-  float noiseMixer = random(uv);
-  noiseMixer = smoothstep(0.0, 0.8, noiseMixer);
-  color += 0.0 * noiseMixer;
 
     gl_FragColor = color;
 }
