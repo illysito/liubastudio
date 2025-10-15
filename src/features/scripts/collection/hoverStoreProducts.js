@@ -25,7 +25,7 @@ function hoverStoreProducts() {
 
     p.addEventListener('mouseenter', () => {
       gsap.to(img, {
-        scale: 2,
+        scale: 1.6,
         duration: 0.6,
       })
     })
