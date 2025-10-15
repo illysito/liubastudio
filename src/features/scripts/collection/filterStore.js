@@ -18,11 +18,10 @@ function filterStore() {
     'ontouchstart' in window || navigator.maxTouchPoints > 0
 
   // set first tears SHOWN
-  gsap.set([domElements.tears[0], domElements.tears[1]], {
+  gsap.set(domElements.tears[0], {
     opacity: 1,
   })
   domElements.tears[0].classList.add('is--shown')
-  domElements.tears[1].classList.add('is--shown')
 
   // array with filter flags, in order: ceramics, jewelry, engraving, painting
   const filterStates = {
@@ -76,8 +75,8 @@ function filterStore() {
 
   // display filtered options
   function displayFilteredTitles(index) {
-    const tear1 = domElements.filterButtons[index].firstElementChild
-    const tear2 = domElements.filterButtons[index].lastElementChild
+    // const tear1 = domElements.filterButtons[index].firstElementChild
+    const tear = domElements.filterButtons[index].lastElementChild
 
     // if ALL is clicked
     if (index == 0) {
@@ -85,7 +84,7 @@ function filterStore() {
         opacity: 0,
         duration: 0.2,
       })
-      gsap.to([domElements.tears[0], domElements.tears[1]], {
+      gsap.to([domElements.tears[0]], {
         opacity: 1,
         duration: 0.2,
       })
@@ -93,37 +92,32 @@ function filterStore() {
         t.classList.remove('is--shown')
       })
     } else {
-      gsap.to([domElements.tears[0], domElements.tears[1]], {
+      gsap.to([domElements.tears[0]], {
         opacity: 0,
         duration: 0.2,
       })
 
-      if (
-        !tear1.classList.contains('is--shown') &&
-        !tear2.classList.contains('is--shown')
-      ) {
-        gsap.to([tear1, tear2], {
+      if (!tear.classList.contains('is--shown')) {
+        gsap.to(tear, {
           opacity: 1,
           duration: 0.2,
         })
-        tear1.classList.add('is--shown')
-        tear2.classList.add('is--shown')
+        tear.classList.add('is--shown')
       } else {
-        gsap.to([tear1, tear2], {
+        gsap.to(tear, {
           opacity: 0,
           duration: 0.2,
         })
-        tear1.classList.remove('is--shown')
-        tear2.classList.remove('is--shown')
+        tear.classList.remove('is--shown')
       }
     }
   }
 
   // event listeners
   domElements.filterButtons.forEach((b, index) => {
-    const tear1 = b.firstElementChild
+    const buttonText = b.firstElementChild
     // const tear2 = b.lastElementChild
-    const buttonText = tear1.nextElementSibling
+    // const buttonText = tear1.nextElementSibling
     const buttonTextContent = buttonText.textContent
     b.addEventListener('click', () => {
       updateFilterState(buttonTextContent)
@@ -134,8 +128,8 @@ function filterStore() {
     if (isTouchDevice()) return
     b.addEventListener('mouseenter', (e) => {
       const button = e.currentTarget
-      const tear = button.firstElementChild
-      const buttonTxt = tear.nextElementSibling
+      const buttonTxt = button.firstElementChild
+      // const buttonTxt = tear.nextElementSibling
       gsap.to(buttonTxt, {
         opacity: 0.6,
         duration: 0.2,
@@ -146,8 +140,8 @@ function filterStore() {
     if (isTouchDevice()) return
     b.addEventListener('mouseleave', (e) => {
       const button = e.currentTarget
-      const tear = button.firstElementChild
-      const buttonTxt = tear.nextElementSibling
+      const buttonTxt = button.firstElementChild
+      // const buttonTxt = tear.nextElementSibling
       gsap.to(buttonTxt, {
         opacity: 1,
         duration: 0.2,
