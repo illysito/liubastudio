@@ -50,11 +50,11 @@ function calculatePrices(cart) {
 
     // DETERMINE SHIPPING PRICE
     if (max == 2) {
-      price = 90
+      price = 9000
     } else if (max == 1) {
-      price = 30
+      price = 3000
     } else if (max == 0) {
-      price = 15
+      price = 1500
     } else {
       price = 0
     }
