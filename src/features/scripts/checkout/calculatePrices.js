@@ -18,10 +18,49 @@ function calculatePrices(cart) {
   let shippingPrice = 0
   let totalPrice = 0
   let shippingPriceId = ''
+  let shippingCategories = []
 
   cart.forEach((item) => {
     subtotalPrice += item.price
+    shippingCategories.push(item.metadata.Shipping)
   })
+
+  function determineShippingPrice() {
+    let price
+    // TURN THEM INTO NUMBERS
+    for (let i = 0; i < shippingCategories.length; i++) {
+      if (shippingCategories[i] === 'large') {
+        shippingCategories[i] = 2
+      } else if (shippingCategories[i] === 'medium') {
+        shippingCategories[i] = 1
+      } else if (shippingCategories[i] === 'small') {
+        shippingCategories[i] = 0
+      } else {
+        shippingCategories[i] = -1
+      }
+    }
+
+    // EXTRACT THE BIGGEST
+    let max = shippingCategories[0]
+    for (let i = 1; i < shippingCategories.length; i++) {
+      if (shippingCategories[i] > max) {
+        max = shippingCategories[i]
+      }
+    }
+
+    // DETERMINE SHIPPING PRICE
+    if (max == 2) {
+      price = 90
+    } else if (max == 1) {
+      price = 30
+    } else if (max == 0) {
+      price = 15
+    } else {
+      price = 0
+    }
+
+    return price
+  }
 
   // const shippingPriceId = localStorage.getItem('shipping-id')
   domElements.checkboxes.forEach((c) => {
@@ -29,8 +68,9 @@ function calculatePrices(cart) {
       shippingPriceId = c.id
     }
   })
+
   if (shippingPriceId === 'standard-shipping') {
-    shippingPrice = 3000
+    shippingPrice = determineShippingPrice()
   } else {
     shippingPrice = 0
   }
