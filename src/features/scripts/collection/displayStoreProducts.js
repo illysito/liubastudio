@@ -10,6 +10,8 @@ function displayStoreProducts(products) {
 
   const product_IDs = []
 
+  console.log(products)
+
   products.forEach((p) => {
     const category = p.metadata.Category
     const inventory = Number(p.metadata.Inventory)
