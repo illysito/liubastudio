@@ -22,6 +22,14 @@ function displayDetailProduct(product) {
     return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`
   }
 
+  // Permalink from github to JSDelivr
+  function githubToJsDelivr(permalink) {
+    return permalink
+      .replace('github.com', 'cdn.jsdelivr.net/gh')
+      .replace('/blob/', '@')
+  }
+  console.log(githubToJsDelivr)
+
   // Back to collection ONLY DESKTOP
   function backToCollection() {
     const ease = 'power1.out'

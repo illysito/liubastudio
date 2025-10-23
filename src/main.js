@@ -43,6 +43,7 @@ async function runHomeFunctions() {
   // handleLiubaAbout()
   collectionShaders()
   courses()
+  footer()
 }
 
 async function runCollectionFunctions() {
@@ -75,6 +76,7 @@ async function runCollectionFunctions() {
   filterStore()
   hoverStoreProducts()
   clickStoreProducts()
+  footer()
 }
 
 async function runProductFunctions() {
@@ -132,14 +134,17 @@ async function runCheckoutFunctions() {
 
 function runCoursesFunctions() {
   console.log('Welcome to Courses')
+  footer()
 }
 
 function runSpacesFunctions() {
   console.log('Welcome to Spaces')
+  footer()
 }
 
 function runContactFunctions() {
   console.log('Welcome to Contact')
+  footer()
 }
 
 async function runMiscFunctions() {
@@ -150,12 +155,13 @@ async function runMiscFunctions() {
 
   afterpaymentButton()
   faq()
+  footer()
 }
 
 function runGeneralFunctions() {
   initCartCount()
   nav()
-  footer()
+  // footer()
   audio()
   // mousetrail()
 }
