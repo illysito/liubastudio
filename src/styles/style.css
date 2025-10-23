@@ -57,6 +57,11 @@ body {
   height: 100%;
 }
 
+.detail-slider-img-wrapper {
+  aspect-ratio: 1 / 1; /* or use 3/4, whatever ratio you want */
+  overflow: hidden;
+}
+
 .char {
   height: 100%;
 }
