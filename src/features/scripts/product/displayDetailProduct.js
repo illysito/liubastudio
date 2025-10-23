@@ -15,12 +15,12 @@ function displayDetailProduct(product) {
   const buttonTextHidden = buttonWrapper.lastElementChild
 
   // Drive to direct link
-  function driveToDirectLink(url) {
-    const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/)
-    if (!match) return url // not a drive link
-    const id = match[1]
-    return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`
-  }
+  // function driveToDirectLink(url) {
+  //   const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/)
+  //   if (!match) return url // not a drive link
+  //   const id = match[1]
+  //   return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`
+  // }
 
   // Permalink from github to JSDelivr
   function githubToJsDelivr(permalink) {
@@ -28,7 +28,6 @@ function displayDetailProduct(product) {
       .replace('github.com', 'cdn.jsdelivr.net/gh')
       .replace('/blob/', '@')
   }
-  console.log(githubToJsDelivr)
 
   // Back to collection ONLY DESKTOP
   function backToCollection() {
@@ -105,19 +104,19 @@ function displayDetailProduct(product) {
   const galleryWrapper = document.querySelector('.detail-slider-wrapper')
   const URLS = []
   if (product.metadata.IMG_1) {
-    const directLink_1 = driveToDirectLink(product.metadata.IMG_1)
+    const directLink_1 = githubToJsDelivr(product.metadata.IMG_1)
     URLS.push(directLink_1)
   }
   if (product.metadata.IMG_2) {
-    const directLink_2 = driveToDirectLink(product.metadata.IMG_2)
+    const directLink_2 = githubToJsDelivr(product.metadata.IMG_2)
     URLS.push(directLink_2)
   }
   if (product.metadata.IMG_3) {
-    const directLink_3 = driveToDirectLink(product.metadata.IMG_3)
+    const directLink_3 = githubToJsDelivr(product.metadata.IMG_3)
     URLS.push(directLink_3)
   }
   if (product.metadata.IMG_4) {
-    const directLink_4 = driveToDirectLink(product.metadata.IMG_4)
+    const directLink_4 = githubToJsDelivr(product.metadata.IMG_4)
     URLS.push(directLink_4)
   }
   for (let i = 0; i < URLS.length; i++) {

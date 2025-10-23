@@ -3,6 +3,12 @@ import gsap from 'gsap'
 
 import collection_frag from './glsl/collectionFrag'
 // import frag_mob from './glsl/liubaFrag_mob'
+// Permalink from github to JSDelivr
+function githubToJsDelivr(permalink) {
+  return permalink
+    .replace('github.com', 'cdn.jsdelivr.net/gh')
+    .replace('/blob/', '@')
+}
 
 //prettier-ignore
 function collectionShaders() {
@@ -65,10 +71,10 @@ function collectionShaders() {
   }
 
   //prettier-ignore
-  const imageURL_1 = 'https://raw.githubusercontent.com/illysito/liubastudio/b92953e23b4353deb017443a601b9fbb7832cf1e/MANO_.png'
-  const imageURL_2 = 'https://raw.githubusercontent.com/illysito/liubastudio/b92953e23b4353deb017443a601b9fbb7832cf1e/CUENCOS_.png'
-  const imageURL_3 = 'https://raw.githubusercontent.com/illysito/liubastudio/b92953e23b4353deb017443a601b9fbb7832cf1e/FLORERO_.png'
-  const imageURL_4 = 'https://raw.githubusercontent.com/illysito/liubastudio/b92953e23b4353deb017443a601b9fbb7832cf1e/TAZAS_.png'
+  const imageURL_1 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/36.webp')
+  const imageURL_2 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/Cropped%20Lion%20Vase_1.webp')
+  const imageURL_3 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/23.webp')
+  const imageURL_4 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/68.webp')
   const urls = [imageURL_1, imageURL_2, imageURL_3, imageURL_4]
   // console.log('Liuba About Shader: width: ' + canvas.width + ' height: ' + canvas.height)
   const ceramicsSandbox = new GlslCanvas(ceramicsCanvas)
@@ -84,7 +90,7 @@ function collectionShaders() {
       sandbox.setUniform('u_mouseX', mouseXRef.current)
       sandbox.setUniform('u_mouseY', mouseYRef.current)
       sandbox.setUniform('u_image', urls[index])
-      sandbox.setUniform('u_imageResolution', [1200.0, 1600.0])
+      sandbox.setUniform('u_imageResolution', [854, 854])
       sandbox.setUniform('u_distortionFactor', 0.6)
       sandbox.setUniform('u_blueDistortionFactor', 0.2)
       sandbox.setUniform('u_naturalDistortionFactor', 0.0)

@@ -17,7 +17,7 @@ function hero() {
   // fade in
   gsap.to(canvas, {
     opacity: 1,
-    delay: 1,
+    delay: 0.2,
     scale: 1,
     duration: 3,
     ease: ease,

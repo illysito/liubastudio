@@ -9,6 +9,14 @@ function liuba(mouseXRef, mouseYRef, isObserved) {
     return window.matchMedia('(max-width: 768px)').matches
   }
 
+    // Permalink from github to JSDelivr
+  function githubToJsDelivr(permalink) {
+    return permalink
+      .replace('github.com', 'cdn.jsdelivr.net/gh')
+      .replace('/blob/', '@')
+  }
+  
+
   // console.log('Liuba Hero Shader: is it mobile?: ' + isMobile())
 
   const canvas = document.querySelector('#liuba-canvas')
@@ -51,7 +59,7 @@ function liuba(mouseXRef, mouseYRef, isObserved) {
   sandbox.setUniform('u_mouseX', mouseXRef.current)
   sandbox.setUniform('u_mouseY', mouseYRef.current)
   //prettier-ignore
-  const imageURL = 'https://raw.githubusercontent.com/illysito/liubastudio/200245a591cc7bbed960e7b5839b2f1c7e6512aa/mascara_2.png'
+  const imageURL = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/assets/mascara_2.webp')
   // const index = Math.floor(Math.random() * 3)
   sandbox.setUniform('u_image', imageURL)
   sandbox.setUniform('u_imageResolution', [1200.0, 1600.0])

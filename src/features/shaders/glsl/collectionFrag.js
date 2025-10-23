@@ -30,21 +30,21 @@ vec2 aspect(vec2 uv, float image_ratio, float canvas_ratio){
   if(image_ratio >= canvas_ratio){
     float ratio = canvas_ratio / image_ratio;
     uv.x *= ratio;
-    // uv.x += (1.0 - ratio) / 2.0; 
+    uv.x += (1.0 - ratio) / 2.0; 
   } else {
     float ratio = image_ratio / canvas_ratio;
     uv.y *= ratio;
-    // uv.y += (1.0 - ratio) / 2.0; 
+    uv.y += (1.0 - ratio) / 2.0; 
   }
   return uv;
 }
 
 void main()
 {
-  if(u_isObserved == 0.0){
-    gl_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
-    return;
-  }
+  // if(u_isObserved == 0.0){
+  //   gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+  //   return;
+  // }
   
   vec4 color = vec4(1.0, 1.0, 1.0, 1.0);
 
@@ -52,7 +52,6 @@ void main()
   vec2 uv = v_texcoord;
 
   // // RATIOS
-  // float image_ratio = 1200.0 / 1600.0;
   float image_ratio = u_imageResolution.x / u_imageResolution.y;
   float canvas_ratio = u_resolution.x / u_resolution.y;
 
@@ -78,18 +77,9 @@ void main()
 
   distortion *= strength;
 
-  vec4 img = texture2D(image, coords + 0.1 * distortion);
-  if(img.a == 0.0){
-    img.r *= 0.2;
-    img.b *= 0.2;
-    img.g *= 0.2;
-  }
-
-  // vec4 blueImg = texture2D(image, coords + 1.2 * distortion * u_blueDistortionFactor);
-  // if(u_mouseX != 0.0 || u_mouseY != 0.0){
-  //   blueImg.g = 0.0;
-  //   blueImg.r = 0.0;
-  // }
+  vec2 distortedUV = clamp(coords + 0.3 * distortion, 0.0, 1.0);
+  // distortedUV = clamp(distortedUV, 0.0, 1.0);
+  vec4 img = texture2D(image, distortedUV);
 
   // color = img + blueImg;
   color = img;

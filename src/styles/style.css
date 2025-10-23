@@ -10,14 +10,18 @@ body {
 
 /* CANVAS */
 
-#liuba-canvas,
+#liuba-canvas {
+  width: 100%;
+  height: 100%;
+}
+
 #about-canvas,
 #ceramics-canvas,
 #jewelry-canvas,
 #engraving-canvas,
 #painting-canvas {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
 }
 
 #stripe-canvas {
