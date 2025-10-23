@@ -7,6 +7,7 @@ function displayDetailProduct(product) {
       backButton: document.querySelector('.back-text-wrapper'),
       detailImageWrapper: document.querySelector('.detail-img-wrapper'),
       addButton: document.querySelector('.add-button-detail'),
+      commisionAvailability: document.querySelector('.comission-availability'),
     }
   }
   const domElements = queryDomElements()
@@ -141,6 +142,12 @@ function displayDetailProduct(product) {
   const productPrice = document.querySelector('.detail-product-price')
   const euros = (product.price / 100).toFixed(2)
   productPrice.textContent = `${euros} €`
+
+  if (product.metadata.Commision === 'yes') {
+    domElements.commisionAvailability.textContent =
+      '*This product is available on commision.'
+    domElements.commisionAvailability.style.marginBottom = 20
+  }
 
   const productTexts = document.querySelectorAll('.detail-product-text')
   productTexts[0].textContent = product.description // description is first

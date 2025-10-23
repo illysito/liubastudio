@@ -18,11 +18,19 @@ function calculatePrices(cart) {
   let shippingPrice = 0
   let totalPrice = 0
   let shippingPriceId = ''
-  let shippingCategories = []
+  const shippingCategories = []
+  const largeItemLocations = []
 
   cart.forEach((item) => {
     subtotalPrice += item.price
-    shippingCategories.push(item.metadata.Shipping)
+    const size = item.metadata.Shipping
+    const location = item.metadata.Location
+
+    shippingCategories.push(size)
+
+    if (size === 'large') {
+      largeItemLocations.push(location)
+    }
   })
 
   function determineShippingPrice() {
@@ -49,11 +57,11 @@ function calculatePrices(cart) {
     }
 
     // DETERMINE SHIPPING PRICE
-    if (max == 2) {
+    if (max === 2) {
       price = 9000
-    } else if (max == 1) {
+    } else if (max === 1) {
       price = 3000
-    } else if (max == 0) {
+    } else if (max === 0) {
       price = 1500
     } else {
       price = 0
@@ -71,6 +79,30 @@ function calculatePrices(cart) {
 
   if (shippingPriceId === 'standard-shipping') {
     shippingPrice = determineShippingPrice()
+  } else if (shippingPriceId === 'canarias-shipping') {
+    if (largeItemLocations.length === 0) {
+      shippingPrice = 0
+    } else {
+      shippingPrice = 0
+      for (let i = 0; i < largeItemLocations.length; i++) {
+        if (largeItemLocations[i] === 'prg') {
+          shippingPrice = 9000
+          break
+        }
+      }
+    }
+  } else if (shippingPriceId === 'prague-shipping') {
+    if (largeItemLocations.length === 0) {
+      shippingPrice = 0
+    } else {
+      shippingPrice = 0
+      for (let i = 0; i < largeItemLocations.length; i++) {
+        if (largeItemLocations[i] === 'lpa') {
+          shippingPrice = 9000
+          break
+        }
+      }
+    }
   } else {
     shippingPrice = 0
   }
