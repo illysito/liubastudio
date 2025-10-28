@@ -81,19 +81,21 @@ function clickStoreProducts() {
 
     gsap.to(text, {
       color: '#fff8ee',
-      duration: 0.1,
+      duration: 0.4,
     })
     gsap.to(b, {
       backgroundColor: '#3e50d6',
       scale: 0.92,
-      duration: 0.1,
+      duration: 0.4,
       onComplete: () => {
         gsap.to(b, {
+          delay: 0.2,
           backgroundColor: '#fff8ee',
           scale: 1,
           duration: 0.2,
         })
         gsap.to(text, {
+          delay: 0.2,
           color: '#3e50d6',
           duration: 0.1,
         })
