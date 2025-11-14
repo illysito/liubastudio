@@ -132,8 +132,12 @@ async function runCheckoutFunctions() {
   checkOutButton()
 }
 
-function runCoursesFunctions() {
-  console.log('Welcome to Courses')
+async function runCoursesFunctions() {
+  const { default: coursesInteraction } = await import(
+    './features/scripts/courses/coursesInteraction'
+  )
+
+  coursesInteraction()
   footer()
 }
 

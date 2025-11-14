@@ -1,89 +1,62 @@
-// MANAGING COURSES INTERACTIONS
-
 import { gsap } from 'gsap'
 import SplitType from 'split-type'
 
-import { $, $$ } from '../../utils/getElement'
+function coursesInteraction() {
+  // courses headers
+  const course_headers_wrapper = document.querySelectorAll('.courses-h-wrapper')
+  const course_headers = document.querySelectorAll('.courses-h')
 
-// ALL KIND OF ANIMATIONS DURING THE HOME EXPERIENCE
+  // courses titles
+  const title_headings = document.querySelectorAll('.title-heading')
+  const title_lines = document.querySelectorAll('.title-line')
 
-function courses() {
-  const courseBlocks = $$('.course-block')
-  const coursesFixedImages = $$('.courses-fixed-img')
-  const courseHeadings = $$('.course-heading')
-  const placeHeadings = $$('.place-heading')
-  const button = $('.courses-button')
+  // course cards
+  const course_card_headings = document.querySelectorAll('.course-card-heading')
+  const course_card_subheadings = document.querySelectorAll(
+    '.course-card-subheading'
+  )
+  const course_imgs = document.querySelectorAll('.course-img')
+  const course_card_ps = document.querySelectorAll('.course-card-p')
+
+  // button
+  const button = document.querySelector('.courses-button')
 
   const isTouchDevice = () =>
     'ontouchstart' in window || navigator.maxTouchPoints > 0
 
-  function hoverInBlock(b, text, arrow) {
-    gsap.to(b, {
-      backgroundColor: '#f5ecdf',
-      duration: 0.4,
-      ease: 'power2.out',
+  // heading and lines of separators
+  title_headings.forEach((title) => {
+    gsap.to(title, {
+      opacity: 1,
+      yPercent: -100,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: title,
+        start: 'top 90%',
+        // end: 'top 80%',
+        scrub: false,
+        markers: false,
+      },
+      ease: 'power1.inOut',
     })
-    gsap.to([text, arrow], {
-      x: 16,
-      duration: 0.4,
-      ease: 'power2.out',
+  })
+  title_lines.forEach((line) => {
+    gsap.to(line, {
+      opacity: 1,
+      duration: 1.6,
+      scrollTrigger: {
+        trigger: line,
+        start: 'top 90%',
+        // end: 'top 80%',
+        scrub: false,
+        markers: false,
+      },
+      ease: 'power1.inOut',
     })
-  }
-
-  function hoverOutBlock(b, text, arrow) {
-    gsap.to(b, {
-      backgroundColor: '#fff8ee',
-      duration: 0.4,
-      ease: 'power2.out',
-    })
-    gsap.to([text, arrow], {
-      x: 0,
-      duration: 0.4,
-      ease: 'power2.out',
-    })
-  }
-
-  function showImage(i) {
-    coursesFixedImages.forEach((img, index) => {
-      if (i !== index) {
-        gsap.to(img, {
-          opacity: 0,
-          duration: 0.1,
-        })
-      } else {
-        gsap.to(img, {
-          opacity: 1,
-          duration: 0.1,
-        })
-      }
-    })
-  }
-
-  function hideImages() {
-    coursesFixedImages.forEach((img) => {
-      gsap.to(img, {
-        opacity: 0,
-        duration: 0.1,
-      })
-    })
-  }
-
-  courseBlocks.forEach((b, index) => {
-    const text = b.firstElementChild
-    const arrow = text.nextElementSibling
-    if (!isTouchDevice()) {
-      b.addEventListener('mouseover', () => {
-        hoverInBlock(b, text, arrow)
-        showImage(index)
-      })
-      b.addEventListener('mouseleave', () => {
-        hoverOutBlock(b, text, arrow)
-        hideImages()
-      })
-    }
   })
 
-  courseHeadings.forEach((h) => {
+  // course card reveal
+  course_card_headings.forEach((h) => {
     gsap.to(h, {
       yPercent: -100,
       opacity: 1,
@@ -94,20 +67,67 @@ function courses() {
       },
     })
   })
-
-  placeHeadings.forEach((h) => {
+  course_card_subheadings.forEach((h) => {
     gsap.to(h, {
       yPercent: -100,
       opacity: 1,
       duration: 0.8,
       scrollTrigger: {
         trigger: h,
+        start: 'top 98%',
+      },
+    })
+  })
+  course_card_ps.forEach((p) => {
+    gsap.to(p, {
+      opacity: 1,
+      duration: 0.6,
+      scrollTrigger: {
+        trigger: p,
         start: 'top 92%',
+        // markers: true,
       },
     })
   })
 
-  // BUTTON
+  // reveal on courses headers
+  gsap.to(course_headers, {
+    opacity: 1,
+    yPercent: -100,
+    stagger: 0.05,
+    duration: 1.2,
+    scrollTrigger: {
+      trigger: course_headers_wrapper,
+      start: 'top 92%',
+    },
+  })
+
+  // image hovers
+  course_imgs.forEach((img) => {
+    const wrapper = img.parentElement
+    img.addEventListener('mouseover', () => {
+      gsap.to(img, {
+        scale: 1.05,
+        duration: 0.6,
+      })
+      gsap.to(wrapper, {
+        borderRadius: 8,
+        duration: 0.4,
+      })
+    })
+    img.addEventListener('mouseleave', () => {
+      gsap.to(img, {
+        scale: 1,
+        duration: 0.6,
+      })
+      gsap.to(wrapper, {
+        borderRadius: 0,
+        duration: 0.4,
+      })
+    })
+  })
+
+  // button
 
   // hover buttons
   function hoverInButton(b, splitText, splitHiddenText) {
@@ -225,4 +245,4 @@ function courses() {
   }
 }
 
-export default courses
+export default coursesInteraction

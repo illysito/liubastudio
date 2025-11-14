@@ -71,10 +71,14 @@ function collectionShaders() {
   }
 
   //prettier-ignore
-  const imageURL_1 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/36.webp')
-  const imageURL_2 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/Cropped%20Lion%20Vase_1.webp')
-  const imageURL_3 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/23.webp')
-  const imageURL_4 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/68.webp')
+  // const imageURL_1 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/36.webp')
+  // const imageURL_2 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/Cropped%20Lion%20Vase_1.webp')
+  // const imageURL_3 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/23.webp')
+  // const imageURL_4 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/3dac002354a1020e2429ad06def465af60b65981/ceramics/68.webp')
+  const imageURL_1 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/a0a0a04a38288e47303c4bba9bc533e4af1cac34/COLLECTION-17.webp')
+  const imageURL_2 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/a0a0a04a38288e47303c4bba9bc533e4af1cac34/COLLECTION-19.webp')
+  const imageURL_3 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/a0a0a04a38288e47303c4bba9bc533e4af1cac34/COLLECTION-18.webp')
+  const imageURL_4 = githubToJsDelivr('https://github.com/illysito/liubastudioimages/blob/a0a0a04a38288e47303c4bba9bc533e4af1cac34/COLLECTION-19.webp')
   const urls = [imageURL_1, imageURL_2, imageURL_3, imageURL_4]
   // console.log('Liuba About Shader: width: ' + canvas.width + ' height: ' + canvas.height)
   const ceramicsSandbox = new GlslCanvas(ceramicsCanvas)

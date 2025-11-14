@@ -15,6 +15,7 @@ function mainCollection() {
     'ontouchstart' in window || navigator.maxTouchPoints > 0
 
   function hoverIn(c, header, hidden_header, img) {
+    const w = img.parentElement
     gsap.to(c, {
       // backgroundColor: '#3111d5',
       duration: 0.4,
@@ -39,9 +40,15 @@ function mainCollection() {
       duration: 0.6,
       ease: ease,
     })
+    gsap.to(w, {
+      borderRadius: 8,
+      duration: 0.2,
+      ease: ease,
+    })
   }
 
   function hoverOut(c, header, hidden_header, img) {
+    const w = img.parentElement
     gsap.to(c, {
       // backgroundColor: '#fffffe',
       duration: 0.4,
@@ -64,6 +71,11 @@ function mainCollection() {
     gsap.to(img, {
       scale: 1.1,
       duration: 0.6,
+      ease: ease,
+    })
+    gsap.to(w, {
+      borderRadius: 4,
+      duration: 0.2,
       ease: ease,
     })
   }
@@ -102,7 +114,8 @@ function mainCollection() {
   function hoverInButton(b, splitText, splitHiddenText) {
     gsap.to(b, {
       scale: 0.98,
-      backgroundColor: '#3e50d6',
+      backgroundColor: '#0e0e0e',
+      borderColor: '#0e0e0e',
       duration: 0.4,
       ease: 'power2.out',
     })
@@ -124,17 +137,18 @@ function mainCollection() {
     gsap.to(b, {
       scale: 1,
       backgroundColor: '#3e50d600',
+      borderColor: '#0e0e0e',
       duration: 0.4,
       ease: 'power2.out',
     })
     gsap.to(splitText.chars, {
-      color: '#3e50d6',
+      color: '#0e0e0e',
       yPercent: 0,
       stagger: 0.02,
       ease: 'power2.out',
     })
     gsap.to(splitHiddenText.chars, {
-      color: '#3e50d6',
+      color: '#0e0e0e',
       yPercent: 0,
       stagger: 0.02,
       ease: 'power2.out',
@@ -163,7 +177,8 @@ function mainCollection() {
       duration: 0.1,
     })
     gsap.to(b, {
-      backgroundColor: '#3e50d6',
+      backgroundColor: '#0e0e0e',
+      // borderColor: '#3e50d6',
       scale: 0.92,
       duration: 0.1,
       onComplete: () => {
@@ -173,7 +188,7 @@ function mainCollection() {
           duration: 0.2,
         })
         gsap.to(text, {
-          color: '#3e50d6',
+          color: '#0e0e0e',
           duration: 0.1,
         })
       },

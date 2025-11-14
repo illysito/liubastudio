@@ -20,7 +20,13 @@ function nav() {
     // const l = event.currentTarget
     // const header = l.firstElementChild
     // const hidden_header = header.nextElementSibling
-    gsap.to([header.chars, hidden_header.chars], {
+    gsap.to(header.chars, {
+      yPercent: -100,
+      duration: 0.4,
+      ease: ease,
+      stagger: 0.01,
+    })
+    gsap.to(hidden_header.chars, {
       yPercent: -100,
       duration: 0.4,
       ease: ease,
@@ -32,7 +38,13 @@ function nav() {
     // const l = event.currentTarget
     // const header = l.firstElementChild
     // const hidden_header = header.nextElementSibling
-    gsap.to([header.chars, hidden_header.chars], {
+    gsap.to(hidden_header.chars, {
+      yPercent: 0,
+      duration: 0.4,
+      ease: ease,
+      stagger: 0.01,
+    })
+    gsap.to(header.chars, {
       yPercent: 0,
       duration: 0.4,
       ease: ease,

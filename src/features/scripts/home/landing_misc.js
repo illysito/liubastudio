@@ -17,6 +17,9 @@ function landingMisc() {
   const motto_section = document.querySelector('.motto__section')
   // stars
   const stars = document.querySelectorAll('.stars')
+  // courses headers
+  const course_headers_wrapper = document.querySelectorAll('.courses-h-wrapper')
+  const course_headers = document.querySelectorAll('.courses-h')
 
   // heading and lines of separators
   title_headings.forEach((title) => {
@@ -81,6 +84,18 @@ function landingMisc() {
     }
   })
 
+  // reveal on courses headers
+  gsap.to(course_headers, {
+    yPercent: -100,
+    opacity: 1,
+    stagger: 0.05,
+    duration: 0.8,
+    scrollTrigger: {
+      trigger: course_headers_wrapper,
+      start: 'top 92%',
+    },
+  })
+
   // ------------- PARALLAX ------------ //
   // parallax on collection images
   gsap.to(collection_canvas, {
@@ -105,17 +120,7 @@ function landingMisc() {
       markers: false,
     },
   })
-  // gsap.to(about_section, {
-  //   y: -28,
-  //   scrollTrigger: {
-  //     trigger: about_section,
-  //     start: 'top bottom',
-  //     end: 'top top',
-  //     scrub: true,
-  //     markers: false,
-  //   },
-  // })
-  // parallax on stars
+
   stars.forEach((star, index) => {
     gsap.to(star, {
       y: 40 + 40 * 2 * index,
@@ -128,6 +133,27 @@ function landingMisc() {
       },
     })
   })
+
+  // granada
+  function granadaAnimation() {
+    function queryDomElements() {
+      return {
+        frames: document.querySelectorAll('.loading-icon-store'),
+      }
+    }
+    const DOM = queryDomElements()
+
+    const tl = gsap.timeline({
+      repeat: -1,
+      // yoyo: true,
+    })
+
+    DOM.frames.forEach((frame) => {
+      tl.to(frame, { opacity: 1, duration: 0, ease: 'linear' }) // fade in
+        .to(frame, { delay: 0.4, opacity: 0, duration: 0, ease: 'linear' }) // hold, then fade out
+    })
+  }
+  granadaAnimation()
 }
 
 export default landingMisc
