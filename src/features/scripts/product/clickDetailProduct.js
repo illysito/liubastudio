@@ -20,7 +20,7 @@ function clickDeatilProduct(product) {
   function hoverIn(b, splitText, splitHiddenText) {
     gsap.to(b, {
       scale: 0.98,
-      backgroundColor: '#3e50d6',
+      backgroundColor: '#000000',
       duration: 0.4,
       ease: 'power2.out',
     })
@@ -46,13 +46,13 @@ function clickDeatilProduct(product) {
       ease: 'power2.out',
     })
     gsap.to(splitText.chars, {
-      color: '#3e50d6',
+      color: '#000000',
       yPercent: 0,
       stagger: 0.02,
       ease: 'power2.out',
     })
     gsap.to(splitHiddenText.chars, {
-      color: '#3e50d6',
+      color: '#000000',
       yPercent: 0,
       stagger: 0.02,
       ease: 'power2.out',

@@ -30,6 +30,7 @@ async function runHomeFunctions() {
   const { default: handleLiuba } = await import(
     './features/shaders/handleLiuba'
   )
+  const { default: about } = await import('./features/scripts/home/about')
   const { default: courses } = await import('./features/scripts/home/courses')
 
   preloader()
@@ -43,6 +44,7 @@ async function runHomeFunctions() {
   // handleLiubaAbout()
   collectionShaders()
   courses()
+  about()
   footer()
 }
 
@@ -148,7 +150,6 @@ function runSpacesFunctions() {
 
 function runContactFunctions() {
   console.log('Welcome to Contact')
-  footer()
 }
 
 async function runMiscFunctions() {
