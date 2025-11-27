@@ -7,6 +7,7 @@ function coursesInteraction() {
   const course_headers = document.querySelectorAll('.courses-h')
 
   // courses titles
+  const course_icons = document.querySelectorAll('.course-icon')
   const title_headings = document.querySelectorAll('.title-heading')
   const title_lines = document.querySelectorAll('.title-line')
 
@@ -17,9 +18,10 @@ function coursesInteraction() {
   )
   const course_imgs = document.querySelectorAll('.course-img')
   const course_card_ps = document.querySelectorAll('.course-card-p')
+  const course_overlays = document.querySelectorAll('.course-img-overlay')
 
   // button
-  const button = document.querySelector('.courses-button')
+  const buttons = document.querySelectorAll('.courses-button')
 
   const isTouchDevice = () =>
     'ontouchstart' in window || navigator.maxTouchPoints > 0
@@ -89,6 +91,19 @@ function coursesInteraction() {
       },
     })
   })
+  course_overlays.forEach((ov, index) => {
+    gsap.to(ov, {
+      yPercent: 100,
+      duration: 1.6,
+      delay: index * 0.05,
+      ease: 'power2.inOut',
+      scrollTrigger: {
+        trigger: ov,
+        start: 'top 92%',
+        // markers: true,
+      },
+    })
+  })
 
   // reveal on courses headers
   gsap.to(course_headers, {
@@ -100,6 +115,16 @@ function coursesInteraction() {
       trigger: course_headers_wrapper,
       start: 'top 92%',
     },
+  })
+  course_icons.forEach((i) => {
+    gsap.to(i, {
+      opacity: 1,
+      duration: 1.2,
+      scrollTrigger: {
+        trigger: i,
+        start: 'top 92%',
+      },
+    })
   })
 
   // image hovers
@@ -215,34 +240,36 @@ function coursesInteraction() {
   }
 
   // event listeners
-  const wrapper = button.firstElementChild
-  const text = wrapper.firstElementChild
-  const hiddenText = wrapper.lastElementChild
+  buttons.forEach((b) => {
+    const wrapper = b.firstElementChild
+    const text = wrapper.firstElementChild
+    const hiddenText = wrapper.lastElementChild
 
-  const splitText = new SplitType(text, {
-    types: 'chars',
-    tagName: 'span',
-  })
-  const splitHiddenText = new SplitType(hiddenText, {
-    types: 'chars',
-    tagName: 'span',
-  })
+    const splitText = new SplitType(text, {
+      types: 'chars',
+      tagName: 'span',
+    })
+    const splitHiddenText = new SplitType(hiddenText, {
+      types: 'chars',
+      tagName: 'span',
+    })
 
-  if (!isTouchDevice()) {
-    button.addEventListener('mouseover', () => {
-      hoverInButton(button, splitText, splitHiddenText)
-    })
-    button.addEventListener('mouseleave', () => {
-      hoverOutButton(button, splitText, splitHiddenText)
-    })
-    button.addEventListener('click', () => {
-      clickAnimationButton(button)
-    })
-  } else {
-    button.addEventListener('click', () => {
-      tapAnimationButton(button)
-    })
-  }
+    if (!isTouchDevice()) {
+      b.addEventListener('mouseover', () => {
+        hoverInButton(b, splitText, splitHiddenText)
+      })
+      b.addEventListener('mouseleave', () => {
+        hoverOutButton(b, splitText, splitHiddenText)
+      })
+      b.addEventListener('click', () => {
+        clickAnimationButton(b)
+      })
+    } else {
+      b.addEventListener('click', () => {
+        tapAnimationButton(b)
+      })
+    }
+  })
 }
 
 export default coursesInteraction

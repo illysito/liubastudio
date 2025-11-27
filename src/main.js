@@ -31,6 +31,7 @@ async function runHomeFunctions() {
     './features/shaders/handleLiuba'
   )
   const { default: about } = await import('./features/scripts/home/about')
+  const { default: solar } = await import('./features/scripts/home/solarSystem')
   const { default: courses } = await import('./features/scripts/home/courses')
 
   preloader()
@@ -45,6 +46,7 @@ async function runHomeFunctions() {
   collectionShaders()
   courses()
   about()
+  solar()
   footer()
 }
 
