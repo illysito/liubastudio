@@ -91,7 +91,7 @@ function nav() {
   // MENU SCREEN
   if (burger) {
     const afterNav = nav_section.nextElementSibling
-    console.log(afterNav)
+    // console.log(afterNav)
 
     burger.addEventListener('click', () => {
       document.body.style.overflow = 'hidden'

@@ -18,7 +18,7 @@ function clickStoreProducts() {
   const isTouchDevice = () =>
     'ontouchstart' in window || navigator.maxTouchPoints > 0
 
-  console.log(isTouchDevice())
+  // console.log(isTouchDevice())
 
   function hoverIn(b, splitText, splitHiddenText) {
     gsap.to(b, {

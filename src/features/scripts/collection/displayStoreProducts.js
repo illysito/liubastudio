@@ -8,7 +8,7 @@ function displayStoreProducts(products) {
   }
   const domElements = domElementsQuery()
 
-  const product_IDs = []
+  // const product_IDs = []
 
   products.forEach((p) => {
     const category = p.metadata.Category
@@ -72,7 +72,7 @@ function displayStoreProducts(products) {
     domElements.storeWrapper.appendChild(productEl)
   })
 
-  console.log(product_IDs)
+  // console.log(product_IDs)
 }
 
 export default displayStoreProducts

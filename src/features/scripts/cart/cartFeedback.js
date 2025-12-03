@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { $ } from '../../utils/getElement.js'
 
 function showCartFeedback(message) {
-  console.log(message)
+  // console.log(message)
   const modal = $('.feedback-modal')
   const text = $('.feedback-message')
 
