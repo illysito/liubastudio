@@ -150,8 +150,11 @@ function runSpacesFunctions() {
   footer()
 }
 
-function runContactFunctions() {
-  console.log('Welcome to Contact')
+async function runContactFunctions() {
+  const { default: contact } = await import(
+    './features/scripts/contact/contact'
+  )
+  contact()
 }
 
 async function runMiscFunctions() {
