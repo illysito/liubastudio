@@ -103,12 +103,12 @@ function nav() {
         ease: 'power2.inOut',
       })
       gsap.to(menu_screen, {
-        yPercent: 200,
+        yPercent: 150,
         duration: 1.2,
         ease: 'power2.inOut',
       })
       gsap.to(menu_header, {
-        yPercent: -200,
+        yPercent: -100,
         duration: 1.4,
         ease: 'power1.inOut',
         stagger: 0.05,
