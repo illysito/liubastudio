@@ -1,6 +1,6 @@
 // general
 import initCartCount from './features/scripts/cart/initCartCount'
-import audio from './features/scripts/general/audio'
+// import audio from './features/scripts/general/audio'
 import footer from './features/scripts/general/footer'
 // import mousetrail from './features/scripts/general/mousetrail'
 import nav from './features/scripts/general/nav'
@@ -172,7 +172,7 @@ function runGeneralFunctions() {
   initCartCount()
   nav()
   // footer()
-  audio()
+  // audio()
   // mousetrail()
 }
 
