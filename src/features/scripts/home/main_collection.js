@@ -81,6 +81,7 @@ function mainCollection() {
   }
 
   cards.forEach((card, index) => {
+    console.log(index)
     const header_w = card.firstElementChild
     const header = header_w.firstElementChild
     const hidden_header = header.nextElementSibling
