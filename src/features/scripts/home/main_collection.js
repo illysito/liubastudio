@@ -105,10 +105,10 @@ function mainCollection() {
         hoverOut(card, splitHeader, splitHiddenHeader, img)
       })
     }
-    card.addEventListener('click', () => {
-      localStorage.setItem('initial-filter-type', header.textContent)
-      localStorage.setItem('initial-filter-index', index + 1)
-    })
+    // card.addEventListener('click', () => {
+    //   localStorage.setItem('initial-filter-type', header.textContent)
+    //   localStorage.setItem('initial-filter-index', index + 1)
+    // })
   })
 
   function hoverInButton(b, splitText, splitHiddenText) {
